@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav"
+    app:startDestination="@id/motorcycle_nav">
+
+    <navigation
+        android:id="@+id/motorcycle_nav"
+        android:label="Motorcycles"
+        app:startDestination="@id/motorcycle_list">
+        <fragment
+            android:id="@+id/motorcycle_update"
+            android:name="com.example.motolog.Fragments.Update.MotorcycleUpdateFragment"
+            android:label="Edit Motorcycle"
+            tools:layout="@layout/motorcycle_edit">
+            <action
+                android:id="@+id/bikeupdate_to_bikelist"
+                app:destination="@id/motorcycle_list" />
+            <argument
+                android:name="current_motorcycle"
+                app:argType="com.example.motolog.Models.Motorcycle" />
+        </fragment>
+        <fragment
+            android:id="@+id/motorcycle_list"
+            android:name="com.example.motolog.Fragments.List.MotorcycleListFragment"
+            android:label="Garage"
+            tools:layout="@layout/motorcycle_list">
+            <action
+                android:id="@+id/bikelist_to_bikeadd"
+                app:destination="@id/motorcycle_add" />
+            <action
+                android:id="@+id/bikelist_to_bikeupdate"
+                app:destination="@id/motorcycle_update" />
+        </fragment>
+        <fragment
+            android:id="@+id/motorcycle_add"
+            android:name="com.example.motolog.Fragments.Add.MotorcycleAddFragment"
+            android:label="Add Motorcycle"
+            tools:layout="@layout/motorcycle_add">
+            <action
+                android:id="@+id/bikeadd_to_bikelist"
+                app:destination="@id/motorcycle_list" />
+        </fragment>
+        <action
+            android:id="@+id/bikes_to_gear"
+            app:destination="@id/gear_nav" />
+        <action
+            android:id="@+id/action_global_settings_nav"
+            app:destination="@id/settings_nav" />
+        <action
+            android:id="@+id/bikes_to_settings"
+            app:destination="@id/settings_nav" />
+    </navigation>
+    <navigation
+        android:id="@+id/gear_nav"
+        android:label="Gear"
+        app:startDestination="@id/gear_list">
+        <fragment
+            android:id="@+id/gear_list"
+            android:name="com.example.motolog.Fragments.List.GearListFragment"
+            android:label="Gear"
+            tools:layout="@layout/gear_list">
+            <action
+                android:id="@+id/gearlist_to_gearadd"
+                app:destination="@id/gear_add" />
+            <action
+                android:id="@+id/gearlist_to_gearupdate"
+                app:destination="@id/gear_update" />
+        </fragment>
+        <fragment
+            android:id="@+id/gear_update"
+            android:name="com.example.motolog.Fragments.Update.GearUpdateFragment"
+            android:label="Edit Gear"
+            tools:layout="@layout/gear_edit">
+            <action
+                android:id="@+id/gearupdate_to_gearlist"
+                app:destination="@id/gear_list" />
+            <argument
+                android:name="current_gear"
+                app:argType="com.example.motolog.Models.Gear" />
+        </fragment>
+        <fragment
+            android:id="@+id/gear_add"
+            android:name="com.example.motolog.Fragments.Add.GearAddFragment"
+            android:label="Add Gear"
+            tools:layout="@layout/gear_add">
+            <action
+                android:id="@+id/gearadd_to_gearlist"
+                app:destination="@id/gear_list" />
+        </fragment>
+        <action
+            android:id="@+id/gear_to_bikes"
+            app:destination="@id/motorcycle_nav" />
+        <action
+            android:id="@+id/gear_to_settings"
+            app:destination="@id/settings_nav" />
+    </navigation>
+    <navigation
+        android:id="@+id/settings_nav"
+        android:label="Settings"
+        app:startDestination="@id/settings">
+        <fragment
+            android:id="@+id/settings"
+            android:name="com.example.motolog.Fragments.Settings.SettingsFragment"
+            android:label="Settings"
+            tools:layout="@layout/settings" />
+        <action
+            android:id="@+id/settings_to_bikes"
+            app:destination="@id/motorcycle_nav" />
+        <action
+            android:id="@+id/settings_to_gear"
+            app:destination="@id/gear_nav" />
+    </navigation>
+</navigation>
