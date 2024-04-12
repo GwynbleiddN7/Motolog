@@ -4,7 +4,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context=".Fragments.Add.MotorcycleAddFragment">
+tools:context=".Fragments.Garage.MotorcycleAddFragment">
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -19,8 +19,10 @@ tools:context=".Fragments.Add.MotorcycleAddFragment">
         android:id="@+id/ib_bike_image"
         android:layout_width="250dp"
         android:layout_height="250dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/ic_camera"
+        android:layout_marginTop="20dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/bike_logo"
+        android:background="@color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,72 +30,151 @@ tools:context=".Fragments.Add.MotorcycleAddFragment">
 
     <EditText
         android:id="@+id/et_bike_manufacturer"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginHorizontal="30dp"
-        android:hint="Manufacturer"
-        android:inputType="text"
+        android:layout_marginTop="25dp"
+        android:hint="Kawasaki"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ib_bike_image" />
 
-    <EditText
-        android:id="@+id/et_bike_model"
+    <TextView
+        android:id="@+id/textView_bike_manufacturer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="30dp"
-        android:hint="Model"
-        android:inputType="text"
+        android:layout_marginTop="3dp"
+        android:textAlignment="center"
+        android:textSize="16dp"
+        android:textStyle="italic"
+        android:text="Manufacturer"
+        android:textColor="@color/dark_white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_bike_manufacturer" />
 
     <EditText
-        android:id="@+id/et_bike_alias"
-        android:layout_width="match_parent"
+        android:id="@+id/et_bike_model"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="30dp"
-        android:hint="Alias"
-        android:inputType="text"
+        android:hint="Ninja H2R"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_bike_manufacturer" />
+
+    <TextView
+        android:id="@+id/textView_bike_model"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:textAlignment="center"
+        android:textSize="16dp"
+        android:textStyle="italic"
+        android:text="Model"
+        android:textColor="@color/dark_white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_bike_model" />
 
     <EditText
-        android:id="@+id/et_bike_price"
-        android:layout_width="match_parent"
+        android:id="@+id/et_bike_alias"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="30dp"
-        android:hint="Price"
-        android:inputType="number"
+        android:hint="Optional"
+        android:textSize="25sp"
+        android:textStyle="italic"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_bike_model" />
+
+    <TextView
+        android:id="@+id/textView_bike_alias"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:textAlignment="center"
+        android:textSize="16dp"
+        android:textStyle="italic"
+        android:text="Alias"
+        android:textColor="@color/dark_white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_bike_alias" />
 
     <EditText
         android:id="@+id/et_bike_year"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="30dp"
-        android:hint="Year"
+        android:hint="2016"
+        android:textSize="25sp"
+        android:textStyle="bold"
         android:inputType="number"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_bike_price" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_bike_alias" />
+
+    <TextView
+        android:id="@+id/textView_bike_year"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:textAlignment="center"
+        android:textSize="16dp"
+        android:textStyle="italic"
+        android:text="Year"
+        android:textColor="@color/dark_white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_bike_year" />
+
+
+    <EditText
+        android:id="@+id/et_bike_startkm"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="0.0"
+        android:text="0.0"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_bike_year" />
+
+    <TextView
+        android:id="@+id/textView_bike_distance_pre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        android:text="Km when bought"
+        android:textColor="@color/dark_white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_bike_startkm" />
 
     <Button
         android:id="@+id/bt_addMotorcycle"
         android:layout_width="200dp"
         android:layout_height="60dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="45dp"
         android:text="Add Motorcycle"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@+id/et_bike_year"
+        app:layout_constraintTop_toBottomOf="@+id/textView_bike_distance_pre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 

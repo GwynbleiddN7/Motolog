@@ -1,4 +1,4 @@
-package com.example.motolog.Fragments.List
+package com.example.motolog.Fragments.Gear
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -37,10 +37,10 @@ class GearListFragment : Fragment() {
         })
 
         view.findViewById<FloatingActionButton>(R.id.fab_addGear).setOnClickListener{
-            findNavController().navigate(R.id.gearlist_to_gearadd)
+            val action = GearListFragmentDirections.gearlistToGearadd(null)
+            findNavController().navigate(action)
         }
         setHasOptionsMenu(true)
-
         return view
     }
 
@@ -55,7 +55,7 @@ class GearListFragment : Fragment() {
             {
                 totalMoney += gear.price
             }
-            Toast.makeText(requireContext(), "Total spent on gear: ${String.format("%.2f€", totalMoney)}", Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), "Total cost: ${String.format("%.2f€", totalMoney)}", Toast.LENGTH_LONG).show()
         }
         return super.onContextItemSelected(item)
     }

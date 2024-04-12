@@ -18,4 +18,8 @@ class GearRepository(private val gearDao: GearDAO)  {
     suspend fun deleteGear(gear: Gear){
         gearDao.deleteGear(gear)
     }
+
+    fun getGear(id: Int): LiveData<List<Gear>>{
+        return gearDao.getGear(id)
+    }
 }

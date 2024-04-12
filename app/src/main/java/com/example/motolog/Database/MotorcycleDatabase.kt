@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.motolog.Models.Motorcycle
 
-@Database(entities = [Motorcycle::class], version = 2, exportSchema = true)
+@Database(entities = [Motorcycle::class], version = 3, exportSchema = true)
 abstract class MotorcycleDatabase : RoomDatabase() {
     abstract fun motorcycleDao(): MotorcycleDAO
 

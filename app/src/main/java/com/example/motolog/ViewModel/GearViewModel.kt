@@ -36,4 +36,8 @@ class GearViewModel (application: Application): AndroidViewModel(application) {
             repository.deleteGear(gear)
         }
     }
+
+    fun getGear(id: Int): LiveData<List<Gear>> {
+        return repository.getGear(id)
+    }
 }

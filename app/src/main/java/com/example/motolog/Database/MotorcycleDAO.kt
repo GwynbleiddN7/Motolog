@@ -22,4 +22,7 @@ interface MotorcycleDAO {
 
     @Query("SELECT * FROM motorcycle ORDER BY id ASC")
     fun readAllData(): LiveData<List<Motorcycle>>
+
+    @Query("SELECT * FROM motorcycle WHERE id = :id")
+    fun getMotorcycle(id: Int): LiveData<List<Motorcycle>>
 }

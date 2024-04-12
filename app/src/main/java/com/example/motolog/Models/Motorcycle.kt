@@ -15,8 +15,8 @@ data class Motorcycle(
     val model: String,
     val alias: String,
     val year: Int,
-    val price: Double,
-    val total_km: Double = 0.0,
+    val start_km: Double,
+    val personal_km: Double = 0.0,
     val km_logs: String = "",
     val maintenance_logs: String = "",
     val mods_logs: String = "",
@@ -32,6 +32,7 @@ data class BikeInfo(
     val engine_cc: Double = 0.0,
     val cilinders: Int = 0,
     val horse_power: Double = 0.0,
+    val price: Double = 0.0,
     val front_tire: String = "",
     val rear_tire: String = "",
     val plate_number: String = ""

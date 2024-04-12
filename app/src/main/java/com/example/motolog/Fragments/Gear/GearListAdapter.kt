@@ -1,4 +1,4 @@
-package com.example.motolog.Fragments.List
+package com.example.motolog.Fragments.Gear
 
 import android.view.LayoutInflater
 import android.view.View
@@ -38,8 +38,15 @@ class GearListAdapter : RecyclerView.Adapter<GearListAdapter.MyViewHolder>() {
         val price = String.format("Price: %.2f€", currentItem.price)
         holder.itemView.findViewById<TextView>(R.id.tw_gear_price).text = price
 
-        holder.itemView.findViewById<ConstraintLayout>(R.id.gear_row).setOnLongClickListener {
-            val action = GearListFragmentDirections.gearlistToGearupdate(currentItem)
+        val item = holder.itemView.findViewById<ConstraintLayout>(R.id.gear_row)
+
+        item.setOnClickListener {
+            val action = GearListFragmentDirections.gearlistToGearshow(currentItem)
+            holder.itemView.findNavController().navigate(action)
+        }
+
+        item.setOnLongClickListener {
+            val action = GearListFragmentDirections.gearlistToGearadd(currentItem)
             holder.itemView.findNavController().navigate(action)
             true
         }

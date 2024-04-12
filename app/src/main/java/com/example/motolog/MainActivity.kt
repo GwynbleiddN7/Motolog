@@ -6,6 +6,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.motolog.ViewModel.MotorcycleViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         val navController = getNavController()
         setupActionBarWithNavController(navController, appBarConfiguration)
 
+        MotorcycleViewModel.currentBikeId = null
         lastHomeFragmentId = R.id.motorcycle_list
 
         findViewById<BottomNavigationView>(R.id.bottomNavView).setOnItemSelectedListener {

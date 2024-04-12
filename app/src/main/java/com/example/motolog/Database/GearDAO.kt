@@ -22,4 +22,7 @@ interface GearDAO {
 
     @Query("SELECT * FROM gear ORDER BY id ASC")
     fun readAllData(): LiveData<List<Gear>>
+
+    @Query("SELECT * FROM gear WHERE id = :id")
+    fun getGear(id: Int): LiveData<List<Gear>>
 }

@@ -28,9 +28,10 @@
                 android:id="@+id/motorcycle_image"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:padding="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@mipmap/ic_launcher" />
+                app:srcCompat="@drawable/bike_logo" />
 
             <TextView
                 android:id="@+id/tw_bike_manufacturer"
@@ -59,6 +60,7 @@
                 android:scrollHorizontally="true"
                 android:singleLine="true"
                 android:text="ER-6N ABS"
+                android:textColor="@color/white"
                 android:textAllCaps="true"
                 android:textSize="24sp"
                 android:textStyle="bold|italic"
@@ -85,18 +87,20 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="15dp"
                 android:text="Year: 2014"
+                android:textColor="@color/dark_white"
                 android:textSize="13sp"
                 android:textStyle="italic"
                 app:layout_constraintStart_toEndOf="@+id/motorcycle_image"
                 app:layout_constraintTop_toBottomOf="@+id/tw_bike_model" />
 
             <TextView
-                android:id="@+id/tw_bike_price"
+                android:id="@+id/tw_bike_distance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="20dp"
-                android:text="Price: 3500$"
+                android:text="Distance: 3500km"
+                android:textColor="@color/dark_white"
                 android:textSize="13sp"
                 android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"

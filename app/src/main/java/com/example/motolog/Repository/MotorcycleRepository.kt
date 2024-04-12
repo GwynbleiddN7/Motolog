@@ -18,4 +18,8 @@ class MotorcycleRepository(private val motorcycleDao: MotorcycleDAO) {
     suspend fun deleteMotorcycle(motorcycle: Motorcycle){
         motorcycleDao.deleteMotorcycle(motorcycle)
     }
+
+    fun getMotorcycle(id: Int): LiveData<List<Motorcycle>>{
+        return motorcycleDao.getMotorcycle(id)
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.motolog.Fragments.List
+package com.example.motolog.Fragments.Garage
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -33,8 +33,8 @@ class MotorcycleListAdapter: RecyclerView.Adapter<MotorcycleListAdapter.MyViewHo
         holder.itemView.findViewById<TextView>(R.id.tw_bike_alias).text = currentItem.alias
         holder.itemView.findViewById<TextView>(R.id.tw_bike_year).text = String.format("Year: %d", currentItem.year)
 
-        val price = String.format("Price: %.2f€", currentItem.price)
-        holder.itemView.findViewById<TextView>(R.id.tw_bike_price).text = price
+        val distance = String.format("Distance: %.2f km", currentItem.personal_km)
+        holder.itemView.findViewById<TextView>(R.id.tw_bike_distance).text = distance
 
         val motorcycleRow = holder.itemView.findViewById<ConstraintLayout>(R.id.motorcycle_row)
 
@@ -45,7 +45,7 @@ class MotorcycleListAdapter: RecyclerView.Adapter<MotorcycleListAdapter.MyViewHo
         }
 
         motorcycleRow.setOnLongClickListener {
-            val action = MotorcycleListFragmentDirections.bikelistToBikeupdate(currentItem)
+            val action = MotorcycleListFragmentDirections.bikelistToBikeadd(currentItem)
             holder.itemView.findNavController().navigate(action)
             true
         }

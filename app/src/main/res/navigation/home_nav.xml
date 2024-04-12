@@ -10,37 +10,27 @@
         android:label="Motorcycles"
         app:startDestination="@id/motorcycle_list">
         <fragment
-            android:id="@+id/motorcycle_update"
-            android:name="com.example.motolog.Fragments.Update.MotorcycleUpdateFragment"
-            android:label="Edit Motorcycle"
-            tools:layout="@layout/motorcycle_edit">
-            <action
-                android:id="@+id/bikeupdate_to_bikelist"
-                app:destination="@id/motorcycle_list" />
-            <argument
-                android:name="current_motorcycle"
-                app:argType="com.example.motolog.Models.Motorcycle" />
-        </fragment>
-        <fragment
             android:id="@+id/motorcycle_list"
-            android:name="com.example.motolog.Fragments.List.MotorcycleListFragment"
+            android:name="com.example.motolog.Fragments.Garage.MotorcycleListFragment"
             android:label="Garage"
             tools:layout="@layout/motorcycle_list">
             <action
                 android:id="@+id/bikelist_to_bikeadd"
                 app:destination="@id/motorcycle_add" />
-            <action
-                android:id="@+id/bikelist_to_bikeupdate"
-                app:destination="@id/motorcycle_update" />
         </fragment>
         <fragment
             android:id="@+id/motorcycle_add"
-            android:name="com.example.motolog.Fragments.Add.MotorcycleAddFragment"
-            android:label="Add Motorcycle"
+            android:name="com.example.motolog.Fragments.Garage.MotorcycleAddFragment"
+            android:label="Motorcycle Maker"
             tools:layout="@layout/motorcycle_add">
             <action
                 android:id="@+id/bikeadd_to_bikelist"
                 app:destination="@id/motorcycle_list" />
+            <argument
+                android:name="currentMotorcycle"
+                android:defaultValue="@null"
+                app:argType="com.example.motolog.Models.Motorcycle"
+                app:nullable="true" />
         </fragment>
         <action
             android:id="@+id/bikes_to_gear"
@@ -58,36 +48,32 @@
         app:startDestination="@id/gear_list">
         <fragment
             android:id="@+id/gear_list"
-            android:name="com.example.motolog.Fragments.List.GearListFragment"
-            android:label="Gear"
+            android:name="com.example.motolog.Fragments.Gear.GearListFragment"
+            android:label="Gear List"
             tools:layout="@layout/gear_list">
             <action
                 android:id="@+id/gearlist_to_gearadd"
                 app:destination="@id/gear_add" />
             <action
-                android:id="@+id/gearlist_to_gearupdate"
-                app:destination="@id/gear_update" />
-        </fragment>
-        <fragment
-            android:id="@+id/gear_update"
-            android:name="com.example.motolog.Fragments.Update.GearUpdateFragment"
-            android:label="Edit Gear"
-            tools:layout="@layout/gear_edit">
-            <action
-                android:id="@+id/gearupdate_to_gearlist"
-                app:destination="@id/gear_list" />
-            <argument
-                android:name="current_gear"
-                app:argType="com.example.motolog.Models.Gear" />
+                android:id="@+id/gearlist_to_gearshow"
+                app:destination="@id/gear_show" />
         </fragment>
         <fragment
             android:id="@+id/gear_add"
-            android:name="com.example.motolog.Fragments.Add.GearAddFragment"
-            android:label="Add Gear"
+            android:name="com.example.motolog.Fragments.Gear.GearAddFragment"
+            android:label="Gear Maker"
             tools:layout="@layout/gear_add">
             <action
                 android:id="@+id/gearadd_to_gearlist"
                 app:destination="@id/gear_list" />
+            <action
+                android:id="@+id/gearadd_to_gearshow"
+                app:destination="@id/gear_show" />
+            <argument
+                android:name="current_gear"
+                app:argType="com.example.motolog.Models.Gear"
+                app:nullable="true"
+                android:defaultValue="@null" />
         </fragment>
         <action
             android:id="@+id/gear_to_bikes"
@@ -95,6 +81,21 @@
         <action
             android:id="@+id/gear_to_settings"
             app:destination="@id/settings_nav" />
+        <fragment
+            android:id="@+id/gear_show"
+            android:name="com.example.motolog.Fragments.Gear.GearShowFragment"
+            android:label="Gear"
+            tools:layout="@layout/gear_show">
+            <action
+                android:id="@+id/gearshow_to_gearadd"
+                app:destination="@id/gear_add" />
+            <action
+                android:id="@+id/gearshow_to_gearlist"
+                app:destination="@id/gear_list" />
+            <argument
+                android:name="currentGear"
+                app:argType="com.example.motolog.Models.Gear" />
+        </fragment>
     </navigation>
     <navigation
         android:id="@+id/settings_nav"

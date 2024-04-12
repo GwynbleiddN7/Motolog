@@ -5,13 +5,17 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BikeActivity">
+    tools:context=".BikeActivity" >
 
-    <TextView
-        android:id="@+id/idView"
-        android:layout_width="121dp"
-        android:layout_height="50dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="145dp"
-        tools:layout_editor_absoluteY="256dp" />
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/bike_home_nav"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/bike_nav" />
 </androidx.constraintlayout.widget.ConstraintLayout>
