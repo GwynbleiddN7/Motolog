@@ -2,7 +2,6 @@ package com.example.motolog.Fragments.Home
 
 import android.app.AlertDialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -10,15 +9,16 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.motolog.Fragments.Gear.GearShowFragmentDirections
 import com.example.motolog.Models.Motorcycle
 import com.example.motolog.R
 import com.example.motolog.ViewModel.MotorcycleViewModel
+import com.example.motolog.formatThousand
+import com.example.motolog.showToast
 
 class BikeHomeFragment : Fragment() {
     private lateinit var mMotorcycleViewModel: MotorcycleViewModel
@@ -28,28 +28,32 @@ class BikeHomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.bike_home, container, false)
-        setHasOptionsMenu(true)
+
 
         mMotorcycleViewModel = ViewModelProvider(this)[MotorcycleViewModel::class.java]
-        val bike_id = MotorcycleViewModel.currentBikeId
-        if(bike_id == null)
+        val bikeId = MotorcycleViewModel.currentBikeId
+        if(bikeId == null)
         {
             returnToList()
             return view
         }
 
-        val bikeData = mMotorcycleViewModel.getMotorcycle(bike_id)
+        val bikeData = mMotorcycleViewModel.getMotorcycle(bikeId)
         bikeData.observe(viewLifecycleOwner, Observer {
             bikes -> run {
                 if(bikes.isNotEmpty())
                 {
                     currentBike = bikes.first()
-                    view.findViewById<TextView>(R.id.bike_alias).text = currentBike.alias.ifEmpty { currentBike.model }
+                    val aliasTextView = view.findViewById<TextView>(R.id.bike_alias)
+                    aliasTextView.text = currentBike.alias.ifEmpty { currentBike.model }
+                    aliasTextView.isSelected = true
+
                     view.findViewById<TextView>(R.id.bike_manufacturer).text = currentBike.manufacturer
                     view.findViewById<TextView>(R.id.bike_model).text = currentBike.model
                     view.findViewById<TextView>(R.id.bike_year).text = String.format("%d", currentBike.year)
-                    view.findViewById<TextView>(R.id.bike_personalkm).text = String.format("%d", currentBike.personal_km)
-                    view.findViewById<TextView>(R.id.bike_totalkm).text = String.format("%d", currentBike.personal_km + currentBike.start_km)
+
+                    view.findViewById<TextView>(R.id.bike_personalkm).text = formatThousand(currentBike.personal_km)
+                    view.findViewById<TextView>(R.id.bike_totalkm).text = formatThousand(currentBike.personal_km + currentBike.start_km)
                 }
                 else returnToList()
             }
@@ -68,6 +72,7 @@ class BikeHomeFragment : Fragment() {
             findNavController().navigate(R.id.bikehome_to_bikerepairs)
         }
 
+        setHasOptionsMenu(true)
         return view
     }
 
@@ -76,12 +81,14 @@ class BikeHomeFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.edit_show_menu)
+        when(item.itemId)
         {
-            val action = BikeHomeFragmentDirections.bikehomeToBikeedit(currentBike)
-            findNavController().navigate(action)
+            R.id.edit_show_menu -> {
+                val action = BikeHomeFragmentDirections.bikehomeToBikeedit(currentBike)
+                findNavController().navigate(action)
+            }
+            R.id.delete_show_menu -> deleteMotorcycle()
         }
-        else if(item.itemId == R.id.delete_show_menu) deleteMotorcycle()
 
         return super.onContextItemSelected(item)
     }
@@ -91,7 +98,7 @@ class BikeHomeFragment : Fragment() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Yes"){ _,_ ->
             mMotorcycleViewModel.deleteMotorcycle(currentBike)
-            Toast.makeText(requireContext(), "Motorcycle deleted!", Toast.LENGTH_SHORT).show()
+            showToast(requireContext(), "Motorcycle deleted!")
             returnToList()
         }
         builder.setNegativeButton("No"){ _,_ -> }

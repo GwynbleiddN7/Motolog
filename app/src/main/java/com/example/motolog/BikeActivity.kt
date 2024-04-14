@@ -11,8 +11,8 @@ class BikeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bike)
-        val bike_id = intent.extras!!.getInt("bike_id")
-        MotorcycleViewModel.currentBikeId = bike_id
+        val bikeId = intent.extras!!.getInt("bike_id")
+        MotorcycleViewModel.currentBikeId = bikeId
 
         val navController = getNavController()
         setupActionBarWithNavController(navController)
@@ -22,8 +22,7 @@ class BikeActivity : AppCompatActivity() {
         return getNavController().navigateUp() || super.onSupportNavigateUp()
     }
 
-    private fun getNavController(): NavController
-    {
+    private fun getNavController(): NavController {
         val navHost = supportFragmentManager.findFragmentById(R.id.bike_home_nav) as NavHostFragment
         return navHost.navController
     }

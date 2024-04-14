@@ -7,7 +7,6 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -16,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.motolog.R
 import com.example.motolog.ViewModel.GearViewModel
+import com.example.motolog.showToast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class GearListFragment : Fragment() {
@@ -33,7 +33,7 @@ class GearListFragment : Fragment() {
 
         mGearViewModel = ViewModelProvider(this)[GearViewModel::class.java]
         mGearViewModel.readAllData.observe(viewLifecycleOwner, Observer {
-            gears -> adapter.setData(gears)
+            gears -> adapter.bindGearList(gears)
         })
 
         view.findViewById<FloatingActionButton>(R.id.fab_addGear).setOnClickListener{
@@ -50,12 +50,10 @@ class GearListFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.money_menu){
-            var totalMoney: Double = 0.0
-            for (gear in mGearViewModel.readAllData.value!!)
-            {
-                totalMoney += gear.price
-            }
-            Toast.makeText(requireContext(), "Total cost: ${String.format("%.2f€", totalMoney)}", Toast.LENGTH_LONG).show()
+            var totalMoney = 0.0
+            val gearList = mGearViewModel.readAllData.value!!
+            for (gear in gearList) totalMoney += gear.price
+            showToast(requireContext(), "Total cost: ${String.format("%.2f€", totalMoney)}")
         }
         return super.onContextItemSelected(item)
     }

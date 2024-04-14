@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
         findViewById<BottomNavigationView>(R.id.bottomNavView).setOnItemSelectedListener {
             when(it.itemId)
             {
-
                 R.id.bike_menu -> replaceHomeFragment(R.id.motorcycle_nav)
                 R.id.gear_menu -> replaceHomeFragment(R.id.gear_nav)
                 R.id.settings_menu -> replaceHomeFragment(R.id.settings_nav)
@@ -38,14 +37,12 @@ class MainActivity : AppCompatActivity() {
         return getNavController().navigateUp() || super.onSupportNavigateUp()
     }
 
-    private fun getNavController(): NavController
-    {
+    private fun getNavController(): NavController {
         val navHost = supportFragmentManager.findFragmentById(R.id.homeFragmentView) as NavHostFragment
         return navHost.navController
     }
 
-    private fun replaceHomeFragment(fragmentId: Int)
-    {
+    private fun replaceHomeFragment(fragmentId: Int) {
         val navController = getNavController()
         navController.popBackStack(lastHomeFragmentId, true)
         navController.navigate(fragmentId)

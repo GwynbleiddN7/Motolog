@@ -7,13 +7,11 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.motolog.Fragments.Gear.GearListFragmentDirections
 import com.example.motolog.Models.DistanceLog
 import com.example.motolog.Models.Motorcycle
 import com.example.motolog.R
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import com.example.motolog.formatThousand
+import com.example.motolog.longToDateString
 
 class DistanceLogAdapter : RecyclerView.Adapter<DistanceLogAdapter.MyViewHolder>() {
     private var distanceLogList = emptyList<DistanceLog>()
@@ -33,27 +31,22 @@ class DistanceLogAdapter : RecyclerView.Adapter<DistanceLogAdapter.MyViewHolder>
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = distanceLogList[position]
 
-        holder.itemView.findViewById<TextView>(R.id.tw_distance_log).text = String.format("%d km", currentItem.distance)
+        holder.itemView.findViewById<TextView>(R.id.tw_distance_log).text = String.format("%S km", formatThousand(currentItem.distance))
+        holder.itemView.findViewById<TextView>(R.id.tw_distance_date).text = longToDateString(currentItem.date)
 
-        val simpleDateFormat by lazy { SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()) }
-        val dateFormatted = simpleDateFormat.format(Date(currentItem.date))
-        holder.itemView.findViewById<TextView>(R.id.tw_distance_date).text = dateFormatted
+        val deltaDistance = if(position < distanceLogList.size-1) currentItem.distance - distanceLogList[position+1].distance else currentItem.distance - currentBike.start_km
+        holder.itemView.findViewById<TextView>(R.id.tw_distance_difference).text = String.format("+%S km", formatThousand(deltaDistance))
 
-        val deltaDistance = if(position+1 < distanceLogList.size) currentItem.distance - distanceLogList[position+1].distance else currentItem.distance - currentBike.start_km
-        holder.itemView.findViewById<TextView>(R.id.tw_distance_difference).text = String.format("+%d km", deltaDistance)
-
-        val item = holder.itemView.findViewById<ConstraintLayout>(R.id.distancelog_row)
-
-        item.setOnClickListener {
+        holder.itemView.findViewById<ConstraintLayout>(R.id.distancelog_row).setOnClickListener {
             val action = DistanceLogFragmentDirections.distancelogToDistanceadd(position, currentBike)
             holder.itemView.findNavController().navigate(action)
         }
     }
 
-    fun setData(bike: Motorcycle)
+    fun bindBike(bike: Motorcycle)
     {
-        this.distanceLogList = bike.km_logs
-        this.currentBike = bike
+        distanceLogList = bike.km_logs
+        currentBike = bike
         notifyDataSetChanged()
     }
 }

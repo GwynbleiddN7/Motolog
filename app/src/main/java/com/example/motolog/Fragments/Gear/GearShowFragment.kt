@@ -13,14 +13,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.motolog.R
 import com.example.motolog.ViewModel.GearViewModel
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import com.example.motolog.longToDateString
 
 class GearShowFragment : Fragment() {
     private val args by navArgs<GearShowFragmentArgs>()
@@ -30,27 +27,24 @@ class GearShowFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view =  inflater.inflate(R.layout.gear_show, container, false)
-        setHasOptionsMenu(true)
 
         mGearViewModel = ViewModelProvider(this)[GearViewModel::class.java]
         val gearData = mGearViewModel.getGear(args.currentGear.id)
         gearData.observe(viewLifecycleOwner, Observer{
             gears ->
-                run {
-                    if(gears.isNotEmpty())
-                    {
-                        val gear = gears.first()
-                        view.findViewById<TextView>(R.id.tw_gear_model).text = gear.model
-                        view.findViewById<TextView>(R.id.tw_gear_manufacturer).text = gear.manufacturer
-                        view.findViewById<TextView>(R.id.tw_gear_price).text = String.format("%.2f€", gear.price)
-
-                        val simpleDateFormat by lazy { SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()) }
-                        val dateFormatted = simpleDateFormat.format(Date(gear.date))
-                        view.findViewById<TextView>(R.id.tw_gear_date).text = dateFormatted
-                    }
-                    else findNavController().navigateUp()
+            run {
+                if(gears.isNotEmpty())
+                {
+                    val gear = gears.first()
+                    view.findViewById<TextView>(R.id.tw_gear_model).text = gear.model
+                    view.findViewById<TextView>(R.id.tw_gear_manufacturer).text = gear.manufacturer
+                    view.findViewById<TextView>(R.id.tw_gear_price).text = String.format("%.2f€", gear.price)
+                    view.findViewById<TextView>(R.id.tw_gear_date).text = longToDateString(gear.date)
                 }
-            })
+                else findNavController().navigateUp()
+            }
+        })
+        setHasOptionsMenu(true)
         return view
     }
 

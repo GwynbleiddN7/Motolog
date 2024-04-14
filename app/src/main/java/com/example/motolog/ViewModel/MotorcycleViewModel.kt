@@ -8,7 +8,6 @@ import com.example.motolog.Database.MotorcycleDatabase
 import com.example.motolog.Models.Motorcycle
 import com.example.motolog.Repository.MotorcycleRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class MotorcycleViewModel(application: Application): AndroidViewModel(application) {

@@ -9,9 +9,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.motolog.Models.Gear
 import com.example.motolog.R
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import com.example.motolog.longToDateString
 
 class GearListAdapter : RecyclerView.Adapter<GearListAdapter.MyViewHolder>() {
     private var gearList = emptyList<Gear>()
@@ -31,9 +29,7 @@ class GearListAdapter : RecyclerView.Adapter<GearListAdapter.MyViewHolder>() {
         gearModel.text = currentItem.model
 
         holder.itemView.findViewById<TextView>(R.id.tw_gear_manufacturer).text = currentItem.manufacturer
-        val simpleDateFormat by lazy { SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()) }
-        val dateFormatted = simpleDateFormat.format(Date(currentItem.date))
-        holder.itemView.findViewById<TextView>(R.id.tw_gear_date).text = String.format("Date: %S", dateFormatted)
+        holder.itemView.findViewById<TextView>(R.id.tw_gear_date).text = String.format("Date: %S", longToDateString(currentItem.date))
 
         val price = String.format("Price: %.2f€", currentItem.price)
         holder.itemView.findViewById<TextView>(R.id.tw_gear_price).text = price
@@ -56,9 +52,9 @@ class GearListAdapter : RecyclerView.Adapter<GearListAdapter.MyViewHolder>() {
         return gearList.size
     }
 
-    fun setData(gears: List<Gear>)
+    fun bindGearList(gears: List<Gear>)
     {
-        this.gearList = gears;
+        gearList = gears;
         notifyDataSetChanged()
     }
 

@@ -12,6 +12,8 @@ class SettingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.settings, container, false)
+        val view = inflater.inflate(R.layout.settings, container, false)
+
+        return view
     }
 }

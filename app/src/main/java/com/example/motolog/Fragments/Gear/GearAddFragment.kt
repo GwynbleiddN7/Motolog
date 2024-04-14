@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CalendarView
 import android.widget.EditText
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -20,11 +19,12 @@ import com.example.motolog.Models.Gear
 import com.example.motolog.Path
 import com.example.motolog.R
 import com.example.motolog.ViewModel.GearViewModel
+import com.example.motolog.showToast
 import java.util.Calendar
-import java.util.Date
+
 class GearAddFragment : Fragment() {
-    private val args by navArgs<GearAddFragmentArgs>()
     private lateinit var mGearViewModel: GearViewModel
+    private val args by navArgs<GearAddFragmentArgs>()
     private var savedDate: Long = 0
     private var currentPath: Path = Path.Add
 
@@ -38,36 +38,26 @@ class GearAddFragment : Fragment() {
         if(args.currentGear != null) currentPath = Path.Edit
 
         val buttonText = if(currentPath == Path.Add) "Add Gear" else "Edit Gear"
+        val date = view.findViewById<CalendarView>(R.id.cv_gear_date)
+        savedDate = Calendar.getInstance().timeInMillis
+        date.maxDate = savedDate
 
         if(currentPath == Path.Edit)
         {
             val currentGear = args.currentGear!!
             savedDate = currentGear.date
-            val date = view.findViewById<CalendarView>(R.id.cv_gear_date)
-            date.maxDate = Date().time
             date.date = savedDate
-            date.setOnDateChangeListener { _, year, month, dayOfMonth ->
-                val c: Calendar = Calendar.getInstance()
-                c.set(year, month, dayOfMonth)
-                savedDate = c.getTimeInMillis()
-            }
 
             view.findViewById<EditText>(R.id.et_gear_manufacturer).setText(currentGear.manufacturer)
             view.findViewById<EditText>(R.id.et_gear_model).setText(currentGear.model)
             view.findViewById<EditText>(R.id.et_gear_price).setText(currentGear.price.toString())
         }
-        else
-        {
-            savedDate = Calendar.getInstance().timeInMillis
-            val date = view.findViewById<CalendarView>(R.id.cv_gear_date)
-            date.maxDate = savedDate
-            date.setOnDateChangeListener { _, year, month, dayOfMonth ->
-                val c: Calendar = Calendar.getInstance()
-                c.set(year, month, dayOfMonth)
-                savedDate = c.getTimeInMillis()
-            }
-        }
 
+        date.setOnDateChangeListener { _, year, month, dayOfMonth ->
+            val cal: Calendar = Calendar.getInstance()
+            cal.set(year, month, dayOfMonth)
+            savedDate = cal.getTimeInMillis()
+        }
 
         val button = view.findViewById<Button>(R.id.bt_addGear)
         button.text = buttonText
@@ -92,13 +82,10 @@ class GearAddFragment : Fragment() {
             if(currentPath == Path.Add) mGearViewModel.addGear(gear)
             else mGearViewModel.updateGear(gear)
 
-            Toast.makeText(requireContext(), "Gear saved!", Toast.LENGTH_LONG).show()
+            showToast(requireContext(), "Gear saved!")
             findNavController().navigateUp()
         }
-        else
-        {
-            Toast.makeText(requireContext(), "Please fill every field", Toast.LENGTH_LONG).show()
-        }
+        else showToast(requireContext(), "Please fill every field")
     }
 
     private fun inputCheck(manufacturer: String, model: String, price: String): Boolean
@@ -117,14 +104,15 @@ class GearAddFragment : Fragment() {
 
     private fun deleteGear()
     {
+        val currentGear = args.currentGear!!
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Yes"){ _,_ ->
-            mGearViewModel.deleteGear(args.currentGear!!)
-            Toast.makeText(requireContext(), "Gear deleted!", Toast.LENGTH_SHORT).show()
+            mGearViewModel.deleteGear(currentGear)
+            showToast(requireContext(), "Gear deleted!")
             findNavController().navigateUp()
         }
         builder.setNegativeButton("No"){ _,_ -> }
-        builder.setTitle("Delete ${args.currentGear!!.manufacturer} ${args.currentGear!!.model}?")
+        builder.setTitle("Delete ${currentGear.manufacturer} ${currentGear.model}?")
         builder.setMessage("Are you sure you want to delete this gear?")
         builder.create().show()
     }

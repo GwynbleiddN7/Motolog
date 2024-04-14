@@ -5,14 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.motolog.Fragments.Gear.GearListFragmentDirections
-import com.example.motolog.Models.DistanceLog
 import com.example.motolog.Models.Motorcycle
 import com.example.motolog.R
 import com.example.motolog.ViewModel.MotorcycleViewModel
@@ -31,21 +28,21 @@ class DistanceLogFragment : Fragment() {
         val recyclerView = view.findViewById<RecyclerView>(R.id.rw_distancelogs)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
         mMotorcycleViewModel = ViewModelProvider(this)[MotorcycleViewModel::class.java]
-        val bike_id = MotorcycleViewModel.currentBikeId
-        if(bike_id == null)
+
+        val bikeId = MotorcycleViewModel.currentBikeId
+        if(bikeId == null)
         {
             returnToList()
             return view
         }
 
-        val bikeData = mMotorcycleViewModel.getMotorcycle(bike_id)
+        val bikeData = mMotorcycleViewModel.getMotorcycle(bikeId)
         bikeData.observe(viewLifecycleOwner, Observer {
             bikes -> run {
             if(bikes.isNotEmpty()) {
                 currentbike = bikes.first()
-                adapter.setData(currentbike)
+                adapter.bindBike(currentbike)
             }
             else returnToList()
         }

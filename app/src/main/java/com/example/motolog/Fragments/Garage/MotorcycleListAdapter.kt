@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.motolog.BikeActivity
 import com.example.motolog.Models.Motorcycle
 import com.example.motolog.R
+import com.example.motolog.formatThousand
 
 class MotorcycleListAdapter: RecyclerView.Adapter<MotorcycleListAdapter.MyViewHolder>() {
     private var motorcycleList = emptyList<Motorcycle>()
@@ -33,7 +34,7 @@ class MotorcycleListAdapter: RecyclerView.Adapter<MotorcycleListAdapter.MyViewHo
         holder.itemView.findViewById<TextView>(R.id.tw_bike_alias).text = currentItem.alias
         holder.itemView.findViewById<TextView>(R.id.tw_bike_year).text = String.format("Year: %d", currentItem.year)
 
-        val distance = String.format("Distance: %d km", currentItem.personal_km)
+        val distance = String.format("Distance: %S km", formatThousand(currentItem.personal_km))
         holder.itemView.findViewById<TextView>(R.id.tw_bike_distance).text = distance
 
         val motorcycleRow = holder.itemView.findViewById<ConstraintLayout>(R.id.motorcycle_row)
@@ -55,9 +56,9 @@ class MotorcycleListAdapter: RecyclerView.Adapter<MotorcycleListAdapter.MyViewHo
         return motorcycleList.size;
     }
 
-    fun setData(motorcycles: List<Motorcycle>)
+    fun bindBikeList(motorcycles: List<Motorcycle>)
     {
-        this.motorcycleList = motorcycles;
+        motorcycleList = motorcycles;
         notifyDataSetChanged()
     }
 }

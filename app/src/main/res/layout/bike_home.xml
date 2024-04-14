@@ -13,7 +13,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/bike_card"
             android:layout_width="match_parent"
-            android:layout_height="530dp"
+            android:layout_height="wrap_content"
             android:layout_margin="15dp"
             app:cardBackgroundColor="@color/dark_gray"
             app:cardCornerRadius="25dp"
@@ -28,8 +28,8 @@
 
                 <ImageView
                     android:id="@+id/bike_image"
-                    android:layout_width="250dp"
-                    android:layout_height="250dp"
+                    android:layout_width="225dp"
+                    android:layout_height="225dp"
                     android:layout_marginTop="16dp"
                     android:src="@drawable/bike_logo"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -154,10 +154,17 @@
                             android:layout_weight="1"
                             android:textStyle="bold"
                             android:paddingTop="15dp"
+                            android:paddingHorizontal="10dp"
+                            android:ellipsize="marquee"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:marqueeRepeatLimit="marquee_forever"
+                            android:scrollHorizontally="true"
+                            android:singleLine="true"
                             android:text="Alias"
                             android:textColor="@color/white"
                             android:textAlignment="center"
-                            android:textSize="20dp" />
+                            android:textSize="20sp" />
 
                         <TextView
                             android:id="@+id/bike_personalkm"
@@ -177,6 +184,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginHorizontal="10dp"
+                        android:layout_marginBottom="20dp"
                         android:showDividers="middle"
                         android:divider="@color/white">
 

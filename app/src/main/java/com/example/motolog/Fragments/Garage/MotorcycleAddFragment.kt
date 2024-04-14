@@ -10,21 +10,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.motolog.Models.DistanceLog
 import com.example.motolog.Models.Motorcycle
+import com.example.motolog.Models.getUpdateBikeDistance
 import com.example.motolog.Path
 import com.example.motolog.R
 import com.example.motolog.ViewModel.MotorcycleViewModel
+import com.example.motolog.showToast
+import com.example.motolog.yearFromLong
 import java.util.Calendar
-import java.util.Date
+
 
 class MotorcycleAddFragment : Fragment() {
-    private val args by navArgs<MotorcycleAddFragmentArgs>()
     private lateinit var mMotorcycleViewModel: MotorcycleViewModel
+    private val args by navArgs<MotorcycleAddFragmentArgs>()
     private var currentPath: Path = Path.Add
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +37,6 @@ class MotorcycleAddFragment : Fragment() {
         mMotorcycleViewModel = ViewModelProvider(this)[MotorcycleViewModel::class.java]
 
         if(args.currentMotorcycle != null) currentPath = Path.Edit
-
         val buttonText = if(currentPath == Path.Add) "Add Motorcycle" else "Edit Motorcycle"
 
         if(currentPath == Path.Edit) {
@@ -61,28 +63,46 @@ class MotorcycleAddFragment : Fragment() {
         val model = view.findViewById<EditText>(R.id.et_bike_model).text.toString()
         val name = view.findViewById<EditText>(R.id.et_bike_alias).text.toString()
         val year = view.findViewById<EditText>(R.id.et_bike_year).text.toString()
-        val start_km = view.findViewById<EditText>(R.id.et_bike_startkm).text.toString()
+        val startKm = view.findViewById<EditText>(R.id.et_bike_startkm).text.toString()
 
         if(inputCheck(manufacturer, model, year))
         {
-            val km = if(start_km.isEmpty()) 0 else start_km.toInt()
+            val km = if(startKm.isEmpty()) 0 else startKm.toInt()
             val yearInt = year.toInt()
 
-            if(yearInt > Calendar.getInstance().get(Calendar.YEAR))
-            {
-                Toast.makeText(requireContext(), "Bike from the future not allowed", Toast.LENGTH_LONG).show()
+            if(yearInt > Calendar.getInstance().get(Calendar.YEAR)) {
+                showToast(requireContext(), "Bike from the future not allowed")
                 return
             }
-            else if(yearInt < 1900)
-            {
-                Toast.makeText(requireContext(), "Bikes didn't exist before 1900", Toast.LENGTH_LONG).show()
+            if(yearInt < 1900) {
+                showToast(requireContext(), "Bikes didn't exist before 1900")
                 return
             }
             if(currentPath == Path.Edit)
             {
                 val motorcycle = args.currentMotorcycle!!.copy(manufacturer = manufacturer, model = model, alias = name, year = yearInt, start_km = km, personal_km = 0)
-                for(log in motorcycle.km_logs) motorcycle.personal_km += log.distance
-                mMotorcycleViewModel.updateMotorcycle(motorcycle)
+
+                if(motorcycle.km_logs.any { log -> distanceLogsCheck(log, motorcycle.start_km, motorcycle.year) })
+                {
+                    val builder = AlertDialog.Builder(requireContext())
+                    builder.setPositiveButton("Delete logs"){ _,_ ->
+                        motorcycle.km_logs = motorcycle.km_logs.filter { log -> !distanceLogsCheck(log, motorcycle.start_km, motorcycle.year) }
+                        motorcycle.personal_km = getUpdateBikeDistance(motorcycle)
+                        mMotorcycleViewModel.updateMotorcycle(motorcycle)
+                        showToast(requireContext(), "Motorcycle saved!")
+                        findNavController().navigateUp()
+                    }
+                    builder.setNegativeButton("Back"){ _,_ -> }
+                    builder.setTitle("Distance logs mismatch found")
+                    builder.setMessage("Some logs happened before the new date or with less kilometers will be eliminated")
+                    builder.create().show()
+                    return
+                }
+                else
+                {
+                    motorcycle.personal_km = getUpdateBikeDistance(motorcycle)
+                    mMotorcycleViewModel.updateMotorcycle(motorcycle)
+                }
             }
             else
             {
@@ -90,18 +110,20 @@ class MotorcycleAddFragment : Fragment() {
                 mMotorcycleViewModel.addMotorcycle(motorcycle)
             }
 
-            Toast.makeText(requireContext(), "Motorcycle saved!", Toast.LENGTH_LONG).show()
+            showToast(requireContext(), "Motorcycle saved!")
             findNavController().navigateUp()
         }
-        else
-        {
-            Toast.makeText(requireContext(), "Please fill every field (Alias is optional)", Toast.LENGTH_LONG).show()
-        }
+        else showToast(requireContext(), "Please fill every field (Alias is optional)")
     }
 
     private fun inputCheck(manufacturer: String, model: String, year: String): Boolean
     {
         return manufacturer.isNotEmpty() && model.isNotEmpty() && year.isNotEmpty()
+    }
+
+    private fun distanceLogsCheck(log: DistanceLog, startKm: Int, bikeYear: Int): Boolean
+    {
+        return yearFromLong(log.date) < bikeYear || log.distance < startKm
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -115,14 +137,15 @@ class MotorcycleAddFragment : Fragment() {
 
     private fun deleteMotorcycle()
     {
+        val currentBike = args.currentMotorcycle!!
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Yes"){ _,_ ->
-            mMotorcycleViewModel.deleteMotorcycle(args.currentMotorcycle!!)
-            Toast.makeText(requireContext(), "Motorcycle deleted!", Toast.LENGTH_SHORT).show()
+            mMotorcycleViewModel.deleteMotorcycle(currentBike)
+            showToast(requireContext(),"Motorcycle deleted!")
             findNavController().navigateUp()
         }
         builder.setNegativeButton("No"){ _,_ -> }
-        builder.setTitle("Delete ${args.currentMotorcycle!!.manufacturer} ${args.currentMotorcycle!!.model}?")
+        builder.setTitle("Delete ${currentBike.manufacturer} ${currentBike.model}?")
         builder.setMessage("Are you sure you want to delete this motorcycle?")
         builder.create().show()
     }

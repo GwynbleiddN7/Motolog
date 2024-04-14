@@ -51,3 +51,8 @@ data class DistanceLog(
     val distance: Int,
     val date: Long,
 ): Parcelable
+
+fun getUpdateBikeDistance(bike: Motorcycle): Int
+{
+    return if(bike.km_logs.isNotEmpty()) bike.km_logs.first().distance - bike.start_km else 0
+}
