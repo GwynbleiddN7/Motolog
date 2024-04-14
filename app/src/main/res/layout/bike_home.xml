@@ -13,7 +13,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/bike_card"
             android:layout_width="match_parent"
-            android:layout_height="525dp"
+            android:layout_height="530dp"
             android:layout_margin="15dp"
             app:cardBackgroundColor="@color/dark_gray"
             app:cardCornerRadius="25dp"
@@ -41,11 +41,11 @@
                     android:id="@+id/bike_manufacturer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:text="Kawasaki"
                     android:textAlignment="center"
                     android:textAllCaps="true"
-                    android:textSize="22dp"
+                    android:textSize="25sp"
                     android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -55,11 +55,12 @@
                     android:id="@+id/bike_model"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="8dp"
+                    android:layout_marginTop="2dp"
                     android:text="ER-6N"
                     android:textAlignment="center"
                     android:textAllCaps="true"
-                    android:textSize="32dp"
+                    android:textSize="36sp"
+                    android:textColor="@color/white"
                     android:textStyle="italic|bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -71,112 +72,136 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/bike_model"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="30dp">
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginHorizontal="50dp"
-                        android:layout_marginTop="10dp">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_weight="1"
-                            android:textStyle="bold"
-                            android:text="Alias"
-                            android:textSize="18dp" />
-
-                        <TextView
-                            android:id="@+id/bike_alias"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:layout_weight="1"
-
-                            android:text="Alyx"
-                            android:textAlignment="textEnd"
-                            android:textSize="18dp" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginHorizontal="50dp"
-                        android:layout_marginTop="10dp">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_weight="1"
-                            android:textStyle="bold"
-                            android:text="Year"
-                            android:textSize="18dp" />
+                        android:layout_marginHorizontal="10dp"
+                        android:showDividers="middle"
+                        android:divider="@color/white">
 
                         <TextView
                             android:id="@+id/bike_year"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="end"
+                            android:layout_gravity="center_horizontal"
                             android:layout_weight="1"
+                            android:textStyle="bold"
                             android:text="2014"
-                            android:textAlignment="textEnd"
-                            android:textSize="18dp" />
+                            android:paddingTop="5dp"
+                            android:textColor="@color/white"
+                            android:textAlignment="center"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/bike_totalkm"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="1"
+                            android:textStyle="bold"
+                            android:paddingTop="5dp"
+                            android:text="250000"
+                            android:textColor="@color/white"
+                            android:textAlignment="center"
+                            android:textSize="20dp" />
+
 
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginHorizontal="50dp"
-                        android:layout_marginTop="10dp">
+                        android:layout_marginHorizontal="10dp"
+                        android:showDividers="middle"
+                        android:divider="@color/white">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_weight="1"
-                            android:textStyle="bold"
-                            android:text="Price"
-                            android:textSize="18dp" />
+                            android:textStyle="italic"
+                            android:text="Year"
+                            android:textAlignment="center"
+                            android:textSize="14dp" />
 
                         <TextView
-                            android:id="@+id/bike_price"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="end"
+                            android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:text="3500"
-                            android:textAlignment="textEnd"
-                            android:textSize="18dp" />
+                            android:textStyle="italic"
+                            android:text="Total km"
+                            android:textAlignment="center"
+                            android:textSize="14dp" />
+
                     </TableRow>
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginHorizontal="50dp"
-                        android:layout_marginTop="10dp">
+                        android:layout_marginHorizontal="10dp"
+                        android:showDividers="middle"
+                        android:divider="@color/white">
+
+                        <TextView
+                            android:id="@+id/bike_alias"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="1"
+                            android:textStyle="bold"
+                            android:paddingTop="15dp"
+                            android:text="Alias"
+                            android:textColor="@color/white"
+                            android:textAlignment="center"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/bike_personalkm"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="1"
+                            android:textStyle="bold"
+                            android:paddingTop="15dp"
+                            android:text="1500"
+                            android:textColor="@color/white"
+                            android:textAlignment="center"
+                            android:textSize="20dp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="10dp"
+                        android:showDividers="middle"
+                        android:divider="@color/white">
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_weight="1"
-                            android:textStyle="bold"
-                            android:text="Distance"
-                            android:textSize="18dp" />
+                            android:textStyle="italic"
+                            android:text="Alias"
+                            android:paddingBottom="5dp"
+                            android:textAlignment="center"
+                            android:textSize="14dp" />
 
                         <TextView
-                            android:id="@+id/bike_km"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="end"
+                            android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:text="31000"
-                            android:textAlignment="textEnd"
-                            android:textSize="18dp" />
+                            android:textStyle="italic"
+                            android:paddingBottom="5dp"
+                            android:text="Personal km"
+                            android:textAlignment="center"
+                            android:textSize="14dp" />
+
                     </TableRow>
 
 
@@ -193,59 +218,107 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/bike_card"
+            app:layout_constraintBaseline_toBottomOf="parent"
             android:layout_margin="15dp"
-            android:padding="5dp"
-            >
+            android:padding="5dp">
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageButton
-                    android:id="@+id/imageButton1"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/distanceButton"
                     android:layout_width="0dp"
-                    android:layout_height="200dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:background="@color/transparent"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/bike_logo"
-                    android:paddingHorizontal="5dp"/>
+                    app:cardBackgroundColor="@color/dark_gray"
+                    app:cardCornerRadius="30dp"
+                    app:cardElevation="10dp"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    >
 
-                <ImageButton
-                    android:id="@+id/imageButton2"
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="15dp"
+                        android:scaleType="centerInside"
+                        android:backgroundTint="@color/dark_gray"
+                        android:src="@drawable/ic_station" />
+            </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/infoButton"
                     android:layout_width="0dp"
-                    android:layout_height="200dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:background="@color/transparent"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/bike_logo"
-                    android:paddingHorizontal="5dp"/>
+                    app:cardBackgroundColor="@color/dark_gray"
+                    app:cardCornerRadius="30dp"
+                    app:cardElevation="10dp"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="15dp"
+                        android:scaleType="centerInside"
+                        android:backgroundTint="@color/dark_gray"
+                        android:src="@drawable/ic_info" />
+                </androidx.cardview.widget.CardView>
+
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp">
 
-                <ImageButton
-                    android:id="@+id/imageButton3"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/modsButton"
                     android:layout_width="0dp"
-                    android:layout_height="200dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:background="@color/transparent"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/bike_logo"
-                    android:paddingHorizontal="5dp"
-                    />
+                    app:cardBackgroundColor="@color/dark_gray"
+                    app:cardCornerRadius="30dp"
+                    app:cardElevation="10dp"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true">
 
-                <ImageButton
-                    android:id="@+id/imageButton4"
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="15dp"
+                        android:scaleType="centerInside"
+                        android:backgroundTint="@color/dark_gray"
+                        android:src="@drawable/ic_key" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/repairButton"
                     android:layout_width="0dp"
-                    android:layout_height="200dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:background="@color/transparent"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/bike_logo"
-                    android:paddingHorizontal="5dp"/>
+                    app:cardBackgroundColor="@color/dark_gray"
+                    app:cardCornerRadius="30dp"
+                    app:cardElevation="10dp"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:clickable="true">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="15dp"
+                        android:scaleType="centerInside"
+                        android:backgroundTint="@color/dark_gray"
+                        android:src="@drawable/ic_repair" />
+                </androidx.cardview.widget.CardView>
             </TableRow>
         </TableLayout>
 

@@ -19,6 +19,8 @@ import com.example.motolog.Models.Motorcycle
 import com.example.motolog.Path
 import com.example.motolog.R
 import com.example.motolog.ViewModel.MotorcycleViewModel
+import java.util.Calendar
+import java.util.Date
 
 class MotorcycleAddFragment : Fragment() {
     private val args by navArgs<MotorcycleAddFragmentArgs>()
@@ -63,12 +65,31 @@ class MotorcycleAddFragment : Fragment() {
 
         if(inputCheck(manufacturer, model, year))
         {
-            val id = if(currentPath == Path.Edit) args.currentMotorcycle!!.id else 0
+            val km = if(start_km.isEmpty()) 0 else start_km.toInt()
+            val yearInt = year.toInt()
 
-            val km = if(start_km.isEmpty()) 0.0 else start_km.toDouble()
-            val motorcycle = Motorcycle(id, manufacturer, model, name, year.toInt(), km)
-            if(currentPath == Path.Add) mMotorcycleViewModel.addMotorcycle(motorcycle)
-            else mMotorcycleViewModel.updateMotorcycle(motorcycle)
+            if(yearInt > Calendar.getInstance().get(Calendar.YEAR))
+            {
+                Toast.makeText(requireContext(), "Bike from the future not allowed", Toast.LENGTH_LONG).show()
+                return
+            }
+            else if(yearInt < 1900)
+            {
+                Toast.makeText(requireContext(), "Bikes didn't exist before 1900", Toast.LENGTH_LONG).show()
+                return
+            }
+            if(currentPath == Path.Edit)
+            {
+                val motorcycle = args.currentMotorcycle!!.copy(manufacturer = manufacturer, model = model, alias = name, year = yearInt, start_km = km, personal_km = 0)
+                for(log in motorcycle.km_logs) motorcycle.personal_km += log.distance
+                mMotorcycleViewModel.updateMotorcycle(motorcycle)
+            }
+            else
+            {
+                val motorcycle = Motorcycle(0, manufacturer, model, name, yearInt, km)
+                mMotorcycleViewModel.addMotorcycle(motorcycle)
+            }
+
             Toast.makeText(requireContext(), "Motorcycle saved!", Toast.LENGTH_LONG).show()
             findNavController().navigateUp()
         }

@@ -5,4 +5,5 @@
     <color name="dark_gray">#1E1E1E</color>
     <color name="dark_white">#8D8D8D</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="green">#4CAF50</color>
 </resources>

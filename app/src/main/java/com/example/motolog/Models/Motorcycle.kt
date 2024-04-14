@@ -1,5 +1,6 @@
 package com.example.motolog.Models
 
+import android.graphics.Bitmap
 import android.os.Parcelable
 import androidx.room.Embedded
 import androidx.room.Entity
@@ -15,15 +16,14 @@ data class Motorcycle(
     val model: String,
     val alias: String,
     val year: Int,
-    val start_km: Double,
-    val personal_km: Double = 0.0,
-    val km_logs: String = "",
-    val maintenance_logs: String = "",
-    val mods_logs: String = "",
-    val image: String = "",
+    val start_km: Int,
+    var personal_km: Int = 0,
+    var km_logs: List<DistanceLog> = listOf(),
+    val maintenance_logs: List<ActionLog> = listOf(),
+    val mods_logs: List<ActionLog> = listOf(),
+    val image: Bitmap? = null,
     @Embedded
     val infos: BikeInfo = BikeInfo(),
-
 ): Parcelable
 
 
@@ -36,4 +36,18 @@ data class BikeInfo(
     val front_tire: String = "",
     val rear_tire: String = "",
     val plate_number: String = ""
+): Parcelable
+
+@Parcelize
+data class ActionLog(
+    val name: String,
+    val description: String,
+    val date: Long,
+    val price: Double
+): Parcelable
+
+@Parcelize
+data class DistanceLog(
+    val distance: Int,
+    val date: Long,
 ): Parcelable

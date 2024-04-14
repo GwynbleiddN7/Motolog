@@ -14,6 +14,18 @@
         <action
             android:id="@+id/bikehome_to_bikeedit"
             app:destination="@id/bike_edit_fragment" />
+        <action
+            android:id="@+id/bikehome_to_bikemods"
+            app:destination="@id/mods_log" />
+        <action
+            android:id="@+id/bikehome_to_bikedistance"
+            app:destination="@id/distance_log" />
+        <action
+            android:id="@+id/bikehome_to_bikeinfo"
+            app:destination="@id/info" />
+        <action
+            android:id="@+id/bikehome_to_bikerepairs"
+            app:destination="@id/repairs_log" />
     </fragment>
     <fragment
         android:id="@+id/bike_edit_fragment"
@@ -28,5 +40,62 @@
             app:argType="com.example.motolog.Models.Motorcycle"
             app:nullable="true"
             android:defaultValue="@null" />
+    </fragment>
+    <fragment
+        android:id="@+id/distance_log"
+        android:name="com.example.motolog.Fragments.DistanceLog.DistanceLogFragment"
+        android:label="Distance Log"
+        tools:layout="@layout/distancelog_list" >
+        <action
+            android:id="@+id/bikedistance_to_bikehome"
+            app:destination="@id/bike_home_fragment" />
+        <action
+            android:id="@+id/distancelog_to_distanceadd"
+            app:destination="@id/distance_log_add" />
+    </fragment>
+    <fragment
+        android:id="@+id/mods_log"
+        android:name="com.example.motolog.Fragments.Home.ModsLogFragment"
+        android:label="Modifications"
+        tools:layout="@layout/fragment_mods_log">
+        <action
+            android:id="@+id/bikemods_to_bikehome"
+            app:destination="@id/bike_home_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/repairs_log"
+        android:name="com.example.motolog.Fragments.Home.RepairsLogFragment"
+        android:label="Mainteinance Log"
+        tools:layout="@layout/fragment_repairs_log">
+        <action
+            android:id="@+id/bikerepairs_to_bikehome"
+            app:destination="@id/bike_home_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/info"
+        android:name="com.example.motolog.Fragments.Home.InfoFragment"
+        android:label="Bike Statistics"
+        tools:layout="@layout/fragment_info">
+        <action
+            android:id="@+id/bikeinfo_to_bikehome"
+            app:destination="@id/bike_home_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/distance_log_add"
+        android:name="com.example.motolog.Fragments.DistanceLog.DistanceLogAddFragment"
+        android:label="Distance Log"
+        tools:layout="@layout/distancelog_add">
+        <action
+            android:id="@+id/distanceadd_to_distancelog"
+            app:destination="@id/distance_log" />
+        <argument
+            android:name="logIndex"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <argument
+            android:name="currentBike"
+            android:defaultValue="@null"
+            app:argType="com.example.motolog.Models.Motorcycle"
+            app:nullable="true" />
     </fragment>
 </navigation>

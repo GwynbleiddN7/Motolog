@@ -18,6 +18,10 @@ class BikeActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController)
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        return getNavController().navigateUp() || super.onSupportNavigateUp()
+    }
+
     private fun getNavController(): NavController
     {
         val navHost = supportFragmentManager.findFragmentById(R.id.bike_home_nav) as NavHostFragment

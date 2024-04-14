@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -31,7 +32,6 @@ class BikeHomeFragment : Fragment() {
 
         mMotorcycleViewModel = ViewModelProvider(this)[MotorcycleViewModel::class.java]
         val bike_id = MotorcycleViewModel.currentBikeId
-
         if(bike_id == null)
         {
             returnToList()
@@ -44,14 +44,29 @@ class BikeHomeFragment : Fragment() {
                 if(bikes.isNotEmpty())
                 {
                     currentBike = bikes.first()
-                    view.findViewById<TextView>(R.id.bike_alias).text = currentBike.alias
+                    view.findViewById<TextView>(R.id.bike_alias).text = currentBike.alias.ifEmpty { currentBike.model }
                     view.findViewById<TextView>(R.id.bike_manufacturer).text = currentBike.manufacturer
                     view.findViewById<TextView>(R.id.bike_model).text = currentBike.model
-                    view.findViewById<TextView>(R.id.bike_km).text = String.format("%.2f km", currentBike.personal_km + currentBike.start_km)
+                    view.findViewById<TextView>(R.id.bike_year).text = String.format("%d", currentBike.year)
+                    view.findViewById<TextView>(R.id.bike_personalkm).text = String.format("%d", currentBike.personal_km)
+                    view.findViewById<TextView>(R.id.bike_totalkm).text = String.format("%d", currentBike.personal_km + currentBike.start_km)
                 }
                 else returnToList()
             }
         })
+
+        view.findViewById<CardView>(R.id.distanceButton).setOnClickListener{
+            findNavController().navigate(R.id.bikehome_to_bikedistance)
+        }
+        view.findViewById<CardView>(R.id.infoButton).setOnClickListener{
+            findNavController().navigate(R.id.bikehome_to_bikeinfo)
+        }
+        view.findViewById<CardView>(R.id.modsButton).setOnClickListener{
+            findNavController().navigate(R.id.bikehome_to_bikemods)
+        }
+        view.findViewById<CardView>(R.id.repairButton).setOnClickListener{
+            findNavController().navigate(R.id.bikehome_to_bikerepairs)
+        }
 
         return view
     }
