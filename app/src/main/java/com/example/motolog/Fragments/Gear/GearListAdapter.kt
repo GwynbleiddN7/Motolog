@@ -3,6 +3,7 @@ package com.example.motolog.Fragments.Gear
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
@@ -33,6 +34,10 @@ class GearListAdapter : RecyclerView.Adapter<GearListAdapter.MyViewHolder>() {
 
         val price = String.format("Price: %.2f€", currentItem.price)
         holder.itemView.findViewById<TextView>(R.id.tw_gear_price).text = price
+
+        val gearImage = holder.itemView.findViewById<ImageView>(R.id.gear_image)
+        if(currentItem.image != null) gearImage.setImageURI(currentItem.image)
+        else gearImage.setImageResource(R.drawable.helmet_logo)
 
         val item = holder.itemView.findViewById<ConstraintLayout>(R.id.gear_row)
 

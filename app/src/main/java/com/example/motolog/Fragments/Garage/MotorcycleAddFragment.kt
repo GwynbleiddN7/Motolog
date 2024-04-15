@@ -1,7 +1,11 @@
 package com.example.motolog.Fragments.Garage
 
 import android.app.AlertDialog
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -10,13 +14,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.canhub.cropper.CropImageContract
+import com.canhub.cropper.CropImageContractOptions
+import com.canhub.cropper.CropImageOptions
 import com.example.motolog.Models.DistanceLog
 import com.example.motolog.Models.Motorcycle
-import com.example.motolog.Models.getUpdateBikeDistance
+import com.example.motolog.Models.getUpdatedBikeDistance
 import com.example.motolog.Path
 import com.example.motolog.R
 import com.example.motolog.ViewModel.MotorcycleViewModel
@@ -24,11 +32,12 @@ import com.example.motolog.showToast
 import com.example.motolog.yearFromLong
 import java.util.Calendar
 
-
 class MotorcycleAddFragment : Fragment() {
     private lateinit var mMotorcycleViewModel: MotorcycleViewModel
     private val args by navArgs<MotorcycleAddFragmentArgs>()
     private var currentPath: Path = Path.Add
+    private var tempBitmap: Bitmap? = null
+    private var bShouldRemoveImage: Boolean = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,12 +55,25 @@ class MotorcycleAddFragment : Fragment() {
             view.findViewById<EditText>(R.id.et_bike_alias).setText(bike.alias)
             view.findViewById<EditText>(R.id.et_bike_year).setText(bike.year.toString())
             view.findViewById<EditText>(R.id.et_bike_startkm).setText(bike.start_km.toString())
+            if(bike.image != null) view.findViewById<ImageButton>(R.id.ib_bike_image).setImageURI(bike.image)
         }
 
         val button = view.findViewById<Button>(R.id.bt_addMotorcycle)
         button.text = buttonText
         button.setOnClickListener {
             insertDataToDatabase(view)
+        }
+
+        val imageButton = view.findViewById<ImageButton>(R.id.ib_bike_image)
+        imageButton.setOnClickListener{
+            uploadImage()
+        }
+
+        imageButton.setOnLongClickListener{
+            tempBitmap = null
+            bShouldRemoveImage = true
+            imageButton.setImageResource(R.drawable.bike_logo)
+            true
         }
 
         setHasOptionsMenu(currentPath == Path.Edit)
@@ -87,8 +109,8 @@ class MotorcycleAddFragment : Fragment() {
                     val builder = AlertDialog.Builder(requireContext())
                     builder.setPositiveButton("Delete logs"){ _,_ ->
                         motorcycle.km_logs = motorcycle.km_logs.filter { log -> !distanceLogsCheck(log, motorcycle.start_km, motorcycle.year) }
-                        motorcycle.personal_km = getUpdateBikeDistance(motorcycle)
-                        mMotorcycleViewModel.updateMotorcycle(motorcycle)
+                        motorcycle.personal_km = getUpdatedBikeDistance(motorcycle)
+                        mMotorcycleViewModel.updateMotorcycle(motorcycle, tempBitmap, bShouldRemoveImage)
                         showToast(requireContext(), "Motorcycle saved!")
                         findNavController().navigateUp()
                     }
@@ -100,14 +122,14 @@ class MotorcycleAddFragment : Fragment() {
                 }
                 else
                 {
-                    motorcycle.personal_km = getUpdateBikeDistance(motorcycle)
-                    mMotorcycleViewModel.updateMotorcycle(motorcycle)
+                    motorcycle.personal_km = getUpdatedBikeDistance(motorcycle)
+                    mMotorcycleViewModel.updateMotorcycle(motorcycle, tempBitmap, bShouldRemoveImage)
                 }
             }
             else
             {
                 val motorcycle = Motorcycle(0, manufacturer, model, name, yearInt, km)
-                mMotorcycleViewModel.addMotorcycle(motorcycle)
+                mMotorcycleViewModel.addMotorcycle(motorcycle, tempBitmap)
             }
 
             showToast(requireContext(), "Motorcycle saved!")
@@ -148,5 +170,24 @@ class MotorcycleAddFragment : Fragment() {
         builder.setTitle("Delete ${currentBike.manufacturer} ${currentBike.model}?")
         builder.setMessage("Are you sure you want to delete this motorcycle?")
         builder.create().show()
+    }
+
+    private val cropImage = registerForActivityResult(CropImageContract()) { result ->
+        if (result.isSuccessful && result.uriContent != null) {
+            val uriContent = result.uriContent!!
+
+            val bitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                ImageDecoder.decodeBitmap(ImageDecoder.createSource(requireContext().contentResolver, uriContent))
+            } else {
+                MediaStore.Images.Media.getBitmap(requireContext().contentResolver, uriContent)
+            }
+            requireView().findViewById<ImageButton>(R.id.ib_bike_image).setImageBitmap(bitmap)
+            tempBitmap = bitmap
+        }
+    }
+
+    private fun uploadImage() {
+        val options = CropImageContractOptions(null, CropImageOptions(imageSourceIncludeGallery = true, imageSourceIncludeCamera = false))
+        cropImage.launch(options)
     }
 }

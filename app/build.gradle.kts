@@ -56,6 +56,8 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation("com.google.code.gson:gson:2.8.7")
+    implementation("com.vanniktech:android-image-cropper:4.5.0")
+    implementation("com.squareup.picasso:picasso:2.5.2")
 
     val room_version = "2.6.1"
     implementation("androidx.room:room-runtime:$room_version")

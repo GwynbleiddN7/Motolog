@@ -55,18 +55,21 @@
     </fragment>
     <fragment
         android:id="@+id/mods_log"
-        android:name="com.example.motolog.Fragments.Home.ModsLogFragment"
-        android:label="Modifications"
-        tools:layout="@layout/fragment_mods_log">
+        android:name="com.example.motolog.Fragments.ModsLog.ModsLogFragment"
+        android:label="Mods Log"
+        tools:layout="@layout/modslog_list">
         <action
             android:id="@+id/bikemods_to_bikehome"
             app:destination="@id/bike_home_fragment" />
+        <action
+            android:id="@+id/modslog_to_modsadd"
+            app:destination="@id/mods_log_add" />
     </fragment>
     <fragment
         android:id="@+id/repairs_log"
         android:name="com.example.motolog.Fragments.Home.RepairsLogFragment"
         android:label="Mainteinance Log"
-        tools:layout="@layout/fragment_repairs_log">
+        tools:layout="@layout/repairslog_list">
         <action
             android:id="@+id/bikerepairs_to_bikehome"
             app:destination="@id/bike_home_fragment" />
@@ -75,7 +78,7 @@
         android:id="@+id/info"
         android:name="com.example.motolog.Fragments.Home.InfoFragment"
         android:label="Bike Statistics"
-        tools:layout="@layout/fragment_info">
+        tools:layout="@layout/bikeinfo">
         <action
             android:id="@+id/bikeinfo_to_bikehome"
             app:destination="@id/bike_home_fragment" />
@@ -94,8 +97,22 @@
             app:argType="integer" />
         <argument
             android:name="currentBike"
-            android:defaultValue="@null"
-            app:argType="com.example.motolog.Models.Motorcycle"
-            app:nullable="true" />
+            app:argType="com.example.motolog.Models.Motorcycle" />
+    </fragment>
+    <fragment
+        android:id="@+id/mods_log_add"
+        android:name="com.example.motolog.Fragments.ModsLog.ModsLogAddFragment"
+        android:label="Mods Log"
+        tools:layout="@layout/modslog_add" >
+        <argument
+            android:name="logIndex"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument
+            android:name="currentBike"
+            app:argType="com.example.motolog.Models.Motorcycle" />
+        <action
+            android:id="@+id/modsadd_to_modslog"
+            app:destination="@id/mods_log" />
     </fragment>
 </navigation>

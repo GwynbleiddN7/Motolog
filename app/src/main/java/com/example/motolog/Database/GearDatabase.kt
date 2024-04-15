@@ -4,9 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.example.motolog.Models.Gear
 
-@Database(entities = [Gear::class], version = 2, exportSchema = true)
+@Database(entities = [Gear::class], version = 3, exportSchema = true)
+@TypeConverters(Converters::class)
 abstract class GearDatabase: RoomDatabase() {
     abstract fun gearDao(): GearDAO
 

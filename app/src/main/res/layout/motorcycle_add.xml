@@ -15,18 +15,28 @@ tools:context=".Fragments.Garage.MotorcycleAddFragment">
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent">
 
-    <ImageButton
-        android:id="@+id/ib_bike_image"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_bike_image"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_marginTop="20dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/bike_logo"
-        android:background="@color/transparent"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="125dp"
+        app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/ib_bike_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:longClickable="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bike_logo" />
+    </androidx.cardview.widget.CardView>
+
 
     <EditText
         android:id="@+id/et_bike_manufacturer"
@@ -37,9 +47,10 @@ tools:context=".Fragments.Garage.MotorcycleAddFragment">
         android:textSize="30sp"
         android:textStyle="bold"
         android:textAlignment="center"
+        android:inputType="textCapSentences"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ib_bike_image" />
+        app:layout_constraintTop_toBottomOf="@+id/cv_bike_image" />
 
     <TextView
         android:id="@+id/textView_bike_manufacturer"
@@ -64,6 +75,7 @@ tools:context=".Fragments.Garage.MotorcycleAddFragment">
         android:textSize="30sp"
         android:textStyle="bold"
         android:textAlignment="center"
+        android:inputType="textCapSentences"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_bike_manufacturer" />
@@ -91,6 +103,7 @@ tools:context=".Fragments.Garage.MotorcycleAddFragment">
         android:textSize="25sp"
         android:textStyle="italic"
         android:textAlignment="center"
+        android:inputType="textCapSentences"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_bike_model" />

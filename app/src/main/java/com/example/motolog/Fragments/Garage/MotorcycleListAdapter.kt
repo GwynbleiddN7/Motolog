@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
@@ -38,6 +39,10 @@ class MotorcycleListAdapter: RecyclerView.Adapter<MotorcycleListAdapter.MyViewHo
         holder.itemView.findViewById<TextView>(R.id.tw_bike_distance).text = distance
 
         val motorcycleRow = holder.itemView.findViewById<ConstraintLayout>(R.id.motorcycle_row)
+
+        val bikeImage = holder.itemView.findViewById<ImageView>(R.id.motorcycle_image)
+        if(currentItem.image != null) bikeImage.setImageURI(currentItem.image)
+        else bikeImage.setImageResource(R.drawable.bike_logo)
 
         motorcycleRow.setOnClickListener {
             val bikeActivity = Intent(holder.itemView.context, BikeActivity::class.java)

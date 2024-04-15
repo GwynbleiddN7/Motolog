@@ -9,6 +9,8 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -40,6 +42,12 @@ class GearShowFragment : Fragment() {
                     view.findViewById<TextView>(R.id.tw_gear_manufacturer).text = gear.manufacturer
                     view.findViewById<TextView>(R.id.tw_gear_price).text = String.format("%.2f€", gear.price)
                     view.findViewById<TextView>(R.id.tw_gear_date).text = longToDateString(gear.date)
+
+                    val gearImage = view.findViewById<ImageView>(R.id.iv_gear_image_show)
+                    if(gear.image != null) gearImage.setImageURI(gear.image)
+                    else gearImage.setImageResource(R.drawable.helmet_logo)
+
+                    view.findViewById<ScrollView>(R.id.gear_show_view).visibility = View.VISIBLE
                 }
                 else findNavController().navigateUp()
             }

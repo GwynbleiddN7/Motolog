@@ -1,6 +1,6 @@
 package com.example.motolog.Models
 
-import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Parcelable
 import androidx.room.Embedded
 import androidx.room.Entity
@@ -20,8 +20,8 @@ data class Motorcycle(
     var personal_km: Int = 0,
     var km_logs: List<DistanceLog> = listOf(),
     val maintenance_logs: List<ActionLog> = listOf(),
-    val mods_logs: List<ActionLog> = listOf(),
-    val image: Bitmap? = null,
+    var mods_logs: List<ActionLog> = listOf(),
+    var image: Uri? = null,
     @Embedded
     val infos: BikeInfo = BikeInfo(),
 ): Parcelable
@@ -52,7 +52,7 @@ data class DistanceLog(
     val date: Long,
 ): Parcelable
 
-fun getUpdateBikeDistance(bike: Motorcycle): Int
+fun getUpdatedBikeDistance(bike: Motorcycle): Int
 {
     return if(bike.km_logs.isNotEmpty()) bike.km_logs.first().distance - bike.start_km else 0
 }

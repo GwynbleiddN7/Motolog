@@ -1,13 +1,11 @@
 package com.example.motolog.Database
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.net.Uri
 import androidx.room.TypeConverter
 import com.example.motolog.Models.ActionLog
 import com.example.motolog.Models.DistanceLog
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.io.ByteArrayOutputStream
 
 class Converters {
     @TypeConverter
@@ -39,16 +37,14 @@ class Converters {
     }
 
     @TypeConverter
-    fun fromBitmap(bitmap: Bitmap?): ByteArray? {
-        if(bitmap == null) return null
-        val outputStream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
-        return outputStream.toByteArray()
+    fun getStringFromURI(uri: Uri?): String? {
+        if (uri == null) return null
+        return uri.toString()
     }
 
     @TypeConverter
-    fun toBitmap(byteArray: ByteArray?): Bitmap? {
-        if(byteArray == null) return null
-        return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+    fun getURIFromString(string: String?): Uri? {
+        if (string == null) return null
+        return Uri.parse(string)
     }
 }

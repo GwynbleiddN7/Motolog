@@ -1,7 +1,11 @@
 package com.example.motolog.Fragments.Gear
 
 import android.app.AlertDialog
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -11,10 +15,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CalendarView
 import android.widget.EditText
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.canhub.cropper.CropImageContract
+import com.canhub.cropper.CropImageContractOptions
+import com.canhub.cropper.CropImageOptions
 import com.example.motolog.Models.Gear
 import com.example.motolog.Path
 import com.example.motolog.R
@@ -27,7 +35,8 @@ class GearAddFragment : Fragment() {
     private val args by navArgs<GearAddFragmentArgs>()
     private var savedDate: Long = 0
     private var currentPath: Path = Path.Add
-
+    private var tempBitmap: Bitmap? = null
+    private var bShouldRemoveImage = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,6 +60,7 @@ class GearAddFragment : Fragment() {
             view.findViewById<EditText>(R.id.et_gear_manufacturer).setText(currentGear.manufacturer)
             view.findViewById<EditText>(R.id.et_gear_model).setText(currentGear.model)
             view.findViewById<EditText>(R.id.et_gear_price).setText(currentGear.price.toString())
+            if(currentGear.image != null) view.findViewById<ImageButton>(R.id.ib_gear_image).setImageURI(currentGear.image)
         }
 
         date.setOnDateChangeListener { _, year, month, dayOfMonth ->
@@ -63,6 +73,17 @@ class GearAddFragment : Fragment() {
         button.text = buttonText
         button.setOnClickListener{
             insertDataToDatabase(view)
+        }
+
+        val imageButton = view.findViewById<ImageButton>(R.id.ib_gear_image)
+        imageButton.setOnClickListener{
+            uploadImage()
+        }
+        imageButton.setOnLongClickListener{
+            tempBitmap = null
+            bShouldRemoveImage = true
+            imageButton.setImageResource(R.drawable.helmet_logo)
+            true
         }
 
         setHasOptionsMenu(currentPath == Path.Edit)
@@ -79,8 +100,8 @@ class GearAddFragment : Fragment() {
             val id = if(currentPath == Path.Edit) args.currentGear!!.id else 0
 
             val gear = Gear(id, manufacturer, model, price.toDouble(), savedDate)
-            if(currentPath == Path.Add) mGearViewModel.addGear(gear)
-            else mGearViewModel.updateGear(gear)
+            if(currentPath == Path.Add) mGearViewModel.addGear(gear, tempBitmap)
+            else mGearViewModel.updateGear(gear, tempBitmap, bShouldRemoveImage)
 
             showToast(requireContext(), "Gear saved!")
             findNavController().navigateUp()
@@ -115,5 +136,24 @@ class GearAddFragment : Fragment() {
         builder.setTitle("Delete ${currentGear.manufacturer} ${currentGear.model}?")
         builder.setMessage("Are you sure you want to delete this gear?")
         builder.create().show()
+    }
+
+    private val cropImage = registerForActivityResult(CropImageContract()) { result ->
+        if (result.isSuccessful && result.uriContent != null) {
+            val uriContent = result.uriContent!!
+
+            val bitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                ImageDecoder.decodeBitmap(ImageDecoder.createSource(requireContext().contentResolver, uriContent))
+            } else {
+                MediaStore.Images.Media.getBitmap(requireContext().contentResolver, uriContent)
+            }
+            requireView().findViewById<ImageButton>(R.id.ib_gear_image).setImageBitmap(bitmap)
+            tempBitmap = bitmap
+        }
+    }
+
+    private fun uploadImage() {
+        val options = CropImageContractOptions(null, CropImageOptions(imageSourceIncludeGallery = true, imageSourceIncludeCamera = false))
+        cropImage.launch(options)
     }
 }

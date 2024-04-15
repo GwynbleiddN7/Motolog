@@ -1,5 +1,6 @@
 package com.example.motolog.Models
 
+import android.net.Uri
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -13,5 +14,6 @@ data class Gear(
     val manufacturer: String,
     val model: String,
     val price: Double,
-    val date: Long
+    val date: Long,
+    var image: Uri? = null,
 ): Parcelable

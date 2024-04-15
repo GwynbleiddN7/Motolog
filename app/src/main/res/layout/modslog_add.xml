@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.Gear.GearAddFragment">
+    tools:context=".Fragments.ModsLog.ModsLogAddFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,87 +15,77 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_gear_image"
+        <ImageView
+            android:id="@+id/iv_mod_image"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_marginTop="20dp"
-            app:cardBackgroundColor="@android:color/transparent"
-            app:cardCornerRadius="125dp"
-            app:cardElevation="0dp"
+            android:background="@color/transparent"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_key"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageButton
-                android:id="@+id/ib_gear_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:longClickable="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/helmet_logo" />
-        </androidx.cardview.widget.CardView>
-
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/et_gear_manufacturer"
+            android:id="@+id/et_mod_title"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:hint="Alpinestars"
+            android:hint="Arrow Exhuast"
             android:textSize="30sp"
             android:textStyle="bold"
             android:textAlignment="center"
             android:inputType="textCapSentences"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cv_gear_image" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_mod_image" />
 
         <TextView
-            android:id="@+id/textView_gear_manufacturer"
+            android:id="@+id/textView_mod_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:textAlignment="center"
             android:textSize="16dp"
             android:textStyle="italic"
-            android:text="Manufacturer"
+            android:text="Title"
             android:textColor="@color/dark_white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_gear_manufacturer" />
+            app:layout_constraintTop_toBottomOf="@+id/et_mod_title" />
 
         <EditText
-            android:id="@+id/et_gear_model"
+            android:id="@+id/et_mod_description"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:hint="Sektor Boots"
-            android:textSize="30sp"
+            android:hint="Installed Arrow exhaust"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:textAlignment="center"
             android:inputType="textCapSentences"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_gear_manufacturer" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_mod_title" />
 
         <TextView
-            android:id="@+id/textView_gear_model"
+            android:id="@+id/textView_mod_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:textAlignment="center"
             android:textSize="16dp"
             android:textStyle="italic"
-            android:text="Model"
+            android:text="Description"
             android:textColor="@color/dark_white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_gear_model" />
+            app:layout_constraintTop_toBottomOf="@+id/et_mod_description" />
 
         <EditText
-            android:id="@+id/et_gear_price"
+            android:id="@+id/et_mod_price"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
@@ -106,10 +96,10 @@
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_gear_model" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_mod_description" />
 
         <TextView
-            android:id="@+id/textView_gear_price"
+            android:id="@+id/textView_mod_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
@@ -120,25 +110,25 @@
             android:textColor="@color/dark_white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_gear_price" />
+            app:layout_constraintTop_toBottomOf="@+id/et_mod_price" />
         <CalendarView
-            android:id="@+id/cv_gear_date"
+            android:id="@+id/cv_mod_date"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_marginTop="35dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_gear_price" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_mod_price" />
 
 
         <Button
-            android:id="@+id/bt_addGear"
+            android:id="@+id/bt_addMod"
             android:layout_width="200dp"
             android:layout_height="60dp"
             android:layout_marginTop="30dp"
             android:text="Add Gear"
             android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@+id/cv_gear_date"
+            app:layout_constraintTop_toBottomOf="@+id/cv_mod_date"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 

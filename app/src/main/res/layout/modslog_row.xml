@@ -6,7 +6,7 @@
     android:clickable="true"
     android:paddingHorizontal="10dp"
     android:paddingTop="10dp"
-    android:id="@+id/gear_row">
+    android:id="@+id/mods_row">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -24,85 +24,78 @@
             android:layout_height="wrap_content"
             android:padding="6dp">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cv_gear_image"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:cardBackgroundColor="@android:color/transparent"
-                app:cardCornerRadius="50dp"
-                app:cardElevation="0dp"
+            <ImageView
+                android:id="@+id/mod_image"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:padding="10dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/gear_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/transparent"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/helmet_logo" />
-            </androidx.cardview.widget.CardView>
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_key" />
 
             <TextView
-                android:id="@+id/tw_gear_manufacturer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="11dp"
-                android:text="Alpinestars"
-                android:textAllCaps="true"
-                android:textSize="16sp"
-                android:textStyle="italic"
-                app:layout_constraintBaseline_toTopOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/cv_gear_image"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tw_gear_model"
+                android:id="@+id/tw_mod_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="4dp"
                 android:ellipsize="marquee"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
-                android:text="Sektor"
+                android:text="Arrow Exhaust"
                 android:textColor="@color/white"
                 android:textAllCaps="true"
                 android:textSize="22sp"
                 android:textStyle="bold|italic"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/cv_gear_image"
-                app:layout_constraintTop_toBottomOf="@+id/tw_gear_manufacturer"  />
+                app:layout_constraintBaseline_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/mod_image"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tw_gear_date"
+                android:id="@+id/tw_mod_description"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="5dp"
+                android:maxLines="2"
+                android:text="Swapped stock exhaust with Arrow"
+                android:textSize="14sp"
+                android:textStyle="italic"
+                android:gravity="center_vertical"
+                app:layout_constraintBottom_toTopOf="@+id/tw_mod_date"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/mod_image"
+                app:layout_constraintTop_toBottomOf="@+id/tw_mod_title" />
+
+            <TextView
+                android:id="@+id/tw_mod_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginBottom="2dp"
                 android:text="25/02/2023"
                 android:textColor="@color/dark_white"
                 android:textSize="13sp"
                 android:textStyle="italic"
-                app:layout_constraintStart_toEndOf="@+id/cv_gear_image"
-                app:layout_constraintTop_toBottomOf="@+id/tw_gear_model" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/mod_image" />
 
             <TextView
-                android:id="@+id/tw_gear_price"
+                android:id="@+id/tw_mod_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginBottom="2dp"
                 android:layout_marginEnd="20dp"
                 android:text="300$"
                 android:textColor="@color/dark_white"
                 android:textSize="13sp"
                 android:textStyle="italic"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tw_gear_model" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

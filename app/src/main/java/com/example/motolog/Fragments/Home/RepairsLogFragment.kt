@@ -12,7 +12,7 @@ class RepairsLogFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_repairs_log, container, false)
+        val view = inflater.inflate(R.layout.repairslog_list, container, false)
 
         return view
     }

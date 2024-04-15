@@ -53,7 +53,7 @@ class GearListFragment : Fragment() {
             var totalMoney = 0.0
             val gearList = mGearViewModel.readAllData.value!!
             for (gear in gearList) totalMoney += gear.price
-            showToast(requireContext(), "Total cost: ${String.format("%.2f€", totalMoney)}")
+            showToast(requireContext(), "Total spent: ${String.format("%.2f€", totalMoney)}")
         }
         return super.onContextItemSelected(item)
     }

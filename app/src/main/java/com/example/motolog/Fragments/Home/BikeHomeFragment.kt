@@ -7,7 +7,10 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
@@ -54,6 +57,12 @@ class BikeHomeFragment : Fragment() {
 
                     view.findViewById<TextView>(R.id.bike_personalkm).text = formatThousand(currentBike.personal_km)
                     view.findViewById<TextView>(R.id.bike_totalkm).text = formatThousand(currentBike.personal_km + currentBike.start_km)
+
+                    val bikeImage = view.findViewById<ImageView>(R.id.bike_image)
+                    if(currentBike.image != null) bikeImage.setImageURI(currentBike.image)
+                    else bikeImage.setImageResource(R.drawable.bike_logo)
+
+                    view.findViewById<ScrollView>(R.id.bike_home).visibility = VISIBLE
                 }
                 else returnToList()
             }
@@ -73,6 +82,7 @@ class BikeHomeFragment : Fragment() {
         }
 
         setHasOptionsMenu(true)
+
         return view
     }
 

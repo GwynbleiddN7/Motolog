@@ -1,7 +1,8 @@
-package com.example.motolog.Fragments.DistanceLog
+package com.example.motolog.Fragments.ModsLog
 
 import android.app.AlertDialog
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -11,21 +12,19 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CalendarView
 import android.widget.EditText
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.motolog.Models.ActionLog
 import com.example.motolog.Models.DistanceLog
-import com.example.motolog.Models.getUpdatedBikeDistance
 import com.example.motolog.Path
 import com.example.motolog.R
 import com.example.motolog.ViewModel.MotorcycleViewModel
 import com.example.motolog.showToast
-import com.example.motolog.yearFromLong
 import java.util.Calendar
 
-class DistanceLogAddFragment : Fragment() {
-    private val args by navArgs<DistanceLogAddFragmentArgs>()
+class ModsLogAddFragment : Fragment() {
+    private val args by navArgs<ModsLogAddFragmentArgs>()
     private lateinit var mMotorcycleViewModel: MotorcycleViewModel
     private var savedDate: Long = 0
     private var currentPath: Path = Path.Add
@@ -33,25 +32,28 @@ class DistanceLogAddFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.distancelog_add, container, false)
+        val view = inflater.inflate(R.layout.modslog_add, container, false)
         mMotorcycleViewModel = ViewModelProvider(this)[MotorcycleViewModel::class.java]
         if(args.logIndex != -1) currentPath = Path.Edit
 
         val buttonText = if(currentPath == Path.Add) "Add Log" else "Edit Log"
-        val date = view.findViewById<CalendarView>(R.id.cv_distancelog_date)
+        val date = view.findViewById<CalendarView>(R.id.cv_mod_date)
         savedDate = Calendar.getInstance().timeInMillis
         date.maxDate = savedDate
 
-        val distanceLog = view.findViewById<EditText>(R.id.et_distancelog)
         if(currentPath == Path.Edit)
         {
-            val currentLog = args.currentBike.km_logs[args.logIndex]
+            val currentLog = args.currentBike.mods_logs[args.logIndex]
             savedDate = currentLog.date
             date.date = savedDate
 
-            distanceLog.setText(currentLog.distance.toString())
+            val title = view.findViewById<EditText>(R.id.et_mod_title)
+            title.setText(currentLog.name)
+            title.isSelected = true
+
+            view.findViewById<EditText>(R.id.et_mod_description).setText(currentLog.description)
+            view.findViewById<EditText>(R.id.et_mod_price).setText(currentLog.price.toString())
         }
-        else distanceLog.setText(String.format("%d", args.currentBike.start_km + args.currentBike.personal_km))
 
         date.setOnDateChangeListener { _, year, month, dayOfMonth ->
             val cal: Calendar = Calendar.getInstance()
@@ -59,7 +61,7 @@ class DistanceLogAddFragment : Fragment() {
             savedDate = cal.getTimeInMillis()
         }
 
-        val button = view.findViewById<Button>(R.id.bt_addDistanceLog)
+        val button = view.findViewById<Button>(R.id.bt_addMod)
         button.text = buttonText
         button.setOnClickListener{
             insertDataToDatabase(view)
@@ -70,31 +72,20 @@ class DistanceLogAddFragment : Fragment() {
     }
 
     private fun insertDataToDatabase(view: View) {
-        val distance = view.findViewById<EditText>(R.id.et_distancelog).text.toString()
+        val title = view.findViewById<EditText>(R.id.et_mod_title).text.toString()
+        val description = view.findViewById<EditText>(R.id.et_mod_description).text.toString()
+        val price = view.findViewById<EditText>(R.id.et_mod_price).text.toString()
 
-        if(distance.isNotEmpty())
+        if(inputCheck(title, description, price))
         {
-            val distanceInt = distance.toInt()
             val bike = args.currentBike
-            val distanceLogList = bike.km_logs.toMutableList()
+            val modsLogList = bike.mods_logs.toMutableList()
+            val newLog = ActionLog(title, description, savedDate, price.toDouble())
 
-            if(yearFromLong(savedDate) < bike.year || distanceInt < bike.start_km) {
-                showToast(requireContext(), "This log does not match bike's year or kilometers")
-                return
-            }
+            if(currentPath == Path.Edit) modsLogList[args.logIndex] = newLog
+            else modsLogList.add(0, newLog)
 
-            for(log in distanceLogList){
-                if(inputCheck(log, distanceInt)) {
-                    showToast(requireContext(), "This log does not match other log's dates or kilometers")
-                    return
-                }
-            }
-
-            if(currentPath == Path.Edit) distanceLogList.removeAt(args.logIndex)
-            distanceLogList.add(DistanceLog(distanceInt, savedDate))
-
-            bike.km_logs = distanceLogList.sortedBy { log -> log.date }.reversed()
-            bike.personal_km = getUpdatedBikeDistance(bike)
+            bike.mods_logs = modsLogList
             mMotorcycleViewModel.updateMotorcycle(bike, null)
 
             showToast(requireContext(), "Log saved!")
@@ -103,6 +94,10 @@ class DistanceLogAddFragment : Fragment() {
         else showToast(requireContext(), "Please enter a distance")
     }
 
+    private fun inputCheck(title: String, description: String, price: String): Boolean
+    {
+        return title.isNotEmpty() && description.isNotEmpty() && price.isNotEmpty()
+    }
     private fun inputCheck(log: DistanceLog, distance: Int): Boolean{
         return (log.date < savedDate && log.distance > distance) || (log.date > savedDate && log.distance < distance)
     }
@@ -121,10 +116,9 @@ class DistanceLogAddFragment : Fragment() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Yes"){ _,_ ->
             val bike = args.currentBike
-            val distanceLogList = bike.km_logs.toMutableList()
-            distanceLogList.removeAt(args.logIndex)
-            bike.km_logs = distanceLogList.sortedBy { log -> log.date }.reversed()
-            bike.personal_km = getUpdatedBikeDistance(bike)
+            val modsLogList = bike.mods_logs.toMutableList()
+            modsLogList.removeAt(args.logIndex)
+            bike.mods_logs = modsLogList
             mMotorcycleViewModel.updateMotorcycle(bike, null)
             showToast(requireContext(), "Log removed!")
             findNavController().navigateUp()

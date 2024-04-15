@@ -38,7 +38,7 @@ class DistanceLogAdapter : RecyclerView.Adapter<DistanceLogAdapter.MyViewHolder>
         holder.itemView.findViewById<TextView>(R.id.tw_distance_difference).text = String.format("+%S km", formatThousand(deltaDistance))
 
         holder.itemView.findViewById<ConstraintLayout>(R.id.distancelog_row).setOnClickListener {
-            val action = DistanceLogFragmentDirections.distancelogToDistanceadd(position, currentBike)
+            val action = DistanceLogFragmentDirections.distancelogToDistanceadd(currentBike, position)
             holder.itemView.findNavController().navigate(action)
         }
     }

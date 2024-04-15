@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:clickable="true"
     android:paddingHorizontal="10dp"
-    android:paddingTop="10dp"
+    android:paddingTop="8dp"
     android:id="@+id/distancelog_row">
 
     <androidx.cardview.widget.CardView
@@ -42,7 +42,6 @@
                 android:text="14/03/2022"
                 android:textAllCaps="true"
                 android:textSize="18sp"
-                android:textStyle="italic"
                 app:layout_constraintBaseline_toTopOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/gear_image"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -61,7 +60,7 @@
                 android:singleLine="true"
                 android:text="25000 km"
                 android:textColor="@color/white"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 android:textStyle="bold|italic"
                 app:layout_constraintStart_toEndOf="@+id/gear_image"
                 app:layout_constraintTop_toBottomOf="@+id/tw_distance_date"  />
@@ -74,8 +73,7 @@
                 android:text="+3500km"
                 android:textColor="@color/green"
                 android:textSize="20sp"
-                android:textStyle="italic"
-
+                android:textStyle="bold|italic"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
