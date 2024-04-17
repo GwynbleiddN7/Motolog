@@ -20,7 +20,7 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_marginTop="20dp"
-            android:background="@color/transparent"
+            android:background="@android:color/transparent"
             android:scaleType="centerInside"
             android:src="@drawable/ic_key"
             app:layout_constraintEnd_toEndOf="parent"

@@ -1,6 +1,7 @@
 package com.example.motolog
 
 import android.content.Context
+import android.content.res.Resources
 import android.widget.Toast
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
@@ -12,6 +13,7 @@ enum class Path{
     Add,
     Edit
 }
+val repairColors = arrayOf(R.color.red, R.color.yellow, R.color.orange, R.color.blue, R.color.cyan, R.color.green, R.color.violet, R.color.purple, R.color.white)
 
 fun longToDateString(date: Long): String{
     val simpleDateFormat by lazy { SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()) }

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="repair_types">
+        <item>Tagliando</item>
+        <item>Revisione</item>
+        <item>Grasso Catena</item>
+        <item>Gomma Anteriore</item>
+        <item>Gomma Posteriore</item>
+        <item>Liquido Freni</item>
+        <item>Olio Forcelle</item>
+        <item>Olio Motore</item>
+        <item>Personalizzato</item>
+    </string-array>
+    <string-array name="repair_notes">
+        <item>Tagliando standard</item>
+        <item>Revisione completata</item>
+        <item>Catena ingrassata</item>
+        <item>Ruota anteriore sostituita</item>
+        <item>Ruota posteriore sostituita</item>
+        <item>Liquido freni sostituito</item>
+        <item>Olio forcelle sostituito</item>
+        <item>Olio motore aggiunto</item>
+        <item>Note</item>
+    </string-array>
+    <string name="fill_fields">Per favore completa tutti i campi</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    <string name="add_log">Aggiungi Log</string>
+    <string name="edit_log">Modifica Log</string>
+    <string name="log_saved">Log salvato!</string>
+    <string name="log_removed">Log rimosso!</string>
+    <string name="title_question_remove_log">Rimuovere il log?</string>
+    <string name="description_question_remove_log">Sei sicuro di voler rimuovere questo log?</string>
+</resources>

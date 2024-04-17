@@ -42,7 +42,7 @@ class MotorcycleListAdapter: RecyclerView.Adapter<MotorcycleListAdapter.MyViewHo
 
         val bikeImage = holder.itemView.findViewById<ImageView>(R.id.motorcycle_image)
         if(currentItem.image != null) bikeImage.setImageURI(currentItem.image)
-        else bikeImage.setImageResource(R.drawable.bike_logo)
+        else bikeImage.setImageResource(R.drawable.bike)
 
         motorcycleRow.setOnClickListener {
             val bikeActivity = Intent(holder.itemView.context, BikeActivity::class.java)

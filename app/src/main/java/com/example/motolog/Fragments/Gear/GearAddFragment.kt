@@ -82,7 +82,7 @@ class GearAddFragment : Fragment() {
         imageButton.setOnLongClickListener{
             tempBitmap = null
             bShouldRemoveImage = true
-            imageButton.setImageResource(R.drawable.helmet_logo)
+            imageButton.setImageResource(R.drawable.helmet_show)
             true
         }
 
@@ -127,12 +127,12 @@ class GearAddFragment : Fragment() {
     {
         val currentGear = args.currentGear!!
         val builder = AlertDialog.Builder(requireContext())
-        builder.setPositiveButton("Yes"){ _,_ ->
+        builder.setPositiveButton(getString(R.string.yes)){ _, _ ->
             mGearViewModel.deleteGear(currentGear)
             showToast(requireContext(), "Gear deleted!")
             findNavController().navigateUp()
         }
-        builder.setNegativeButton("No"){ _,_ -> }
+        builder.setNegativeButton(getString(R.string.no)){ _,_ -> }
         builder.setTitle("Delete ${currentGear.manufacturer} ${currentGear.model}?")
         builder.setMessage("Are you sure you want to delete this gear?")
         builder.create().show()
@@ -153,7 +153,7 @@ class GearAddFragment : Fragment() {
     }
 
     private fun uploadImage() {
-        val options = CropImageContractOptions(null, CropImageOptions(imageSourceIncludeGallery = true, imageSourceIncludeCamera = false))
+        val options = CropImageContractOptions(null, CropImageOptions(imageSourceIncludeGallery = true, imageSourceIncludeCamera = true))
         cropImage.launch(options)
     }
 }

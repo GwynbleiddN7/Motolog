@@ -31,7 +31,10 @@ class DistanceLogAdapter : RecyclerView.Adapter<DistanceLogAdapter.MyViewHolder>
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = distanceLogList[position]
 
-        holder.itemView.findViewById<TextView>(R.id.tw_distance_log).text = String.format("%S km", formatThousand(currentItem.distance))
+        val distanceTextView = holder.itemView.findViewById<TextView>(R.id.tw_distance_log)
+        distanceTextView.isSelected = true
+        distanceTextView.text = String.format("%S km", formatThousand(currentItem.distance))
+
         holder.itemView.findViewById<TextView>(R.id.tw_distance_date).text = longToDateString(currentItem.date)
 
         val deltaDistance = if(position < distanceLogList.size-1) currentItem.distance - distanceLogList[position+1].distance else currentItem.distance - currentBike.start_km

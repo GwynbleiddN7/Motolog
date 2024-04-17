@@ -45,7 +45,7 @@ class GearShowFragment : Fragment() {
 
                     val gearImage = view.findViewById<ImageView>(R.id.iv_gear_image_show)
                     if(gear.image != null) gearImage.setImageURI(gear.image)
-                    else gearImage.setImageResource(R.drawable.helmet_logo)
+                    else gearImage.setImageResource(R.drawable.helmet_show)
 
                     view.findViewById<ScrollView>(R.id.gear_show_view).visibility = View.VISIBLE
                 }
@@ -74,12 +74,12 @@ class GearShowFragment : Fragment() {
     private fun deleteGear()
     {
         val builder = AlertDialog.Builder(requireContext())
-        builder.setPositiveButton("Yes"){ _,_ ->
+        builder.setPositiveButton(getString(R.string.yes)){ _,_ ->
             mGearViewModel.deleteGear(args.currentGear)
             Toast.makeText(requireContext(), "Gear deleted!", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.gearshow_to_gearlist)
         }
-        builder.setNegativeButton("No"){ _,_ -> }
+        builder.setNegativeButton(getString(R.string.no)){ _,_ -> }
         builder.setTitle("Delete ${args.currentGear.manufacturer} ${args.currentGear.model}?")
         builder.setMessage("Are you sure you want to delete this gear?")
         builder.create().show()

@@ -7,13 +7,13 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.motolog.Models.ActionLog
+import com.example.motolog.Models.ModsLog
 import com.example.motolog.Models.Motorcycle
 import com.example.motolog.R
 import com.example.motolog.longToDateString
 
 class ModsLogAdapter: RecyclerView.Adapter<ModsLogAdapter.MyViewHolder>(){
-    private var modsLogList = emptyList<ActionLog>()
+    private var modsLogList = emptyList<ModsLog>()
     private lateinit var currentBike: Motorcycle
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){}
 
@@ -30,7 +30,7 @@ class ModsLogAdapter: RecyclerView.Adapter<ModsLogAdapter.MyViewHolder>(){
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = modsLogList[position]
 
-        holder.itemView.findViewById<TextView>(R.id.tw_mod_title).text = currentItem.name
+        holder.itemView.findViewById<TextView>(R.id.tw_mod_title).text = currentItem.title
         holder.itemView.findViewById<TextView>(R.id.tw_mod_description).text = currentItem.description
         holder.itemView.findViewById<TextView>(R.id.tw_mod_date).text = longToDateString(currentItem.date)
 

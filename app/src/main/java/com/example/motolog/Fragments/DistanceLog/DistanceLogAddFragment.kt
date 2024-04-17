@@ -37,7 +37,7 @@ class DistanceLogAddFragment : Fragment() {
         mMotorcycleViewModel = ViewModelProvider(this)[MotorcycleViewModel::class.java]
         if(args.logIndex != -1) currentPath = Path.Edit
 
-        val buttonText = if(currentPath == Path.Add) "Add Log" else "Edit Log"
+        val buttonText = if(currentPath == Path.Add) getString(R.string.add_log) else getString(R.string.edit_log)
         val date = view.findViewById<CalendarView>(R.id.cv_distancelog_date)
         savedDate = Calendar.getInstance().timeInMillis
         date.maxDate = savedDate
@@ -97,10 +97,10 @@ class DistanceLogAddFragment : Fragment() {
             bike.personal_km = getUpdatedBikeDistance(bike)
             mMotorcycleViewModel.updateMotorcycle(bike, null)
 
-            showToast(requireContext(), "Log saved!")
+            showToast(requireContext(), getString(R.string.log_saved))
             findNavController().navigateUp()
         }
-        else showToast(requireContext(), "Please enter a distance")
+        else showToast(requireContext(), getString(R.string.fill_fields))
     }
 
     private fun inputCheck(log: DistanceLog, distance: Int): Boolean{
@@ -119,19 +119,19 @@ class DistanceLogAddFragment : Fragment() {
     private fun deleteLog()
     {
         val builder = AlertDialog.Builder(requireContext())
-        builder.setPositiveButton("Yes"){ _,_ ->
+        builder.setPositiveButton(getString(R.string.yes)){ _,_ ->
             val bike = args.currentBike
             val distanceLogList = bike.km_logs.toMutableList()
             distanceLogList.removeAt(args.logIndex)
             bike.km_logs = distanceLogList.sortedBy { log -> log.date }.reversed()
             bike.personal_km = getUpdatedBikeDistance(bike)
             mMotorcycleViewModel.updateMotorcycle(bike, null)
-            showToast(requireContext(), "Log removed!")
+            showToast(requireContext(), getString(R.string.log_removed))
             findNavController().navigateUp()
         }
-        builder.setNegativeButton("No"){ _,_ -> }
-        builder.setTitle("Delete the log?")
-        builder.setMessage("Are you sure you want to delete this log?")
+        builder.setNegativeButton(getString(R.string.no)){ _,_ -> }
+        builder.setTitle(getString(R.string.title_question_remove_log))
+        builder.setMessage(getString(R.string.description_question_remove_log))
         builder.create().show()
     }
 }

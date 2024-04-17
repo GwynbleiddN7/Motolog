@@ -56,6 +56,7 @@ class MotorcycleAddFragment : Fragment() {
             view.findViewById<EditText>(R.id.et_bike_year).setText(bike.year.toString())
             view.findViewById<EditText>(R.id.et_bike_startkm).setText(bike.start_km.toString())
             if(bike.image != null) view.findViewById<ImageButton>(R.id.ib_bike_image).setImageURI(bike.image)
+            else view.findViewById<ImageButton>(R.id.ib_bike_image).setImageResource(R.drawable.bike)
         }
 
         val button = view.findViewById<Button>(R.id.bt_addMotorcycle)
@@ -72,7 +73,7 @@ class MotorcycleAddFragment : Fragment() {
         imageButton.setOnLongClickListener{
             tempBitmap = null
             bShouldRemoveImage = true
-            imageButton.setImageResource(R.drawable.bike_logo)
+            imageButton.setImageResource(R.drawable.bike)
             true
         }
 
@@ -161,12 +162,12 @@ class MotorcycleAddFragment : Fragment() {
     {
         val currentBike = args.currentMotorcycle!!
         val builder = AlertDialog.Builder(requireContext())
-        builder.setPositiveButton("Yes"){ _,_ ->
+        builder.setPositiveButton(getString(R.string.yes)){ _, _ ->
             mMotorcycleViewModel.deleteMotorcycle(currentBike)
             showToast(requireContext(),"Motorcycle deleted!")
             findNavController().navigateUp()
         }
-        builder.setNegativeButton("No"){ _,_ -> }
+        builder.setNegativeButton(getString(R.string.no)){ _,_ -> }
         builder.setTitle("Delete ${currentBike.manufacturer} ${currentBike.model}?")
         builder.setMessage("Are you sure you want to delete this motorcycle?")
         builder.create().show()
@@ -187,7 +188,7 @@ class MotorcycleAddFragment : Fragment() {
     }
 
     private fun uploadImage() {
-        val options = CropImageContractOptions(null, CropImageOptions(imageSourceIncludeGallery = true, imageSourceIncludeCamera = false))
+        val options = CropImageContractOptions(null, CropImageOptions(imageSourceIncludeGallery = true, imageSourceIncludeCamera = true))
         cropImage.launch(options)
     }
 }

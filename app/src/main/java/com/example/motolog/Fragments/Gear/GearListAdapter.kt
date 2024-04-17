@@ -37,7 +37,7 @@ class GearListAdapter : RecyclerView.Adapter<GearListAdapter.MyViewHolder>() {
 
         val gearImage = holder.itemView.findViewById<ImageView>(R.id.gear_image)
         if(currentItem.image != null) gearImage.setImageURI(currentItem.image)
-        else gearImage.setImageResource(R.drawable.helmet_logo)
+        else gearImage.setImageResource(R.drawable.helmet_list)
 
         val item = holder.itemView.findViewById<ConstraintLayout>(R.id.gear_row)
 

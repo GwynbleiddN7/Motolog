@@ -60,7 +60,7 @@ class BikeHomeFragment : Fragment() {
 
                     val bikeImage = view.findViewById<ImageView>(R.id.bike_image)
                     if(currentBike.image != null) bikeImage.setImageURI(currentBike.image)
-                    else bikeImage.setImageResource(R.drawable.bike_logo)
+                    else bikeImage.setImageResource(R.drawable.bike)
 
                     view.findViewById<ScrollView>(R.id.bike_home).visibility = VISIBLE
                 }
@@ -106,12 +106,12 @@ class BikeHomeFragment : Fragment() {
     private fun deleteMotorcycle()
     {
         val builder = AlertDialog.Builder(requireContext())
-        builder.setPositiveButton("Yes"){ _,_ ->
+        builder.setPositiveButton(getString(R.string.yes)){ _, _ ->
             mMotorcycleViewModel.deleteMotorcycle(currentBike)
             showToast(requireContext(), "Motorcycle deleted!")
             returnToList()
         }
-        builder.setNegativeButton("No"){ _,_ -> }
+        builder.setNegativeButton(getString(R.string.no)){ _,_ -> }
         builder.setTitle("Delete ${currentBike.manufacturer} ${currentBike.model}?")
         builder.setMessage("Are you sure you want to delete this motorcycle?")
         builder.create().show()

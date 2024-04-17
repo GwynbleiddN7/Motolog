@@ -15,8 +15,7 @@ import android.widget.EditText
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.motolog.Models.ActionLog
-import com.example.motolog.Models.DistanceLog
+import com.example.motolog.Models.ModsLog
 import com.example.motolog.Path
 import com.example.motolog.R
 import com.example.motolog.ViewModel.MotorcycleViewModel
@@ -36,7 +35,7 @@ class ModsLogAddFragment : Fragment() {
         mMotorcycleViewModel = ViewModelProvider(this)[MotorcycleViewModel::class.java]
         if(args.logIndex != -1) currentPath = Path.Edit
 
-        val buttonText = if(currentPath == Path.Add) "Add Log" else "Edit Log"
+        val buttonText = if(currentPath == Path.Add) getString(R.string.add_log) else getString(R.string.edit_log)
         val date = view.findViewById<CalendarView>(R.id.cv_mod_date)
         savedDate = Calendar.getInstance().timeInMillis
         date.maxDate = savedDate
@@ -48,7 +47,7 @@ class ModsLogAddFragment : Fragment() {
             date.date = savedDate
 
             val title = view.findViewById<EditText>(R.id.et_mod_title)
-            title.setText(currentLog.name)
+            title.setText(currentLog.title)
             title.isSelected = true
 
             view.findViewById<EditText>(R.id.et_mod_description).setText(currentLog.description)
@@ -80,7 +79,7 @@ class ModsLogAddFragment : Fragment() {
         {
             val bike = args.currentBike
             val modsLogList = bike.mods_logs.toMutableList()
-            val newLog = ActionLog(title, description, savedDate, price.toDouble())
+            val newLog = ModsLog(title, description, savedDate, price.toDouble())
 
             if(currentPath == Path.Edit) modsLogList[args.logIndex] = newLog
             else modsLogList.add(0, newLog)
@@ -88,18 +87,15 @@ class ModsLogAddFragment : Fragment() {
             bike.mods_logs = modsLogList
             mMotorcycleViewModel.updateMotorcycle(bike, null)
 
-            showToast(requireContext(), "Log saved!")
+            showToast(requireContext(), getString(R.string.log_saved))
             findNavController().navigateUp()
         }
-        else showToast(requireContext(), "Please enter a distance")
+        else showToast(requireContext(), getString(R.string.fill_fields))
     }
 
     private fun inputCheck(title: String, description: String, price: String): Boolean
     {
         return title.isNotEmpty() && description.isNotEmpty() && price.isNotEmpty()
-    }
-    private fun inputCheck(log: DistanceLog, distance: Int): Boolean{
-        return (log.date < savedDate && log.distance > distance) || (log.date > savedDate && log.distance < distance)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -114,18 +110,18 @@ class ModsLogAddFragment : Fragment() {
     private fun deleteLog()
     {
         val builder = AlertDialog.Builder(requireContext())
-        builder.setPositiveButton("Yes"){ _,_ ->
+        builder.setPositiveButton(getString(R.string.yes)){ _,_ ->
             val bike = args.currentBike
             val modsLogList = bike.mods_logs.toMutableList()
             modsLogList.removeAt(args.logIndex)
             bike.mods_logs = modsLogList
             mMotorcycleViewModel.updateMotorcycle(bike, null)
-            showToast(requireContext(), "Log removed!")
+            showToast(requireContext(), getString(R.string.log_removed))
             findNavController().navigateUp()
         }
-        builder.setNegativeButton("No"){ _,_ -> }
-        builder.setTitle("Delete the log?")
-        builder.setMessage("Are you sure you want to delete this log?")
+        builder.setNegativeButton(getString(R.string.no)){ _,_ -> }
+        builder.setTitle(getString(R.string.title_question_remove_log))
+        builder.setMessage(getString(R.string.description_question_remove_log))
         builder.create().show()
     }
 }

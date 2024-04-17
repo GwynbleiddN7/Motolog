@@ -67,12 +67,15 @@
     </fragment>
     <fragment
         android:id="@+id/repairs_log"
-        android:name="com.example.motolog.Fragments.Home.RepairsLogFragment"
+        android:name="com.example.motolog.Fragments.RepairsLog.RepairsLogFragment"
         android:label="Mainteinance Log"
         tools:layout="@layout/repairslog_list">
         <action
             android:id="@+id/bikerepairs_to_bikehome"
             app:destination="@id/bike_home_fragment" />
+        <action
+            android:id="@+id/repairslist_to_repairsadd"
+            app:destination="@id/repairs_log_add" />
     </fragment>
     <fragment
         android:id="@+id/info"
@@ -114,5 +117,21 @@
         <action
             android:id="@+id/modsadd_to_modslog"
             app:destination="@id/mods_log" />
+    </fragment>
+    <fragment
+        android:id="@+id/repairs_log_add"
+        android:name="com.example.motolog.Fragments.RepairsLog.RepairsLogAddFragment"
+        android:label="Mainteinance Log"
+        tools:layout="@layout/repairslog_add" >
+        <action
+            android:id="@+id/repairsadd_to_repairsList"
+            app:destination="@id/repairs_log" />
+        <argument
+            android:name="logIndex"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument
+            android:name="currentBike"
+            app:argType="com.example.motolog.Models.Motorcycle" />
     </fragment>
 </navigation>

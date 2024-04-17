@@ -2,23 +2,38 @@ package com.example.motolog.Database
 
 import android.net.Uri
 import androidx.room.TypeConverter
-import com.example.motolog.Models.ActionLog
 import com.example.motolog.Models.DistanceLog
+import com.example.motolog.Models.ModsLog
+import com.example.motolog.Models.RepairsLog
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
 class Converters {
     @TypeConverter
-    fun fromActionLogToString(value: List<ActionLog>): String {
+    fun fromRepairsToString(value: List<RepairsLog>): String {
         val gson = Gson()
-        val type = object : TypeToken<List<ActionLog>>() {}.type
+        val type = object : TypeToken<List<RepairsLog>>() {}.type
         return gson.toJson(value, type)
     }
 
     @TypeConverter
-    fun fromStringToActionLog(value: String): List<ActionLog> {
+    fun fromStringToRepairs(value: String): List<RepairsLog> {
         val gson = Gson()
-        val type = object : TypeToken<List<ActionLog>>() {}.type
+        val type = object : TypeToken<List<RepairsLog>>() {}.type
+        return gson.fromJson(value, type)
+    }
+
+    @TypeConverter
+    fun fromModsToString(value: List<ModsLog>): String {
+        val gson = Gson()
+        val type = object : TypeToken<List<ModsLog>>() {}.type
+        return gson.toJson(value, type)
+    }
+
+    @TypeConverter
+    fun fromStringToMods(value: String): List<ModsLog> {
+        val gson = Gson()
+        val type = object : TypeToken<List<ModsLog>>() {}.type
         return gson.fromJson(value, type)
     }
 

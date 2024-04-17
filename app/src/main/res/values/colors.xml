@@ -4,6 +4,13 @@
     <color name="white">#FFFFFFFF</color>
     <color name="dark_gray">#1E1E1E</color>
     <color name="dark_white">#8D8D8D</color>
-    <color name="transparent">#00FFFFFF</color>
+
+    <color name="red">#FF0000</color>
+    <color name="yellow">#F4D403</color>
+    <color name="cyan">#03F4E8</color>
+    <color name="purple">#C803F4</color>
+    <color name="orange">#FF8501</color>
+    <color name="violet">#45027B</color>
+    <color name="blue">#0004FF</color>
     <color name="green">#4CAF50</color>
 </resources>
