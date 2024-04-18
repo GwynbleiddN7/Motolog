@@ -34,7 +34,7 @@ tools:context=".Fragments.Garage.MotorcycleAddFragment">
             android:background="@android:color/transparent"
             android:longClickable="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/bike" />
+            android:src="@drawable/add_photo" />
     </androidx.cardview.widget.CardView>
 
 

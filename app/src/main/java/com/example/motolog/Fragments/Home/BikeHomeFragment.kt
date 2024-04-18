@@ -60,7 +60,16 @@ class BikeHomeFragment : Fragment() {
 
                     val bikeImage = view.findViewById<ImageView>(R.id.bike_image)
                     if(currentBike.image != null) bikeImage.setImageURI(currentBike.image)
-                    else bikeImage.setImageResource(R.drawable.bike)
+                    else {
+                        bikeImage.setImageResource(R.drawable.bike_home)
+                        val bikeCard = view.findViewById<CardView>(R.id.cv_bike_image)
+                        bikeCard.radius = 0F
+                        bikeCard.scaleX = 1.3F
+                        bikeCard.scaleY = 1.3F
+                        bikeImage.scaleX = 1.1F
+                        bikeImage.scaleY = 1.1F
+                        bikeImage.setPadding(0,60,0,0)
+                    }
 
                     view.findViewById<ScrollView>(R.id.bike_home).visibility = VISIBLE
                 }

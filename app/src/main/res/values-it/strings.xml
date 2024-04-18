@@ -31,4 +31,14 @@
     <string name="log_removed">Log rimosso!</string>
     <string name="title_question_remove_log">Rimuovere il log?</string>
     <string name="description_question_remove_log">Sei sicuro di voler rimuovere questo log?</string>
+    <string name="bike_editor">Editor moto</string>
+    <string name="distance_log">Distanza percorsa</string>
+    <string name="repairs_log">Manutenzione</string>
+    <string name="mods_log">Modifiche</string>
+    <string name="settings">Impostazioni</string>
+    <string name="info">Informazioni moto</string>
+    <string name="garage">Garage</string>
+    <string name="motorcycles">Moto</string>
+    <string name="gear">Equipaggiamento</string>
+    <string name="gear_editor">Editor equipaggiamento</string>
 </resources>

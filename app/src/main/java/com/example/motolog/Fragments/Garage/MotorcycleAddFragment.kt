@@ -46,6 +46,8 @@ class MotorcycleAddFragment : Fragment() {
         mMotorcycleViewModel = ViewModelProvider(this)[MotorcycleViewModel::class.java]
 
         if(args.currentMotorcycle != null) currentPath = Path.Edit
+
+        val imageAdd = view.findViewById<ImageButton>(R.id.ib_bike_image)
         val buttonText = if(currentPath == Path.Add) "Add Motorcycle" else "Edit Motorcycle"
 
         if(currentPath == Path.Edit) {
@@ -55,8 +57,8 @@ class MotorcycleAddFragment : Fragment() {
             view.findViewById<EditText>(R.id.et_bike_alias).setText(bike.alias)
             view.findViewById<EditText>(R.id.et_bike_year).setText(bike.year.toString())
             view.findViewById<EditText>(R.id.et_bike_startkm).setText(bike.start_km.toString())
-            if(bike.image != null) view.findViewById<ImageButton>(R.id.ib_bike_image).setImageURI(bike.image)
-            else view.findViewById<ImageButton>(R.id.ib_bike_image).setImageResource(R.drawable.bike)
+            if(bike.image != null) imageAdd.setImageURI(bike.image)
+            else imageAdd.setImageResource(R.drawable.add_photo)
         }
 
         val button = view.findViewById<Button>(R.id.bt_addMotorcycle)
@@ -65,15 +67,15 @@ class MotorcycleAddFragment : Fragment() {
             insertDataToDatabase(view)
         }
 
-        val imageButton = view.findViewById<ImageButton>(R.id.ib_bike_image)
-        imageButton.setOnClickListener{
+
+        imageAdd.setOnClickListener{
             uploadImage()
         }
 
-        imageButton.setOnLongClickListener{
+        imageAdd.setOnLongClickListener{
             tempBitmap = null
             bShouldRemoveImage = true
-            imageButton.setImageResource(R.drawable.bike)
+            imageAdd.setImageResource(R.drawable.add_photo)
             true
         }
 

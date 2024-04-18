@@ -34,7 +34,7 @@
                 android:background="@android:color/transparent"
                 android:longClickable="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/helmet_show" />
+                android:src="@drawable/add_photo" />
         </androidx.cardview.widget.CardView>
 
 

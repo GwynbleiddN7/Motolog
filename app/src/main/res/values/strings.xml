@@ -31,4 +31,14 @@
     <string name="log_removed">Log removed!</string>
     <string name="title_question_remove_log">Remove the log?</string>
     <string name="description_question_remove_log">Are you sure you want to remove this log?</string>
+    <string name="bike_editor">Motorcycle editor</string>
+    <string name="distance_log">Distance travelled</string>
+    <string name="repairs_log">Maintenance</string>
+    <string name="mods_log">Mods</string>
+    <string name="settings">Settings</string>
+    <string name="info">Bike info</string>
+    <string name="garage">Garage</string>
+    <string name="motorcycles">Motorcycles</string>
+    <string name="gear">Gear</string>
+    <string name="gear_editor">Gear Editor</string>
 </resources>

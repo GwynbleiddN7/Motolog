@@ -46,6 +46,7 @@ class GearAddFragment : Fragment() {
 
         if(args.currentGear != null) currentPath = Path.Edit
 
+        val imageAdd = view.findViewById<ImageButton>(R.id.ib_gear_image)
         val buttonText = if(currentPath == Path.Add) "Add Gear" else "Edit Gear"
         val date = view.findViewById<CalendarView>(R.id.cv_gear_date)
         savedDate = Calendar.getInstance().timeInMillis
@@ -60,7 +61,10 @@ class GearAddFragment : Fragment() {
             view.findViewById<EditText>(R.id.et_gear_manufacturer).setText(currentGear.manufacturer)
             view.findViewById<EditText>(R.id.et_gear_model).setText(currentGear.model)
             view.findViewById<EditText>(R.id.et_gear_price).setText(currentGear.price.toString())
-            if(currentGear.image != null) view.findViewById<ImageButton>(R.id.ib_gear_image).setImageURI(currentGear.image)
+
+
+            if(currentGear.image != null) imageAdd.setImageURI(currentGear.image)
+            else imageAdd.setImageResource(R.drawable.add_photo)
         }
 
         date.setOnDateChangeListener { _, year, month, dayOfMonth ->
@@ -75,14 +79,13 @@ class GearAddFragment : Fragment() {
             insertDataToDatabase(view)
         }
 
-        val imageButton = view.findViewById<ImageButton>(R.id.ib_gear_image)
-        imageButton.setOnClickListener{
+        imageAdd.setOnClickListener{
             uploadImage()
         }
-        imageButton.setOnLongClickListener{
+        imageAdd.setOnLongClickListener{
             tempBitmap = null
             bShouldRemoveImage = true
-            imageButton.setImageResource(R.drawable.helmet_show)
+            imageAdd.setImageResource(R.drawable.add_photo)
             true
         }
 
