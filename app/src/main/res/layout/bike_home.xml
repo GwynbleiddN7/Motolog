@@ -265,12 +265,11 @@
                         android:padding="15dp"
                         android:scaleType="centerInside"
                         android:backgroundTint="@color/dark_gray"
-                        android:src="@drawable/ic_station" />
+                        android:src="@drawable/ic_distance" />
             </androidx.cardview.widget.CardView>
 
-
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/infoButton"
+                    android:id="@+id/repairButton"
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
@@ -287,8 +286,9 @@
                         android:padding="15dp"
                         android:scaleType="centerInside"
                         android:backgroundTint="@color/dark_gray"
-                        android:src="@drawable/ic_info" />
+                        android:src="@drawable/ic_repair" />
                 </androidx.cardview.widget.CardView>
+
 
             </TableRow>
 
@@ -316,11 +316,11 @@
                         android:padding="15dp"
                         android:scaleType="centerInside"
                         android:backgroundTint="@color/dark_gray"
-                        android:src="@drawable/ic_key" />
+                        android:src="@drawable/ic_mods" />
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/repairButton"
+                    android:id="@+id/infoButton"
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
@@ -337,8 +337,9 @@
                         android:padding="15dp"
                         android:scaleType="centerInside"
                         android:backgroundTint="@color/dark_gray"
-                        android:src="@drawable/ic_repair" />
+                        android:src="@drawable/ic_info" />
                 </androidx.cardview.widget.CardView>
+
             </TableRow>
         </TableLayout>
 

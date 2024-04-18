@@ -33,7 +33,10 @@ class GearListFragment : Fragment() {
 
         mGearViewModel = ViewModelProvider(this)[GearViewModel::class.java]
         mGearViewModel.readAllData.observe(viewLifecycleOwner, Observer {
-            gears -> adapter.bindGearList(gears)
+            gears -> run {
+                if(gears.isEmpty()) showToast(requireContext(), getString(R.string.add_gear))
+                adapter.bindGearList(gears)
+            }
         })
 
         view.findViewById<FloatingActionButton>(R.id.fab_addGear).setOnClickListener{
@@ -53,7 +56,7 @@ class GearListFragment : Fragment() {
             var totalMoney = 0.0
             val gearList = mGearViewModel.readAllData.value!!
             for (gear in gearList) totalMoney += gear.price
-            showToast(requireContext(), "Total spent: ${String.format("%.2f€", totalMoney)}")
+            showToast(requireContext(), "${getString(R.string.total_spent)}: ${String.format("%.2f€", totalMoney)}")
         }
         return super.onContextItemSelected(item)
     }

@@ -79,13 +79,13 @@ class DistanceLogAddFragment : Fragment() {
             val distanceLogList = bike.km_logs.toMutableList()
 
             if(yearFromLong(savedDate) < bike.year || distanceInt < bike.start_km) {
-                showToast(requireContext(), "This log does not match bike's year or kilometers")
+                showToast(requireContext(), getString(R.string.log_nomatch_1))
                 return
             }
 
             for(log in distanceLogList){
                 if(inputCheck(log, distanceInt)) {
-                    showToast(requireContext(), "This log does not match other log's dates or kilometers")
+                    showToast(requireContext(), getString(R.string.log_nomatch_2))
                     return
                 }
             }

@@ -6,7 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat.getString
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.motolog.BikeActivity
@@ -33,12 +34,12 @@ class MotorcycleListAdapter: RecyclerView.Adapter<MotorcycleListAdapter.MyViewHo
         bikeModel.text = currentItem.model
 
         holder.itemView.findViewById<TextView>(R.id.tw_bike_alias).text = currentItem.alias
-        holder.itemView.findViewById<TextView>(R.id.tw_bike_year).text = String.format("Year: %d", currentItem.year)
+        holder.itemView.findViewById<TextView>(R.id.tw_bike_year).text = String.format("${getString(holder.itemView.context, R.string.year)}: %d", currentItem.year)
 
-        val distance = String.format("Distance: %S km", formatThousand(currentItem.personal_km))
+        val distance = String.format("${holder.itemView.context.getString(R.string.distance)}: %S km", formatThousand(currentItem.personal_km))
         holder.itemView.findViewById<TextView>(R.id.tw_bike_distance).text = distance
 
-        val motorcycleRow = holder.itemView.findViewById<ConstraintLayout>(R.id.motorcycle_row)
+        val motorcycleRow = holder.itemView.findViewById<CardView>(R.id.cv_bike_row)
 
         val bikeImage = holder.itemView.findViewById<ImageView>(R.id.motorcycle_image)
         if(currentItem.image != null) bikeImage.setImageURI(currentItem.image)

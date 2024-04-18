@@ -3,14 +3,16 @@ package com.example.motolog.Fragments.ModsLog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.cardview.widget.CardView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.motolog.Models.ModsLog
 import com.example.motolog.Models.Motorcycle
 import com.example.motolog.R
 import com.example.motolog.longToDateString
+import com.example.motolog.repairColors
 
 class ModsLogAdapter: RecyclerView.Adapter<ModsLogAdapter.MyViewHolder>(){
     private var modsLogList = emptyList<ModsLog>()
@@ -34,10 +36,12 @@ class ModsLogAdapter: RecyclerView.Adapter<ModsLogAdapter.MyViewHolder>(){
         holder.itemView.findViewById<TextView>(R.id.tw_mod_description).text = currentItem.description
         holder.itemView.findViewById<TextView>(R.id.tw_mod_date).text = longToDateString(currentItem.date)
 
-        val price = String.format("Price: %.2f€", currentItem.price)
+        val price = String.format("${holder.itemView.resources.getString(R.string.price)}: %.2f€", currentItem.price)
         holder.itemView.findViewById<TextView>(R.id.tw_mod_price).text = price
 
-        holder.itemView.findViewById<ConstraintLayout>(R.id.mods_row).setOnClickListener {
+        holder.itemView.findViewById<ImageView>(R.id.mod_image).setColorFilter(holder.itemView.resources.getColor(repairColors[position % repairColors.size], null));
+
+        holder.itemView.findViewById<CardView>(R.id.cv_mods_row).setOnClickListener {
             val action = ModsLogFragmentDirections.modslogToModsadd(currentBike, position)
             holder.itemView.findNavController().navigate(action)
         }

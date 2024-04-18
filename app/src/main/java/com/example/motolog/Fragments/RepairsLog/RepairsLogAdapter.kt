@@ -6,9 +6,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.compose.ui.res.colorResource
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.size
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.motolog.Models.Motorcycle
@@ -42,17 +39,12 @@ class RepairsLogAdapter: RecyclerView.Adapter<RepairsLogAdapter.MyViewHolder>() 
         val id = if(currentItem.typeIndex == -1) repairColors.size-1 else currentItem.typeIndex
         holder.itemView.findViewById<ImageView>(R.id.repair_image).setColorFilter(holder.itemView.resources.getColor(repairColors[id], null));
 
-        val price = String.format("Price: %.2f€", currentItem.price)
+        val price = String.format("${holder.itemView.resources.getString(R.string.price)}: %.2f€", currentItem.price)
         holder.itemView.findViewById<TextView>(R.id.tw_repair_price).text = price
 
         holder.itemView.findViewById<CardView>(R.id.cv_repairs_row).setOnClickListener {
             val action = RepairsLogFragmentDirections.repairslistToRepairsadd(currentBike, position)
             holder.itemView.findNavController().navigate(action)
-        }
-
-        if(position == repairsLogList.size-1){
-            val row = holder.itemView.findViewById<ConstraintLayout>(R.id.repairs_row)
-            row.setPadding(row.paddingLeft, row.paddingTop, row.paddingRight, row.paddingTop * 10)
         }
     }
 

@@ -47,7 +47,7 @@ class GearAddFragment : Fragment() {
         if(args.currentGear != null) currentPath = Path.Edit
 
         val imageAdd = view.findViewById<ImageButton>(R.id.ib_gear_image)
-        val buttonText = if(currentPath == Path.Add) "Add Gear" else "Edit Gear"
+        val buttonText = if(currentPath == Path.Add) getString(R.string.gear_add) else getString(R.string.gear_edit)
         val date = view.findViewById<CalendarView>(R.id.cv_gear_date)
         savedDate = Calendar.getInstance().timeInMillis
         date.maxDate = savedDate
@@ -106,10 +106,10 @@ class GearAddFragment : Fragment() {
             if(currentPath == Path.Add) mGearViewModel.addGear(gear, tempBitmap)
             else mGearViewModel.updateGear(gear, tempBitmap, bShouldRemoveImage)
 
-            showToast(requireContext(), "Gear saved!")
+            showToast(requireContext(), getString(R.string.gear_save))
             findNavController().navigateUp()
         }
-        else showToast(requireContext(), "Please fill every field")
+        else showToast(requireContext(), getString(R.string.fill_fields))
     }
 
     private fun inputCheck(manufacturer: String, model: String, price: String): Boolean
@@ -132,12 +132,12 @@ class GearAddFragment : Fragment() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton(getString(R.string.yes)){ _, _ ->
             mGearViewModel.deleteGear(currentGear)
-            showToast(requireContext(), "Gear deleted!")
+            showToast(requireContext(), getString(R.string.gear_delete))
             findNavController().navigateUp()
         }
         builder.setNegativeButton(getString(R.string.no)){ _,_ -> }
-        builder.setTitle("Delete ${currentGear.manufacturer} ${currentGear.model}?")
-        builder.setMessage("Are you sure you want to delete this gear?")
+        builder.setTitle("${getString(R.string.delete)} ${currentGear.manufacturer} ${currentGear.model}?")
+        builder.setMessage(getString(R.string.delete_gear_question))
         builder.create().show()
     }
 

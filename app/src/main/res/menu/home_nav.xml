@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:title="home_distance"
-        android:icon="@drawable/ic_station"
+        android:icon="@drawable/ic_distance"
         app:showAsAction="always"/>
     <item android:title="home_mods"
-        android:icon="@drawable/ic_key"
+        android:icon="@drawable/ic_mods"
         app:showAsAction="always"/>
 
     <item android:title="home_distance"

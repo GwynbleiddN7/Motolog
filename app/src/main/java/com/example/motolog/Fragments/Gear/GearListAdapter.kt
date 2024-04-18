@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -30,16 +31,16 @@ class GearListAdapter : RecyclerView.Adapter<GearListAdapter.MyViewHolder>() {
         gearModel.text = currentItem.model
 
         holder.itemView.findViewById<TextView>(R.id.tw_gear_manufacturer).text = currentItem.manufacturer
-        holder.itemView.findViewById<TextView>(R.id.tw_gear_date).text = String.format("Date: %S", longToDateString(currentItem.date))
+        holder.itemView.findViewById<TextView>(R.id.tw_gear_date).text = String.format("${holder.itemView.resources.getString(R.string.date)}: %S", longToDateString(currentItem.date))
 
-        val price = String.format("Price: %.2f€", currentItem.price)
+        val price = String.format("${holder.itemView.resources.getString(R.string.price)}: %.2f€", currentItem.price)
         holder.itemView.findViewById<TextView>(R.id.tw_gear_price).text = price
 
         val gearImage = holder.itemView.findViewById<ImageView>(R.id.gear_image)
         if(currentItem.image != null) gearImage.setImageURI(currentItem.image)
         else gearImage.setImageResource(R.drawable.helmet_list)
 
-        val item = holder.itemView.findViewById<ConstraintLayout>(R.id.gear_row)
+        val item = holder.itemView.findViewById<CardView>(R.id.cv_gear_row)
 
         item.setOnClickListener {
             val action = GearListFragmentDirections.gearlistToGearshow(currentItem)

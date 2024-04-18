@@ -69,7 +69,7 @@ class RepairsLogFragment : Fragment() {
             var totalMoney = 0.0
             val modsList = currentbike.maintenance_logs
             for (mod in modsList) totalMoney += mod.price
-            showToast(requireContext(), "Total spent: ${String.format("%.2f€", totalMoney)}")
+            showToast(requireContext(), "${getString(R.string.total_spent)}: ${String.format("%.2f€", totalMoney)}")
         }
         return super.onContextItemSelected(item)
     }

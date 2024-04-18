@@ -41,4 +41,27 @@
     <string name="motorcycles">Motorcycles</string>
     <string name="gear">Gear</string>
     <string name="gear_editor">Gear Editor</string>
+    <string name="add_bike">Add a new motorcycle!</string>
+    <string name="add_gear">Add a new gear!</string>
+    <string name="total_distance">Total distance</string>
+    <string name="log_nomatch_1">This log does not match bike\'s year or kilometers</string>
+    <string name="log_nomatch_2">This log does not match other log\'s dates or kilometers</string>
+    <string name="add_motorcycle">Add Motorcycle</string>
+    <string name="edit_motorcycle">Edit Motorcycle</string>
+    <string name="delete_logs">Delete the logs?</string>
+    <string name="back">Back</string>
+    <string name="bike_saved">Motorcycle saved!</string>
+    <string name="bike_delete">Motorcycle deleted!</string>
+    <string name="distance">Distance</string>
+    <string name="year">Year</string>
+    <string name="total_spent">Total spent</string>
+    <string name="price">Price</string>
+    <string name="delete_bike_question">Are you sure you want to delete this bike?</string>
+    <string name="delete">Delete</string>
+    <string name="delete_gear_question">Are you sure you want to delete this gear?</string>
+    <string name="gear_delete">Gear deleted!</string>
+    <string name="gear_save">Gear saved!</string>
+    <string name="gear_add">Add Gear</string>
+    <string name="gear_edit">Edit Gear</string>
+    <string name="date">Date</string>
 </resources>

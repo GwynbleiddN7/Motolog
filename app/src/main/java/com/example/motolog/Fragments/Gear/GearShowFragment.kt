@@ -76,12 +76,12 @@ class GearShowFragment : Fragment() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton(getString(R.string.yes)){ _,_ ->
             mGearViewModel.deleteGear(args.currentGear)
-            Toast.makeText(requireContext(), "Gear deleted!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.gear_delete), Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.gearshow_to_gearlist)
         }
         builder.setNegativeButton(getString(R.string.no)){ _,_ -> }
-        builder.setTitle("Delete ${args.currentGear.manufacturer} ${args.currentGear.model}?")
-        builder.setMessage("Are you sure you want to delete this gear?")
+        builder.setTitle("${getString(R.string.delete)} ${args.currentGear.manufacturer} ${args.currentGear.model}?")
+        builder.setMessage(getString(R.string.delete_gear_question))
         builder.create().show()
     }
 }

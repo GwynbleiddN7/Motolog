@@ -41,4 +41,27 @@
     <string name="motorcycles">Moto</string>
     <string name="gear">Equipaggiamento</string>
     <string name="gear_editor">Editor equipaggiamento</string>
+    <string name="add_bike">Aggiungi una nuova moto!</string>
+    <string name="add_gear">Aggiungi un nuovo equipaggiamento!</string>
+    <string name="total_distance">Distanza totale</string>
+    <string name="log_nomatch_2">Questo log è incompatibile con le dati o i chilometri di altri log</string>
+    <string name="log_nomatch_1">Questo log è incompatibile con l\'anno o i chilometri della tua moto</string>
+    <string name="add_motorcycle">Aggiungi Moto</string>
+    <string name="edit_motorcycle">Modifica Moto</string>
+    <string name="delete_logs">Eliminare i log</string>
+    <string name="back">Indietro</string>
+    <string name="bike_saved">Moto salvata!</string>
+    <string name="bike_delete">Moto eliminata!</string>
+    <string name="distance">Distanza</string>
+    <string name="year">Anno</string>
+    <string name="total_spent">Totale speso</string>
+    <string name="price">Prezzo</string>
+    <string name="delete_bike_question">Sicuro di voler eliminare questa moto?</string>
+    <string name="delete">Elimina</string>
+    <string name="delete_gear_question">Sicuro di voler eliminare questa equipaggiamento?</string>
+    <string name="gear_delete">Equipaggiamento eliminato!</string>
+    <string name="gear_save">Equipaggiamento salvato!</string>
+    <string name="gear_add">Aggiungi Equipaggiamento</string>
+    <string name="gear_edit">Modifica Equipaggiamento</string>
+    <string name="date">Data</string>
 </resources>

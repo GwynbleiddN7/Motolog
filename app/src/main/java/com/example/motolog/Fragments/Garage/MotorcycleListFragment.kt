@@ -34,7 +34,10 @@ class MotorcycleListFragment : Fragment() {
 
         mMotorcycleViewModel = ViewModelProvider(this)[MotorcycleViewModel::class.java]
         mMotorcycleViewModel.readAllData.observe(viewLifecycleOwner, Observer {
-            motorcycles -> adapter.bindBikeList(motorcycles)
+            motorcycles -> run {
+                if(motorcycles.isEmpty()) showToast(requireContext(), getString(R.string.add_bike))
+                adapter.bindBikeList(motorcycles)
+            }
         })
 
         view.findViewById<FloatingActionButton>(R.id.fab_addMotorcycle).setOnClickListener {
@@ -54,7 +57,7 @@ class MotorcycleListFragment : Fragment() {
             var totalDistance = 0
             val bikesList = mMotorcycleViewModel.readAllData.value!!
             for (bike in bikesList) totalDistance += bike.personal_km
-            showToast(requireContext(), "Total distance: ${String.format("%S km", formatThousand(totalDistance))}")
+            showToast(requireContext(), "${getString(R.string.total_distance)}: ${String.format("%S km", formatThousand(totalDistance))}")
         }
         return super.onContextItemSelected(item)
     }

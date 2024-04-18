@@ -3,16 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clickable="true"
     android:paddingHorizontal="10dp"
     android:paddingTop="10dp"
     android:id="@+id/gear_row">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cv_gear_row"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="25dp"
         app:cardElevation="10dp"
+        android:clickable="true"
+        android:longClickable="true"
         app:cardBackgroundColor="@color/dark_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

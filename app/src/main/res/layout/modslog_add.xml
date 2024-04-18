@@ -22,7 +22,7 @@
             android:layout_marginTop="20dp"
             android:background="@android:color/transparent"
             android:scaleType="centerInside"
-            android:src="@drawable/ic_key"
+            android:src="@drawable/ic_mods"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"

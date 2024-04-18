@@ -48,7 +48,7 @@ class MotorcycleAddFragment : Fragment() {
         if(args.currentMotorcycle != null) currentPath = Path.Edit
 
         val imageAdd = view.findViewById<ImageButton>(R.id.ib_bike_image)
-        val buttonText = if(currentPath == Path.Add) "Add Motorcycle" else "Edit Motorcycle"
+        val buttonText = if(currentPath == Path.Add) getString(R.string.add_motorcycle) else getString(R.string.edit_motorcycle)
 
         if(currentPath == Path.Edit) {
             val bike = args.currentMotorcycle!!
@@ -110,14 +110,14 @@ class MotorcycleAddFragment : Fragment() {
                 if(motorcycle.km_logs.any { log -> distanceLogsCheck(log, motorcycle.start_km, motorcycle.year) })
                 {
                     val builder = AlertDialog.Builder(requireContext())
-                    builder.setPositiveButton("Delete logs"){ _,_ ->
+                    builder.setPositiveButton(getString(R.string.delete_logs)){ _,_ ->
                         motorcycle.km_logs = motorcycle.km_logs.filter { log -> !distanceLogsCheck(log, motorcycle.start_km, motorcycle.year) }
                         motorcycle.personal_km = getUpdatedBikeDistance(motorcycle)
                         mMotorcycleViewModel.updateMotorcycle(motorcycle, tempBitmap, bShouldRemoveImage)
-                        showToast(requireContext(), "Motorcycle saved!")
+                        showToast(requireContext(), getString(R.string.bike_saved))
                         findNavController().navigateUp()
                     }
-                    builder.setNegativeButton("Back"){ _,_ -> }
+                    builder.setNegativeButton(getString(R.string.back)){ _,_ -> }
                     builder.setTitle("Distance logs mismatch found")
                     builder.setMessage("Some logs happened before the new date or with less kilometers will be eliminated")
                     builder.create().show()
@@ -135,10 +135,10 @@ class MotorcycleAddFragment : Fragment() {
                 mMotorcycleViewModel.addMotorcycle(motorcycle, tempBitmap)
             }
 
-            showToast(requireContext(), "Motorcycle saved!")
+            showToast(requireContext(), getString(R.string.bike_saved))
             findNavController().navigateUp()
         }
-        else showToast(requireContext(), "Please fill every field (Alias is optional)")
+        else showToast(requireContext(), getString(R.string.fill_fields))
     }
 
     private fun inputCheck(manufacturer: String, model: String, year: String): Boolean
@@ -166,12 +166,12 @@ class MotorcycleAddFragment : Fragment() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton(getString(R.string.yes)){ _, _ ->
             mMotorcycleViewModel.deleteMotorcycle(currentBike)
-            showToast(requireContext(),"Motorcycle deleted!")
+            showToast(requireContext(),getString(R.string.bike_delete))
             findNavController().navigateUp()
         }
         builder.setNegativeButton(getString(R.string.no)){ _,_ -> }
-        builder.setTitle("Delete ${currentBike.manufacturer} ${currentBike.model}?")
-        builder.setMessage("Are you sure you want to delete this motorcycle?")
+        builder.setTitle("${getString(R.string.delete)} ${currentBike.manufacturer} ${currentBike.model}?")
+        builder.setMessage(getString(R.string.delete_bike_question))
         builder.create().show()
     }
 

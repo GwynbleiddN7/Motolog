@@ -5,8 +5,7 @@
     android:singleLine="true"
     android:layout_width="match_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
-    android:textSize="28sp"
-    android:textStyle="bold"
+    android:textSize="32sp"
+    android:textStyle="bold|italic"
     android:textAlignment="center"
-    android:text="Service"
     android:ellipsize="marquee" />

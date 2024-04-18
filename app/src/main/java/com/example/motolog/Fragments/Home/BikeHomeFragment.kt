@@ -117,12 +117,12 @@ class BikeHomeFragment : Fragment() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton(getString(R.string.yes)){ _, _ ->
             mMotorcycleViewModel.deleteMotorcycle(currentBike)
-            showToast(requireContext(), "Motorcycle deleted!")
+            showToast(requireContext(), getString(R.string.bike_delete))
             returnToList()
         }
         builder.setNegativeButton(getString(R.string.no)){ _,_ -> }
-        builder.setTitle("Delete ${currentBike.manufacturer} ${currentBike.model}?")
-        builder.setMessage("Are you sure you want to delete this motorcycle?")
+        builder.setTitle("${getString(R.string.delete)} ${currentBike.manufacturer} ${currentBike.model}?")
+        builder.setMessage(getString(R.string.delete_bike_question))
         builder.create().show()
     }
 

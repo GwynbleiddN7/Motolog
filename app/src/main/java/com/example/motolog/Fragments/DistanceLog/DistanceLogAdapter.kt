@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.cardview.widget.CardView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.motolog.Models.DistanceLog
@@ -40,7 +40,7 @@ class DistanceLogAdapter : RecyclerView.Adapter<DistanceLogAdapter.MyViewHolder>
         val deltaDistance = if(position < distanceLogList.size-1) currentItem.distance - distanceLogList[position+1].distance else currentItem.distance - currentBike.start_km
         holder.itemView.findViewById<TextView>(R.id.tw_distance_difference).text = String.format("+%S km", formatThousand(deltaDistance))
 
-        holder.itemView.findViewById<ConstraintLayout>(R.id.distancelog_row).setOnClickListener {
+        holder.itemView.findViewById<CardView>(R.id.cv_distance_row).setOnClickListener {
             val action = DistanceLogFragmentDirections.distancelogToDistanceadd(currentBike, position)
             holder.itemView.findNavController().navigate(action)
         }
