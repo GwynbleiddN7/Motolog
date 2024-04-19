@@ -12,7 +12,7 @@
         app:startDestination="@id/motorcycle_list">
         <fragment
             android:id="@+id/motorcycle_list"
-            android:name="com.example.motolog.Fragments.Garage.MotorcycleListFragment"
+            android:name="com.gwynn7.motolog.Fragments.Garage.MotorcycleListFragment"
             android:label="@string/garage"
             tools:layout="@layout/motorcycle_list">
             <action
@@ -21,7 +21,7 @@
         </fragment>
         <fragment
             android:id="@+id/motorcycle_add"
-            android:name="com.example.motolog.Fragments.Garage.MotorcycleAddFragment"
+            android:name="com.gwynn7.motolog.Fragments.Garage.MotorcycleAddFragment"
             android:label="@string/bike_editor"
             tools:layout="@layout/motorcycle_add">
             <action
@@ -30,7 +30,7 @@
             <argument
                 android:name="currentMotorcycle"
                 android:defaultValue="@null"
-                app:argType="com.example.motolog.Models.Motorcycle"
+                app:argType="com.gwynn7.motolog.Models.Motorcycle"
                 app:nullable="true" />
         </fragment>
         <action
@@ -49,7 +49,7 @@
         app:startDestination="@id/gear_list">
         <fragment
             android:id="@+id/gear_list"
-            android:name="com.example.motolog.Fragments.Gear.GearListFragment"
+            android:name="com.gwynn7.motolog.Fragments.Gear.GearListFragment"
             android:label="@string/gear"
             tools:layout="@layout/gear_list">
             <action
@@ -61,7 +61,7 @@
         </fragment>
         <fragment
             android:id="@+id/gear_add"
-            android:name="com.example.motolog.Fragments.Gear.GearAddFragment"
+            android:name="com.gwynn7.motolog.Fragments.Gear.GearAddFragment"
             android:label="@string/gear_editor"
             tools:layout="@layout/gear_add">
             <action
@@ -73,7 +73,7 @@
             <argument
                 android:name="current_gear"
                 android:defaultValue="@null"
-                app:argType="com.example.motolog.Models.Gear"
+                app:argType="com.gwynn7.motolog.Models.Gear"
                 app:nullable="true" />
         </fragment>
         <action
@@ -84,7 +84,7 @@
             app:destination="@id/settings_nav" />
         <fragment
             android:id="@+id/gear_show"
-            android:name="com.example.motolog.Fragments.Gear.GearShowFragment"
+            android:name="com.gwynn7.motolog.Fragments.Gear.GearShowFragment"
             android:label="@string/gear"
             tools:layout="@layout/gear_show">
             <action
@@ -95,7 +95,7 @@
                 app:destination="@id/gear_list" />
             <argument
                 android:name="currentGear"
-                app:argType="com.example.motolog.Models.Gear" />
+                app:argType="com.gwynn7.motolog.Models.Gear" />
         </fragment>
     </navigation>
     <navigation
@@ -104,7 +104,7 @@
         app:startDestination="@id/settings">
         <fragment
             android:id="@+id/settings"
-            android:name="com.example.motolog.Fragments.Settings.SettingsFragment"
+            android:name="com.gwynn7.motolog.Fragments.Settings.SettingsFragment"
             android:label="@string/settings"
             tools:layout="@layout/settings" />
         <action

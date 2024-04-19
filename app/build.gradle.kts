@@ -8,11 +8,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.motolog"
+    namespace = "com.gwynn7.motolog"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.motolog"
+        applicationId = "com.gwynn7.motolog"
         minSdk = 26
         targetSdk = 34
         versionCode = 1

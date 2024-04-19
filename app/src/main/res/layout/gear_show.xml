@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.Gear.GearShowFragment"
+    tools:context="com.gwynn7.motolog.Fragments.Gear.GearShowFragment"
     android:id="@+id/gear_show_view"
     android:visibility="invisible">
 

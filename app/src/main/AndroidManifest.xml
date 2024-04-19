@@ -17,11 +17,11 @@
         android:theme="@style/Theme.MotoLog"
         tools:targetApi="31">
         <activity
-            android:name=".BikeActivity"
+            android:name="com.gwynn7.motolog.BikeActivity"
             android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.gwynn7.motolog.MainActivity"
             android:windowSoftInputMode="adjustResize"
             android:exported="true">
             <intent-filter>

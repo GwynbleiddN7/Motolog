@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/bike_home_fragment"
-        android:name="com.example.motolog.Fragments.Home.BikeHomeFragment"
+        android:name="com.gwynn7.motolog.Fragments.Home.BikeHomeFragment"
         android:label="@string/app_name"
         tools:layout="@layout/bike_home">
         <action
@@ -29,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/bike_edit_fragment"
-        android:name="com.example.motolog.Fragments.Garage.MotorcycleAddFragment"
+        android:name="com.gwynn7.motolog.Fragments.Garage.MotorcycleAddFragment"
         android:label="@string/bike_editor"
         tools:layout="@layout/motorcycle_add">
         <action
@@ -38,12 +38,12 @@
         <argument
             android:name="currentMotorcycle"
             android:defaultValue="@null"
-            app:argType="com.example.motolog.Models.Motorcycle"
+            app:argType="com.gwynn7.motolog.Models.Motorcycle"
             app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/distance_log"
-        android:name="com.example.motolog.Fragments.DistanceLog.DistanceLogFragment"
+        android:name="com.gwynn7.motolog.Fragments.DistanceLog.DistanceLogFragment"
         android:label="@string/distance_log"
         tools:layout="@layout/distancelog_list">
         <action
@@ -55,7 +55,7 @@
     </fragment>
     <fragment
         android:id="@+id/mods_log"
-        android:name="com.example.motolog.Fragments.ModsLog.ModsLogFragment"
+        android:name="com.gwynn7.motolog.Fragments.ModsLog.ModsLogFragment"
         android:label="@string/mods_log"
         tools:layout="@layout/modslog_list">
         <action
@@ -67,7 +67,7 @@
     </fragment>
     <fragment
         android:id="@+id/repairs_log"
-        android:name="com.example.motolog.Fragments.RepairsLog.RepairsLogFragment"
+        android:name="com.gwynn7.motolog.Fragments.RepairsLog.RepairsLogFragment"
         android:label="@string/repairs_log"
         tools:layout="@layout/repairslog_list">
         <action
@@ -79,7 +79,7 @@
     </fragment>
     <fragment
         android:id="@+id/info"
-        android:name="com.example.motolog.Fragments.Home.InfoFragment"
+        android:name="com.gwynn7.motolog.Fragments.Home.InfoFragment"
         android:label="@string/info"
         tools:layout="@layout/bikeinfo">
         <action
@@ -88,7 +88,7 @@
     </fragment>
     <fragment
         android:id="@+id/distance_log_add"
-        android:name="com.example.motolog.Fragments.DistanceLog.DistanceLogAddFragment"
+        android:name="com.gwynn7.motolog.Fragments.DistanceLog.DistanceLogAddFragment"
         android:label="@string/distance_log"
         tools:layout="@layout/distancelog_add">
         <action
@@ -100,11 +100,11 @@
             app:argType="integer" />
         <argument
             android:name="currentBike"
-            app:argType="com.example.motolog.Models.Motorcycle" />
+            app:argType="com.gwynn7.motolog.Models.Motorcycle" />
     </fragment>
     <fragment
         android:id="@+id/mods_log_add"
-        android:name="com.example.motolog.Fragments.ModsLog.ModsLogAddFragment"
+        android:name="com.gwynn7.motolog.Fragments.ModsLog.ModsLogAddFragment"
         android:label="@string/mods_log"
         tools:layout="@layout/modslog_add">
         <argument
@@ -113,14 +113,14 @@
             app:argType="integer" />
         <argument
             android:name="currentBike"
-            app:argType="com.example.motolog.Models.Motorcycle" />
+            app:argType="com.gwynn7.motolog.Models.Motorcycle" />
         <action
             android:id="@+id/modsadd_to_modslog"
             app:destination="@id/mods_log" />
     </fragment>
     <fragment
         android:id="@+id/repairs_log_add"
-        android:name="com.example.motolog.Fragments.RepairsLog.RepairsLogAddFragment"
+        android:name="com.gwynn7.motolog.Fragments.RepairsLog.RepairsLogAddFragment"
         android:label="@string/repairs_log"
         tools:layout="@layout/repairslog_add">
         <action
@@ -132,6 +132,6 @@
             app:argType="integer" />
         <argument
             android:name="currentBike"
-            app:argType="com.example.motolog.Models.Motorcycle" />
+            app:argType="com.gwynn7.motolog.Models.Motorcycle" />
     </fragment>
 </navigation>
