@@ -33,7 +33,7 @@
     <string name="description_question_remove_log">Are you sure you want to remove this log?</string>
     <string name="bike_editor">Motorcycle editor</string>
     <string name="distance_log">Distance travelled</string>
-    <string name="repairs_log">Maintenance</string>
+    <string name="repairs_log">Maintenance</string>ah
     <string name="mods_log">Mods</string>
     <string name="settings">Settings</string>
     <string name="info">Bike info</string>
@@ -64,4 +64,26 @@
     <string name="gear_add">Add Gear</string>
     <string name="gear_edit">Edit Gear</string>
     <string name="date">Date</string>
+    <string name="bike_future">Bike from the future not allowed</string>
+    <string name="bike_past">Bikes didn\'t exist before 1900</string>
+    <string name="log_mismatch">Distance logs mismatch found</string>
+    <string name="log_mismatch_action">Some logs happened before the new date or with less kilometers will be eliminated</string>
+    <string name="type">Type</string>
+    <string name="notes">Notes</string>
+    <string name="maintenance_type">Maintenance type</string>
+    <string name="maintenance_notes">Maintenance notes</string>
+    <string name="price_in_euros">Price in €</string>
+    <string name="manufacturer">Manufacturer</string>
+    <string name="model">Model</string>
+    <string name="optional">Optional</string>
+    <string name="alias">Alias</string>
+    <string name="km_when_bought">Km when bought</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="exhaust">Exhaust</string>
+    <string name="day_of_purchase">Day of purchase</string>
+    <string name="bike_km_date">Bike km at specified date</string>
+    <string name="total_km">Total km</string>
+    <string name="personal_km">Personal km</string>
+    <string name="save">Save</string>
 </resources>

@@ -96,11 +96,11 @@ class MotorcycleAddFragment : Fragment() {
             val yearInt = year.toInt()
 
             if(yearInt > Calendar.getInstance().get(Calendar.YEAR)) {
-                showToast(requireContext(), "Bike from the future not allowed")
+                showToast(requireContext(), getString(R.string.bike_future))
                 return
             }
             if(yearInt < 1900) {
-                showToast(requireContext(), "Bikes didn't exist before 1900")
+                showToast(requireContext(), getString(R.string.bike_past))
                 return
             }
             if(currentPath == Path.Edit)
@@ -118,8 +118,8 @@ class MotorcycleAddFragment : Fragment() {
                         findNavController().navigateUp()
                     }
                     builder.setNegativeButton(getString(R.string.back)){ _,_ -> }
-                    builder.setTitle("Distance logs mismatch found")
-                    builder.setMessage("Some logs happened before the new date or with less kilometers will be eliminated")
+                    builder.setTitle(getString(R.string.log_mismatch))
+                    builder.setMessage(getString(R.string.log_mismatch_action))
                     builder.create().show()
                     return
                 }
@@ -190,7 +190,7 @@ class MotorcycleAddFragment : Fragment() {
     }
 
     private fun uploadImage() {
-        val options = CropImageContractOptions(null, CropImageOptions(imageSourceIncludeGallery = true, imageSourceIncludeCamera = true))
+        val options = CropImageContractOptions(null, CropImageOptions(imageSourceIncludeGallery = true, imageSourceIncludeCamera = false))
         cropImage.launch(options)
     }
 }

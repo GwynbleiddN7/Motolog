@@ -54,7 +54,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:text="Kawasaki"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textSize="25sp"
@@ -68,7 +67,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:text="ER-6N"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textSize="36sp"
@@ -100,11 +98,10 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_weight="1"
                             android:textStyle="bold"
-                            android:text="2014"
                             android:paddingTop="5dp"
                             android:textColor="@color/white"
                             android:textAlignment="center"
-                            android:textSize="20dp" />
+                            android:textSize="20sp" />
 
                         <TextView
                             android:id="@+id/bike_totalkm"
@@ -114,10 +111,9 @@
                             android:layout_weight="1"
                             android:textStyle="bold"
                             android:paddingTop="5dp"
-                            android:text="250000"
                             android:textColor="@color/white"
                             android:textAlignment="center"
-                            android:textSize="20dp" />
+                            android:textSize="20sp" />
 
 
                     </TableRow>
@@ -135,9 +131,9 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_weight="1"
                             android:textStyle="italic"
-                            android:text="Year"
+                            android:text="@string/year"
                             android:textAlignment="center"
-                            android:textSize="14dp" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -145,9 +141,9 @@
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:textStyle="italic"
-                            android:text="Total km"
+                            android:text="@string/total_km"
                             android:textAlignment="center"
-                            android:textSize="14dp" />
+                            android:textSize="14sp" />
 
                     </TableRow>
 
@@ -173,7 +169,6 @@
                             android:marqueeRepeatLimit="marquee_forever"
                             android:scrollHorizontally="true"
                             android:singleLine="true"
-                            android:text="Alias"
                             android:textColor="@color/white"
                             android:textAlignment="center"
                             android:textSize="20sp" />
@@ -186,10 +181,9 @@
                             android:layout_weight="1"
                             android:textStyle="bold"
                             android:paddingTop="15dp"
-                            android:text="1500"
                             android:textColor="@color/white"
                             android:textAlignment="center"
-                            android:textSize="20dp" />
+                            android:textSize="20sp" />
                     </TableRow>
 
                     <TableRow
@@ -206,10 +200,10 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_weight="1"
                             android:textStyle="italic"
-                            android:text="Alias"
+                            android:text="@string/alias"
                             android:paddingBottom="5dp"
                             android:textAlignment="center"
-                            android:textSize="14dp" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -218,9 +212,9 @@
                             android:layout_weight="1"
                             android:textStyle="italic"
                             android:paddingBottom="5dp"
-                            android:text="Personal km"
+                            android:text="@string/personal_km"
                             android:textAlignment="center"
-                            android:textSize="14dp" />
+                            android:textSize="14sp" />
 
                     </TableRow>
 

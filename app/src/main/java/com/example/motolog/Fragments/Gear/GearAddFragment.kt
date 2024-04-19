@@ -100,11 +100,14 @@ class GearAddFragment : Fragment() {
 
         if(inputCheck(manufacturer, model, price))
         {
-            val id = if(currentPath == Path.Edit) args.currentGear!!.id else 0
-
-            val gear = Gear(id, manufacturer, model, price.toDouble(), savedDate)
-            if(currentPath == Path.Add) mGearViewModel.addGear(gear, tempBitmap)
-            else mGearViewModel.updateGear(gear, tempBitmap, bShouldRemoveImage)
+            if(currentPath == Path.Add) {
+                mGearViewModel.addGear(Gear(0, manufacturer, model, price.toDouble(), savedDate), tempBitmap)
+            }
+            else
+            {
+                val updatedGear = args.currentGear!!.copy(manufacturer = manufacturer, model = model, price = price.toDouble(), date = savedDate)
+                mGearViewModel.updateGear(updatedGear, tempBitmap, bShouldRemoveImage)
+            }
 
             showToast(requireContext(), getString(R.string.gear_save))
             findNavController().navigateUp()
@@ -156,7 +159,7 @@ class GearAddFragment : Fragment() {
     }
 
     private fun uploadImage() {
-        val options = CropImageContractOptions(null, CropImageOptions(imageSourceIncludeGallery = true, imageSourceIncludeCamera = true))
+        val options = CropImageContractOptions(null, CropImageOptions(imageSourceIncludeGallery = true, imageSourceIncludeCamera = false))
         cropImage.launch(options)
     }
 }

@@ -42,7 +42,8 @@
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/helmet_list" />
+                    android:src="@drawable/helmet_list"
+                    android:contentDescription="@string/gear" />
             </androidx.cardview.widget.CardView>
 
             <TextView
@@ -51,7 +52,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="8dp"
-                android:text="Alpinestars"
                 android:textAllCaps="true"
                 android:textSize="17sp"
                 android:textStyle="italic"
@@ -72,7 +72,6 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
-                android:text="Sektor"
                 android:textColor="@color/white"
                 android:textAllCaps="true"
                 android:textSize="22sp"
@@ -88,7 +87,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginBottom="4dp"
-                android:text="25/02/2023"
                 android:textColor="@color/dark_white"
                 android:textSize="13sp"
                 android:textStyle="italic"
@@ -101,7 +99,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
                 android:layout_marginEnd="20dp"
-                android:text="300$"
                 android:textColor="@color/dark_white"
                 android:textSize="13sp"
                 android:textStyle="italic"

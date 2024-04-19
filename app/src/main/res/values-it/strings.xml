@@ -64,4 +64,26 @@
     <string name="gear_add">Aggiungi Equipaggiamento</string>
     <string name="gear_edit">Modifica Equipaggiamento</string>
     <string name="date">Data</string>
+    <string name="bike_future">Moto dal futuro non sono ammesse</string>
+    <string name="bike_past">Le moto non esistevano prima del 1900</string>
+    <string name="log_mismatch">Discordanza tra log di distanza percorsa</string>
+    <string name="log_mismatch_action">I log avvenuti prima della nuova data e con meno chilometri verrano eliminati</string>
+    <string name="type">Tipo</string>
+    <string name="notes">Note</string>
+    <string name="maintenance_type">Tipo manutenzione</string>
+    <string name="maintenance_notes">Note sulla manutenzione</string>
+    <string name="price_in_euros">Prezzo in €</string>
+    <string name="manufacturer">Marca</string>
+    <string name="model">Modello</string>
+    <string name="optional">Opzionale</string>
+    <string name="alias">Alias</string>
+    <string name="km_when_bought">Km all\'acquisto</string>
+    <string name="title">Titolo</string>
+    <string name="description">Descrizione</string>
+    <string name="exhaust">Scarico</string>
+    <string name="day_of_purchase">Giorno acquisto</string>
+    <string name="bike_km_date">Km moto alla data specificata</string>
+    <string name="total_km">Km totali</string>
+    <string name="personal_km">Km personali</string>
+    <string name="save">Salva</string>
 </resources>
