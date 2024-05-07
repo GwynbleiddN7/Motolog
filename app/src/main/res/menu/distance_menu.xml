@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:title="Distance"
+    <item android:title="@string/delete"
         android:id="@+id/distance_menu"
         android:icon="@drawable/ic_tire"
         app:showAsAction="ifRoom"/>

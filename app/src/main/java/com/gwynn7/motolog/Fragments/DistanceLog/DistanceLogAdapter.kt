@@ -48,7 +48,7 @@ class DistanceLogAdapter : RecyclerView.Adapter<DistanceLogAdapter.MyViewHolder>
 
     fun bindBike(bike: Motorcycle)
     {
-        distanceLogList = bike.km_logs
+        distanceLogList = bike.logs.distance
         currentBike = bike
         notifyDataSetChanged()
     }

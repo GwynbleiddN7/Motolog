@@ -3,6 +3,7 @@
     <string-array name="repair_types">
         <item>Service</item>
         <item>Inspection</item>
+        <item>Tax</item>
         <item>Chain Lube</item>
         <item>Front Tire</item>
         <item>Rear Tire</item>
@@ -14,6 +15,7 @@
     <string-array name="repair_notes">
         <item>Standard service</item>
         <item>Standard inspection passed</item>
+        <item>Motorcycle Tax payment</item>
         <item>Chained lubed</item>
         <item>Front tire changed</item>
         <item>Rear tire changed</item>
@@ -86,4 +88,21 @@
     <string name="total_km">Total km</string>
     <string name="personal_km">Personal km</string>
     <string name="save">Save</string>
+    <string name="edit">Edit</string>
+    <string name="bike_repair_km">Maintainance km</string>
+    <string name="done_at">Done at:</string>
+    <string name="bike_add">Motorcycle saved, press on the entry to start customizing!</string>
+    <string name="cylinders">Cylinders</string>
+    <string name="horse_power">Power (HP)</string>
+    <string name="engine_cc">Displacement (CC)</string>
+    <string name="engine_torque">Torque (NM)</string>
+    <string name="engine">Engine</string>
+    <string name="expiry">Expiry</string>
+    <string name="license_plate">License plate</string>
+    <string name="front_tire">Front tire</string>
+    <string name="rear_tire">Rear tire</string>
+    <string name="bike_tax">Bike tax</string>
+    <string name="bike_insurance">Insurance</string>
+    <string name="bike_inspection">Inspection</string>
+    <string name="info_title">Info</string>
 </resources>

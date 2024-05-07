@@ -45,7 +45,7 @@ class DistanceLogAddFragment : Fragment() {
         val distanceLog = view.findViewById<EditText>(R.id.et_distancelog)
         if(currentPath == Path.Edit)
         {
-            val currentLog = args.currentBike.km_logs[args.logIndex]
+            val currentLog = args.currentBike.logs.distance[args.logIndex]
             savedDate = currentLog.date
             date.date = savedDate
 
@@ -76,7 +76,7 @@ class DistanceLogAddFragment : Fragment() {
         {
             val distanceInt = distance.toInt()
             val bike = args.currentBike
-            val distanceLogList = bike.km_logs.toMutableList()
+            val distanceLogList = bike.logs.distance.toMutableList()
 
             if(yearFromLong(savedDate) < bike.year || distanceInt < bike.start_km) {
                 showToast(requireContext(), getString(R.string.log_nomatch_1))
@@ -93,7 +93,7 @@ class DistanceLogAddFragment : Fragment() {
             if(currentPath == Path.Edit) distanceLogList.removeAt(args.logIndex)
             distanceLogList.add(DistanceLog(distanceInt, savedDate))
 
-            bike.km_logs = distanceLogList.sortedBy { log -> log.date }.reversed()
+            bike.logs.distance = distanceLogList.sortedBy { log -> log.date }.reversed()
             bike.personal_km = getUpdatedBikeDistance(bike)
             mMotorcycleViewModel.updateMotorcycle(bike, null)
 
@@ -121,9 +121,9 @@ class DistanceLogAddFragment : Fragment() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton(getString(R.string.yes)){ _,_ ->
             val bike = args.currentBike
-            val distanceLogList = bike.km_logs.toMutableList()
+            val distanceLogList = bike.logs.distance.toMutableList()
             distanceLogList.removeAt(args.logIndex)
-            bike.km_logs = distanceLogList.sortedBy { log -> log.date }.reversed()
+            bike.logs.distance = distanceLogList.sortedBy { log -> log.date }.reversed()
             bike.personal_km = getUpdatedBikeDistance(bike)
             mMotorcycleViewModel.updateMotorcycle(bike, null)
             showToast(requireContext(), getString(R.string.log_removed))

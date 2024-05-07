@@ -42,7 +42,7 @@ class ModsLogAddFragment : Fragment() {
 
         if(currentPath == Path.Edit)
         {
-            val currentLog = args.currentBike.mods_logs[args.logIndex]
+            val currentLog = args.currentBike.logs.mods[args.logIndex]
             savedDate = currentLog.date
             date.date = savedDate
 
@@ -78,13 +78,13 @@ class ModsLogAddFragment : Fragment() {
         if(inputCheck(title, description, price))
         {
             val bike = args.currentBike
-            val modsLogList = bike.mods_logs.toMutableList()
+            val modsLogList = bike.logs.mods.toMutableList()
             val newLog = ModsLog(title, description, savedDate, price.toDouble())
 
             if(currentPath == Path.Edit) modsLogList[args.logIndex] = newLog
             else modsLogList.add(0, newLog)
 
-            bike.mods_logs = modsLogList
+            bike.logs.mods = modsLogList
             mMotorcycleViewModel.updateMotorcycle(bike, null)
 
             showToast(requireContext(), getString(R.string.log_saved))
@@ -112,9 +112,9 @@ class ModsLogAddFragment : Fragment() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton(getString(R.string.yes)){ _,_ ->
             val bike = args.currentBike
-            val modsLogList = bike.mods_logs.toMutableList()
+            val modsLogList = bike.logs.mods.toMutableList()
             modsLogList.removeAt(args.logIndex)
-            bike.mods_logs = modsLogList
+            bike.logs.mods = modsLogList
             mMotorcycleViewModel.updateMotorcycle(bike, null)
             showToast(requireContext(), getString(R.string.log_removed))
             findNavController().navigateUp()

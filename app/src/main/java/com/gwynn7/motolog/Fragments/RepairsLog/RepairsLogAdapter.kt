@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gwynn7.motolog.Models.Motorcycle
 import com.gwynn7.motolog.Models.RepairsLog
 import com.gwynn7.motolog.R
+import com.gwynn7.motolog.formatThousand
 import com.gwynn7.motolog.longToDateString
 import com.gwynn7.motolog.repairColors
 
@@ -33,7 +34,9 @@ class RepairsLogAdapter: RecyclerView.Adapter<RepairsLogAdapter.MyViewHolder>() 
         val currentItem = repairsLogList[position]
 
         holder.itemView.findViewById<TextView>(R.id.tw_repair_type).text = currentItem.typeText
-        holder.itemView.findViewById<TextView>(R.id.tw_repair_notes).text = currentItem.notes
+        val notes = holder.itemView.findViewById<TextView>(R.id.tw_repair_notes)
+        notes.text = currentItem.notes
+        notes.isSelected = true
         holder.itemView.findViewById<TextView>(R.id.tw_repair_date).text = longToDateString(currentItem.date)
 
         val id = if(currentItem.typeIndex == -1) repairColors.size-1 else currentItem.typeIndex
@@ -43,6 +46,9 @@ class RepairsLogAdapter: RecyclerView.Adapter<RepairsLogAdapter.MyViewHolder>() 
         val price = String.format("${holder.itemView.resources.getString(R.string.price)}: %.2f€", currentItem.price)
         holder.itemView.findViewById<TextView>(R.id.tw_repair_price).text = price
 
+        val distance = String.format("%S km", formatThousand(currentItem.repair_km))
+        holder.itemView.findViewById<TextView>(R.id.tw_repair_distance).text = distance
+
         holder.itemView.findViewById<CardView>(R.id.cv_repairs_row).setOnClickListener {
             val action = RepairsLogFragmentDirections.repairslistToRepairsadd(currentBike, position)
             holder.itemView.findNavController().navigate(action)
@@ -51,7 +57,7 @@ class RepairsLogAdapter: RecyclerView.Adapter<RepairsLogAdapter.MyViewHolder>() 
 
     fun bindBike(bike: Motorcycle)
     {
-        repairsLogList = bike.maintenance_logs
+        repairsLogList = bike.logs.maintenance
         currentBike = bike
         notifyDataSetChanged()
     }

@@ -41,6 +41,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
+                    android:contentDescription="@string/motorcycles"
                     android:scaleType="centerCrop"
                     android:src="@drawable/bike" />
             </androidx.cardview.widget.CardView>
@@ -53,7 +54,7 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="8dp"
                 android:textAllCaps="true"
-                android:textSize="17sp"
+                android:textSize="17dp"
                 android:textStyle="italic"
                 app:layout_constraintBaseline_toTopOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/cv_motorcycle_image"
@@ -74,7 +75,7 @@
                 android:gravity="center_vertical"
                 android:textColor="@color/white"
                 android:textAllCaps="true"
-                android:textSize="24sp"
+                android:textSize="24dp"
                 android:textStyle="bold|italic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/cv_motorcycle_image"
@@ -87,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="18dp"
-                android:textSize="18sp"
+                android:textSize="18dp"
                 android:textStyle="italic|bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -99,7 +100,7 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginBottom="4dp"
                 android:textColor="@color/dark_white"
-                android:textSize="13sp"
+                android:textSize="13dp"
                 android:textStyle="italic"
                 app:layout_constraintStart_toEndOf="@+id/cv_motorcycle_image"
                 app:layout_constraintBottom_toBottomOf="parent" />
@@ -111,7 +112,7 @@
                 android:layout_marginBottom="4dp"
                 android:layout_marginEnd="20dp"
                 android:textColor="@color/dark_white"
-                android:textSize="13sp"
+                android:textSize="13dp"
                 android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />

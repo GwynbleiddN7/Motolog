@@ -67,7 +67,7 @@ class ModsLogFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.money_menu){
             var totalMoney = 0.0
-            val modsList = currentbike.mods_logs
+            val modsList = currentbike.logs.mods
             for (mod in modsList) totalMoney += mod.price
             showToast(requireContext(), "${getString(R.string.total_spent)}: ${String.format("%.2f€", totalMoney)}")
         }

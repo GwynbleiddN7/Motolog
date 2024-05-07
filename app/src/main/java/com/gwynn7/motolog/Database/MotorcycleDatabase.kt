@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.gwynn7.motolog.Models.Motorcycle
 
-@Database(entities = [Motorcycle::class], version = 10, exportSchema = true)
+@Database(entities = [Motorcycle::class], version = 13, exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class MotorcycleDatabase : RoomDatabase() {
     abstract fun motorcycleDao(): MotorcycleDAO

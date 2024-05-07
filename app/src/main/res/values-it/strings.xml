@@ -3,6 +3,7 @@
     <string-array name="repair_types">
         <item>Tagliando</item>
         <item>Revisione</item>
+        <item>Bollo</item>
         <item>Grasso Catena</item>
         <item>Gomma Anteriore</item>
         <item>Gomma Posteriore</item>
@@ -14,6 +15,7 @@
     <string-array name="repair_notes">
         <item>Tagliando standard</item>
         <item>Revisione completata</item>
+        <item>Pagamento bollo moto</item>
         <item>Catena ingrassata</item>
         <item>Ruota anteriore sostituita</item>
         <item>Ruota posteriore sostituita</item>
@@ -39,10 +41,10 @@
     <string name="info">Informazioni moto</string>
     <string name="garage">Garage</string>
     <string name="motorcycles">Moto</string>
-    <string name="gear">Equipaggiamento</string>
-    <string name="gear_editor">Editor equipaggiamento</string>
+    <string name="gear">Abbigliamento</string>
+    <string name="gear_editor">Editor abbigliamento</string>
     <string name="add_bike">Aggiungi una nuova moto!</string>
-    <string name="add_gear">Aggiungi un nuovo equipaggiamento!</string>
+    <string name="add_gear">Aggiungi un nuovo abbigliamento!</string>
     <string name="total_distance">Distanza totale</string>
     <string name="log_nomatch_2">Questo log è incompatibile con le dati o i chilometri di altri log</string>
     <string name="log_nomatch_1">Questo log è incompatibile con l\'anno o i chilometri della tua moto</string>
@@ -58,11 +60,11 @@
     <string name="price">Prezzo</string>
     <string name="delete_bike_question">Sicuro di voler eliminare questa moto?</string>
     <string name="delete">Elimina</string>
-    <string name="delete_gear_question">Sicuro di voler eliminare questa equipaggiamento?</string>
-    <string name="gear_delete">Equipaggiamento eliminato!</string>
-    <string name="gear_save">Equipaggiamento salvato!</string>
-    <string name="gear_add">Aggiungi Equipaggiamento</string>
-    <string name="gear_edit">Modifica Equipaggiamento</string>
+    <string name="delete_gear_question">Sicuro di voler eliminare questo abbigliamento?</string>
+    <string name="gear_delete">Abbigliamento eliminato!</string>
+    <string name="gear_save">Abbigliamento salvato!</string>
+    <string name="gear_add">Aggiungi Abbigliamento</string>
+    <string name="gear_edit">Modifica Abbigliamento</string>
     <string name="date">Data</string>
     <string name="bike_future">Moto dal futuro non sono ammesse</string>
     <string name="bike_past">Le moto non esistevano prima del 1900</string>
@@ -86,4 +88,21 @@
     <string name="total_km">Km totali</string>
     <string name="personal_km">Km personali</string>
     <string name="save">Salva</string>
+    <string name="edit">Modifica</string>
+    <string name="bike_repair_km">Km manutenzione</string>
+    <string name="done_at">Eseguita a:</string>
+    <string name="bike_add">Moto salvata, premici sopra per personalizzarla!</string>
+    <string name="cylinders">Cilindri</string>
+    <string name="horse_power">Potenza (CV)</string>
+    <string name="engine_cc">Cilindrata (CC)</string>
+    <string name="engine_torque">Coppia (NM)</string>
+    <string name="engine">Motore</string>
+    <string name="expiry">Scadenze</string>
+    <string name="license_plate">Targa</string>
+    <string name="front_tire">Gomma ant.</string>
+    <string name="rear_tire">Gomma pos.</string>
+    <string name="bike_tax">Bollo moto</string>
+    <string name="bike_insurance">Assicurazione</string>
+    <string name="bike_inspection">Revisione</string>
+    <string name="info_title">Info</string>
 </resources>

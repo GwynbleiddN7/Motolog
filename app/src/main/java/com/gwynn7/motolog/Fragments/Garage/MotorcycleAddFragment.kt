@@ -107,11 +107,11 @@ class MotorcycleAddFragment : Fragment() {
             {
                 val motorcycle = args.currentMotorcycle!!.copy(manufacturer = manufacturer, model = model, alias = name, year = yearInt, start_km = km, personal_km = 0)
 
-                if(motorcycle.km_logs.any { log -> distanceLogsCheck(log, motorcycle.start_km, motorcycle.year) })
+                if(motorcycle.logs.distance.any { log -> distanceLogsCheck(log, motorcycle.start_km, motorcycle.year) })
                 {
                     val builder = AlertDialog.Builder(requireContext())
                     builder.setPositiveButton(getString(R.string.delete_logs)){ _,_ ->
-                        motorcycle.km_logs = motorcycle.km_logs.filter { log -> !distanceLogsCheck(log, motorcycle.start_km, motorcycle.year) }
+                        motorcycle.logs.distance = motorcycle.logs.distance.filter { log -> !distanceLogsCheck(log, motorcycle.start_km, motorcycle.year) }
                         motorcycle.personal_km = getUpdatedBikeDistance(motorcycle)
                         mMotorcycleViewModel.updateMotorcycle(motorcycle, tempBitmap, bShouldRemoveImage)
                         showToast(requireContext(), getString(R.string.bike_saved))
@@ -128,14 +128,15 @@ class MotorcycleAddFragment : Fragment() {
                     motorcycle.personal_km = getUpdatedBikeDistance(motorcycle)
                     mMotorcycleViewModel.updateMotorcycle(motorcycle, tempBitmap, bShouldRemoveImage)
                 }
+                showToast(requireContext(), getString(R.string.bike_saved))
             }
             else
             {
                 val motorcycle = Motorcycle(0, manufacturer, model, name, yearInt, km)
                 mMotorcycleViewModel.addMotorcycle(motorcycle, tempBitmap)
+                showToast(requireContext(), getString(R.string.bike_add))
             }
 
-            showToast(requireContext(), getString(R.string.bike_saved))
             findNavController().navigateUp()
         }
         else showToast(requireContext(), getString(R.string.fill_fields))

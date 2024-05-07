@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:title="Edit"
+    <item android:title="@string/edit"
         android:id="@+id/edit_show_menu"
         android:icon="@drawable/ic_edit"
         app:showAsAction="ifRoom"/>
-    <item android:title="Delete"
+    <item android:title="@string/delete"
         android:id="@+id/delete_show_menu"
         android:icon="@drawable/ic_delete"
         app:showAsAction="ifRoom"/>

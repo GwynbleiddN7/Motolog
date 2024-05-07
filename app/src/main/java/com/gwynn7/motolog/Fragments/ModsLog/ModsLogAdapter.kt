@@ -50,7 +50,7 @@ class ModsLogAdapter: RecyclerView.Adapter<ModsLogAdapter.MyViewHolder>(){
 
     fun bindBike(bike: Motorcycle)
     {
-        modsLogList = bike.mods_logs
+        modsLogList = bike.logs.mods
         currentBike = bike
         notifyDataSetChanged()
     }

@@ -22,6 +22,7 @@ val repairColors = arrayOf(
     R.color.green,
     R.color.violet,
     R.color.purple,
+    R.color.pink,
     R.color.white
 )
 

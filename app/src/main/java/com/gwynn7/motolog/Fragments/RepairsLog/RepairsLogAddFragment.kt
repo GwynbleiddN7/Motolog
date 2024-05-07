@@ -25,6 +25,7 @@ import com.gwynn7.motolog.R
 import com.gwynn7.motolog.ViewModel.MotorcycleViewModel
 import com.gwynn7.motolog.repairColors
 import com.gwynn7.motolog.showToast
+import com.gwynn7.motolog.yearFromLong
 import java.util.Calendar
 
 class RepairsLogAddFragment : Fragment() {
@@ -52,20 +53,21 @@ class RepairsLogAddFragment : Fragment() {
         date.maxDate = savedDate
 
         val notes = view.findViewById<EditText>(R.id.et_repair_notes)
+        val distance = view.findViewById<EditText>(R.id.et_repair_distance)
+        distance.setText(String.format("%d", args.currentBike.personal_km + args.currentBike.start_km))
         val type = view.findViewById<EditText>(R.id.et_repair_type)
         type.isSelected = true
 
         val spinner = view.findViewById<Spinner>(R.id.spinner_repair)
-        var bEnableCallback = false;
+        var bEnableCallback = currentPath == Path.Add;
 
         if(currentPath == Path.Edit)
         {
-            val currentLog = args.currentBike.maintenance_logs[args.logIndex]
+            val currentLog = args.currentBike.logs.maintenance[args.logIndex]
             savedDate = currentLog.date
             date.date = savedDate
 
-            if(currentLog.typeIndex == -1)
-            {
+            if(currentLog.typeIndex == -1) {
                 spinner.setSelection(repairTypes.size-1)
                 type.setText(currentLog.typeText)
             }
@@ -76,6 +78,7 @@ class RepairsLogAddFragment : Fragment() {
 
             notes.setText(currentLog.notes)
             view.findViewById<EditText>(R.id.et_repair_price).setText(currentLog.price.toString())
+            distance.setText(currentLog.repair_km.toString())
         }
 
         val repairImage = view.findViewById<ImageView>(R.id.iv_repair_image)
@@ -85,20 +88,20 @@ class RepairsLogAddFragment : Fragment() {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 repairImage.setColorFilter(resources.getColor(repairColors[position], null));
                 repairImage.visibility = VISIBLE
-                if(position == repairTypes.size-1) {
-                    if(bEnableCallback)
-                    {
+                if(bEnableCallback) {
+                    if(position == repairTypes.size-1) {
                         type.setText("")
                         type.isEnabled = true
                         notes.setText("")
                     }
+                    else{
+                        type.setText(repairTypes[position])
+                        type.isEnabled = false
+                        notes.setText(repairsDefaultNotes[position])
+                    }
                 }
-                else{
-                    type.setText(repairTypes[position])
-                    type.isEnabled = false
-                    notes.setText(repairsDefaultNotes[position])
-                }
-                bEnableCallback= true
+
+                bEnableCallback=true
             }
         }
 
@@ -122,19 +125,25 @@ class RepairsLogAddFragment : Fragment() {
         val type = view.findViewById<EditText>(R.id.et_repair_type).text.toString()
         val notes = view.findViewById<EditText>(R.id.et_repair_notes).text.toString()
         val price = view.findViewById<EditText>(R.id.et_repair_price).text.toString()
+        val distance = view.findViewById<EditText>(R.id.et_repair_distance).text.toString()
 
-        if(inputCheck(type, notes, price))
+        if(inputCheck(type, notes, price, distance))
         {
             var id = -1
             if(repairTypes.contains(type)) id = repairTypes.indexOf(type)
 
             val bike = args.currentBike
-            val repairsLogList = bike.maintenance_logs.toMutableList()
+            val repairsLogList = bike.logs.maintenance.toMutableList()
+            val distanceInt = distance.toInt()
+            if(yearFromLong(savedDate) < bike.year || distanceInt < bike.start_km) {
+                showToast(requireContext(), getString(R.string.log_nomatch_1))
+                return
+            }
 
             if(currentPath == Path.Edit) repairsLogList.removeAt(args.logIndex)
-            repairsLogList.add(RepairsLog(id, type, notes, savedDate, price.toDouble()))
+            repairsLogList.add(RepairsLog(id, type, notes, savedDate, distanceInt, price.toDouble()))
 
-            bike.maintenance_logs = repairsLogList.sortedBy { log -> log.date }.reversed()
+            bike.logs.maintenance = repairsLogList.sortedBy { log -> log.date }.reversed()
             mMotorcycleViewModel.updateMotorcycle(bike, null)
 
             showToast(requireContext(), getString(R.string.log_saved))
@@ -143,9 +152,9 @@ class RepairsLogAddFragment : Fragment() {
         else showToast(requireContext(), getString(R.string.fill_fields))
     }
 
-    private fun inputCheck(type: String, notes: String, price: String): Boolean
+    private fun inputCheck(type: String, notes: String, price: String, distance: String): Boolean
     {
-        return type.isNotEmpty() && notes.isNotEmpty() && price.isNotEmpty()
+        return type.isNotEmpty() && notes.isNotEmpty() && price.isNotEmpty() && distance.isNotEmpty()
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.delete_menu, menu)
@@ -161,9 +170,9 @@ class RepairsLogAddFragment : Fragment() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton(getString(R.string.yes)){ _,_ ->
             val bike = args.currentBike
-            val repairsLogList = bike.maintenance_logs.toMutableList()
+            val repairsLogList = bike.logs.maintenance.toMutableList()
             repairsLogList.removeAt(args.logIndex)
-            bike.maintenance_logs = repairsLogList.sortedBy { log -> log.date }.reversed()
+            bike.logs.maintenance = repairsLogList.sortedBy { log -> log.date }.reversed()
             mMotorcycleViewModel.updateMotorcycle(bike, null)
             showToast(requireContext(), getString(R.string.log_removed))
             findNavController().navigateUp()

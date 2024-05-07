@@ -45,6 +45,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent"
+                        android:contentDescription="@string/motorcycles"
                         android:scaleType="centerCrop"
                         android:src="@drawable/bike" />
                 </androidx.cardview.widget.CardView>
@@ -53,10 +54,10 @@
                     android:id="@+id/bike_manufacturer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="5dp"
                     android:textAlignment="center"
                     android:textAllCaps="true"
-                    android:textSize="25sp"
+                    android:textSize="25dp"
                     android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +70,7 @@
                     android:layout_marginTop="2dp"
                     android:textAlignment="center"
                     android:textAllCaps="true"
-                    android:textSize="36sp"
+                    android:textSize="36dp"
                     android:textColor="@color/white"
                     android:textStyle="italic|bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -101,7 +102,7 @@
                             android:paddingTop="5dp"
                             android:textColor="@color/white"
                             android:textAlignment="center"
-                            android:textSize="20sp" />
+                            android:textSize="20dp" />
 
                         <TextView
                             android:id="@+id/bike_totalkm"
@@ -113,7 +114,7 @@
                             android:paddingTop="5dp"
                             android:textColor="@color/white"
                             android:textAlignment="center"
-                            android:textSize="20sp" />
+                            android:textSize="20dp" />
 
 
                     </TableRow>
@@ -133,7 +134,7 @@
                             android:textStyle="italic"
                             android:text="@string/year"
                             android:textAlignment="center"
-                            android:textSize="14sp" />
+                            android:textSize="14dp" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -143,7 +144,7 @@
                             android:textStyle="italic"
                             android:text="@string/total_km"
                             android:textAlignment="center"
-                            android:textSize="14sp" />
+                            android:textSize="14dp" />
 
                     </TableRow>
 
@@ -171,7 +172,7 @@
                             android:singleLine="true"
                             android:textColor="@color/white"
                             android:textAlignment="center"
-                            android:textSize="20sp" />
+                            android:textSize="20dp" />
 
                         <TextView
                             android:id="@+id/bike_personalkm"
@@ -183,7 +184,7 @@
                             android:paddingTop="15dp"
                             android:textColor="@color/white"
                             android:textAlignment="center"
-                            android:textSize="20sp" />
+                            android:textSize="20dp" />
                     </TableRow>
 
                     <TableRow
@@ -203,7 +204,7 @@
                             android:text="@string/alias"
                             android:paddingBottom="5dp"
                             android:textAlignment="center"
-                            android:textSize="14sp" />
+                            android:textSize="14dp" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -214,7 +215,7 @@
                             android:paddingBottom="5dp"
                             android:text="@string/personal_km"
                             android:textAlignment="center"
-                            android:textSize="14sp" />
+                            android:textSize="14dp" />
 
                     </TableRow>
 
@@ -256,6 +257,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:contentDescription="@string/distance_log"
                         android:padding="15dp"
                         android:scaleType="centerInside"
                         android:backgroundTint="@color/dark_gray"
@@ -277,6 +279,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:contentDescription="@string/repairs_log"
                         android:padding="15dp"
                         android:scaleType="centerInside"
                         android:backgroundTint="@color/dark_gray"
@@ -307,6 +310,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:contentDescription="@string/mods_log"
                         android:padding="15dp"
                         android:scaleType="centerInside"
                         android:backgroundTint="@color/dark_gray"
@@ -328,6 +332,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:contentDescription="@string/info"
                         android:padding="15dp"
                         android:scaleType="centerInside"
                         android:backgroundTint="@color/dark_gray"
