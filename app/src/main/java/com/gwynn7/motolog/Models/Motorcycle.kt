@@ -36,21 +36,21 @@ data class Logs(
 
 @Parcelize
 data class Info(
-    val cylinders: Int = 0,
-    val engine_cc: Double = 0.0,
-    val horse_power: Double = 0.0,
-    val torque: Double = 0.0,
-    val price: Double = 0.0,
-    val front_tire: String = "",
-    val rear_tire: String = "",
-    val plate_number: String = ""
+    var cylinders: Int = 0,
+    var engine_cc: Double = 0.0,
+    var horse_power: Double = 0.0,
+    var torque: Double = 0.0,
+    var price: Double = 0.0,
+    var front_tire: String = "",
+    var rear_tire: String = "",
+    var plate_number: String = ""
 ): Parcelable
 
 @Parcelize
 data class Expiry(
-    val insurance: Long = -1,
-    val tax: Long = -1,
-    val inspection: Long = -1,
+    var insurance: Long = -1,
+    var tax: Long = -1,
+    var inspection: Long = -1,
 ): Parcelable
 
 @Parcelize

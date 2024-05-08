@@ -32,7 +32,7 @@
                     android:id="@+id/cv_bike_image"
                     android:layout_width="230dp"
                     android:layout_height="230dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="15dp"
                     app:cardBackgroundColor="@android:color/transparent"
                     app:cardCornerRadius="115dp"
                     app:cardElevation="0dp"
@@ -54,7 +54,7 @@
                     android:id="@+id/bike_manufacturer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="3dp"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textSize="25dp"
@@ -83,7 +83,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/bike_model"
-                    android:layout_marginTop="30dp">
+                    android:layout_marginTop="28dp">
 
                     <TableRow
                         android:layout_width="match_parent"

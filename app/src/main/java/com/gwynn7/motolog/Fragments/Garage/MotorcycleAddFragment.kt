@@ -48,7 +48,6 @@ class MotorcycleAddFragment : Fragment() {
         if(args.currentMotorcycle != null) currentPath = Path.Edit
 
         val imageAdd = view.findViewById<ImageButton>(R.id.ib_bike_image)
-        val buttonText = if(currentPath == Path.Add) getString(R.string.add_motorcycle) else getString(R.string.edit_motorcycle)
 
         if(currentPath == Path.Edit) {
             val bike = args.currentMotorcycle!!
@@ -61,10 +60,10 @@ class MotorcycleAddFragment : Fragment() {
             else imageAdd.setImageResource(R.drawable.add_photo)
         }
 
-        val button = view.findViewById<Button>(R.id.bt_addMotorcycle)
-        button.text = buttonText
+        val button = view.findViewById<Button>(R.id.bt_deleteMotorcycle)
+        button.visibility = if(currentPath == Path.Edit) View.VISIBLE else View.INVISIBLE
         button.setOnClickListener {
-            insertDataToDatabase(view)
+            deleteMotorcycle()
         }
 
 
@@ -79,7 +78,7 @@ class MotorcycleAddFragment : Fragment() {
             true
         }
 
-        setHasOptionsMenu(currentPath == Path.Edit)
+        setHasOptionsMenu(true)
         return view
     }
 
@@ -153,11 +152,11 @@ class MotorcycleAddFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.delete_menu, menu)
+        inflater.inflate(R.menu.save_menu, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.menu_delete) deleteMotorcycle()
+        if(item.itemId == R.id.save_menu) insertDataToDatabase(requireView())
         return super.onContextItemSelected(item)
     }
 

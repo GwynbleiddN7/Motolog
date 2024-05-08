@@ -184,11 +184,13 @@ tools:context="com.gwynn7.motolog.Fragments.Garage.MotorcycleAddFragment">
         app:layout_constraintTop_toBottomOf="@+id/et_bike_startkm" />
 
     <Button
-        android:id="@+id/bt_addMotorcycle"
+        android:id="@+id/bt_deleteMotorcycle"
         android:layout_width="200dp"
         android:layout_height="60dp"
-        android:layout_marginTop="45dp"
-        android:text="@string/add_motorcycle"
+        android:layout_marginTop="60dp"
+        android:text="@string/delete_bike"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/dark_red"
         android:textSize="16dp"
         app:layout_constraintTop_toBottomOf="@+id/textView_bike_distance_pre"
         app:layout_constraintEnd_toEndOf="parent"

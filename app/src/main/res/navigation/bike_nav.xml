@@ -79,12 +79,21 @@
     </fragment>
     <fragment
         android:id="@+id/info"
-        android:name="com.gwynn7.motolog.Fragments.Home.InfoFragment"
+        android:name="com.gwynn7.motolog.Fragments.Info.InfoFragment"
         android:label="@string/info"
-        tools:layout="@layout/bikeinfo">
+        tools:layout="@layout/info">
         <action
             android:id="@+id/bikeinfo_to_bikehome"
             app:destination="@id/bike_home_fragment" />
+        <action
+            android:id="@+id/info_to_editengine"
+            app:destination="@id/edit_engine" />
+        <action
+            android:id="@+id/info_to_editinfo"
+            app:destination="@id/edit_info" />
+        <action
+            android:id="@+id/info_to_editexpiry"
+            app:destination="@id/edit_exipiry" />
     </fragment>
     <fragment
         android:id="@+id/distance_log_add"
@@ -130,6 +139,42 @@
             android:name="logIndex"
             android:defaultValue="-1"
             app:argType="integer" />
+        <argument
+            android:name="currentBike"
+            app:argType="com.gwynn7.motolog.Models.Motorcycle" />
+    </fragment>
+    <fragment
+        android:id="@+id/edit_engine"
+        android:name="com.gwynn7.motolog.Fragments.Info.EditEngineFragment"
+        android:label="@string/edit_engine"
+        tools:layout="@layout/info_engineinfo_edit">
+        <action
+            android:id="@+id/editengine_to_info"
+            app:destination="@id/info" />
+        <argument
+            android:name="currentBike"
+            app:argType="com.gwynn7.motolog.Models.Motorcycle" />
+    </fragment>
+    <fragment
+        android:id="@+id/edit_info"
+        android:name="com.gwynn7.motolog.Fragments.Info.EditInfoFragment"
+        android:label="@string/edit_info"
+        tools:layout="@layout/info_bikeinfo_edit">
+        <action
+            android:id="@+id/editinfo_to_info"
+            app:destination="@id/info" />
+        <argument
+            android:name="currentBike"
+            app:argType="com.gwynn7.motolog.Models.Motorcycle" />
+    </fragment>
+    <fragment
+        android:id="@+id/edit_exipiry"
+        android:name="com.gwynn7.motolog.Fragments.Info.EditExpiryFragment"
+        android:label="@string/edit_expiry"
+        tools:layout="@layout/info_expiryinfo_edit">
+        <action
+            android:id="@+id/editexpiry_to_info"
+            app:destination="@id/info" />
         <argument
             android:name="currentBike"
             app:argType="com.gwynn7.motolog.Models.Motorcycle" />

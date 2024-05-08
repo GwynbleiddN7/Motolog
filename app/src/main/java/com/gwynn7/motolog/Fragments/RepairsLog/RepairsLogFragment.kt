@@ -18,6 +18,7 @@ import com.gwynn7.motolog.R
 import com.gwynn7.motolog.ViewModel.MotorcycleViewModel
 import com.gwynn7.motolog.showToast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.gwynn7.motolog.stop
 
 class RepairsLogFragment : Fragment() {
     private lateinit var mMotorcycleViewModel: MotorcycleViewModel
@@ -37,7 +38,7 @@ class RepairsLogFragment : Fragment() {
         val bikeId = MotorcycleViewModel.currentBikeId
         if(bikeId == null)
         {
-            returnToList()
+            stop(activity)
             return view
         }
 
@@ -48,7 +49,7 @@ class RepairsLogFragment : Fragment() {
                 currentbike = bikes.first()
                 adapter.bindBike(currentbike)
             }
-            else returnToList()
+            else stop(activity)
         }
         })
 
@@ -72,10 +73,5 @@ class RepairsLogFragment : Fragment() {
             showToast(requireContext(), "${getString(R.string.total_spent)}: ${String.format("%.2f€", totalMoney)}")
         }
         return super.onContextItemSelected(item)
-    }
-
-    private fun returnToList()
-    {
-        activity?.finish()
     }
 }

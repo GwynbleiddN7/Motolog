@@ -61,12 +61,14 @@ class GearShowFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.edit_show_menu)
+        when(item.itemId)
         {
-            val action = GearShowFragmentDirections.gearshowToGearadd(args.currentGear)
-            findNavController().navigate(action)
+            R.id.edit_show_menu -> {
+                val action = GearShowFragmentDirections.gearshowToGearadd(args.currentGear)
+                findNavController().navigate(action)
+            }
+            R.id.delete_show_menu -> deleteGear()
         }
-        else if(item.itemId == R.id.delete_show_menu) deleteGear()
 
         return super.onContextItemSelected(item)
     }

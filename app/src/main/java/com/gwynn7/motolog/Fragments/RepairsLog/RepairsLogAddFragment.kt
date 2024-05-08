@@ -23,6 +23,7 @@ import com.gwynn7.motolog.Models.RepairsLog
 import com.gwynn7.motolog.Path
 import com.gwynn7.motolog.R
 import com.gwynn7.motolog.ViewModel.MotorcycleViewModel
+import com.gwynn7.motolog.longFromDate
 import com.gwynn7.motolog.repairColors
 import com.gwynn7.motolog.showToast
 import com.gwynn7.motolog.yearFromLong
@@ -47,7 +48,6 @@ class RepairsLogAddFragment : Fragment() {
         mMotorcycleViewModel = ViewModelProvider(this)[MotorcycleViewModel::class.java]
         if(args.logIndex != -1) currentPath = Path.Edit
 
-        val buttonText = if(currentPath == Path.Add) getString(R.string.add_log) else getString(R.string.edit_log)
         val date = view.findViewById<CalendarView>(R.id.cv_repair_date)
         savedDate = Calendar.getInstance().timeInMillis
         date.maxDate = savedDate
@@ -106,18 +106,16 @@ class RepairsLogAddFragment : Fragment() {
         }
 
         date.setOnDateChangeListener { _, year, month, dayOfMonth ->
-            val cal: Calendar = Calendar.getInstance()
-            cal.set(year, month, dayOfMonth)
-            savedDate = cal.getTimeInMillis()
+            savedDate = longFromDate(year, month, dayOfMonth)
         }
 
-        val button = view.findViewById<Button>(R.id.bt_addRepair)
-        button.text = buttonText
+        val button = view.findViewById<Button>(R.id.bt_deleteRepair)
+        button.visibility = if(currentPath == Path.Edit) View.VISIBLE else View.INVISIBLE
         button.setOnClickListener{
-            insertDataToDatabase(view)
+            deleteLog()
         }
 
-        setHasOptionsMenu(currentPath == Path.Edit)
+        setHasOptionsMenu(true)
         return view
     }
 
@@ -157,11 +155,11 @@ class RepairsLogAddFragment : Fragment() {
         return type.isNotEmpty() && notes.isNotEmpty() && price.isNotEmpty() && distance.isNotEmpty()
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.delete_menu, menu)
+        inflater.inflate(R.menu.save_menu, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.menu_delete) deleteLog()
+        if(item.itemId == R.id.save_menu) insertDataToDatabase(requireView())
         return super.onContextItemSelected(item)
     }
 

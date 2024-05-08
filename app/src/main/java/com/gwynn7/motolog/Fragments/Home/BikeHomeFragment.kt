@@ -22,6 +22,7 @@ import com.gwynn7.motolog.R
 import com.gwynn7.motolog.ViewModel.MotorcycleViewModel
 import com.gwynn7.motolog.formatThousand
 import com.gwynn7.motolog.showToast
+import com.gwynn7.motolog.stop
 
 class BikeHomeFragment : Fragment() {
     private lateinit var mMotorcycleViewModel: MotorcycleViewModel
@@ -37,7 +38,7 @@ class BikeHomeFragment : Fragment() {
         val bikeId = MotorcycleViewModel.currentBikeId
         if(bikeId == null)
         {
-            returnToList()
+            stop(activity)
             return view
         }
 
@@ -73,7 +74,7 @@ class BikeHomeFragment : Fragment() {
 
                     view.findViewById<ScrollView>(R.id.bike_home).visibility = VISIBLE
                 }
-                else returnToList()
+                else stop(activity)
             }
         })
 
@@ -118,16 +119,11 @@ class BikeHomeFragment : Fragment() {
         builder.setPositiveButton(getString(R.string.yes)){ _, _ ->
             mMotorcycleViewModel.deleteMotorcycle(currentBike)
             showToast(requireContext(), getString(R.string.bike_delete))
-            returnToList()
+            stop(activity)
         }
         builder.setNegativeButton(getString(R.string.no)){ _,_ -> }
         builder.setTitle("${getString(R.string.delete)} ${currentBike.manufacturer} ${currentBike.model}?")
         builder.setMessage(getString(R.string.delete_bike_question))
         builder.create().show()
-    }
-
-    private fun returnToList()
-    {
-        activity?.finish()
     }
 }

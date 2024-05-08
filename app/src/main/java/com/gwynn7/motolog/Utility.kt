@@ -1,8 +1,8 @@
 package com.gwynn7.motolog
 
+import android.app.Activity
 import android.content.Context
 import android.widget.Toast
-import com.gwynn7.motolog.R
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -35,10 +35,22 @@ fun yearFromLong(date: Long): Int{
     cal.setTime(Date(date))
     return cal.get(Calendar.YEAR)
 }
+
+fun longFromDate(year: Int, month: Int, dayOfMonth: Int): Long{
+    val cal: Calendar = Calendar.getInstance()
+    cal.set(year, month, dayOfMonth)
+    return cal.getTimeInMillis()
+}
+
 fun showToast(context: Context, text: String, length: Int = Toast.LENGTH_SHORT){
     Toast.makeText(context, text, length).show()
 }
 fun formatThousand(number: Int): String{
     val formatter = DecimalFormat("#,###")
     return formatter.format(number)
+}
+
+fun stop(activity: Activity?)
+{
+    activity?.finish()
 }

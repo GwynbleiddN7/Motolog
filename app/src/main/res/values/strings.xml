@@ -105,4 +105,15 @@
     <string name="bike_insurance">Insurance</string>
     <string name="bike_inspection">Inspection</string>
     <string name="info_title">Info</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="edit_engine">Edit engine</string>
+    <string name="edit_info">Edit info</string>
+    <string name="edit_expiry">Edit expiry</string>
+    <string name="info_saved">Info saved!</string>
+    <string name="delete_log">Delete log</string>
+    <string name="delete_gear">Delete gear</string>
+    <string name="delete_bike">Delete motorcycle</string>
+    <string name="more">More</string>
+    <string name="not_updated">Not updated</string>
+    <string name="not_set">Not set</string>
 </resources>

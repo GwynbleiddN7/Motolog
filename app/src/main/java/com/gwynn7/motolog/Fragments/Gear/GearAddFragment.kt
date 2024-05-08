@@ -27,6 +27,7 @@ import com.gwynn7.motolog.Models.Gear
 import com.gwynn7.motolog.Path
 import com.gwynn7.motolog.R
 import com.gwynn7.motolog.ViewModel.GearViewModel
+import com.gwynn7.motolog.longFromDate
 import com.gwynn7.motolog.showToast
 import java.util.Calendar
 
@@ -47,7 +48,7 @@ class GearAddFragment : Fragment() {
         if(args.currentGear != null) currentPath = Path.Edit
 
         val imageAdd = view.findViewById<ImageButton>(R.id.ib_gear_image)
-        val buttonText = if(currentPath == Path.Add) getString(R.string.gear_add) else getString(R.string.gear_edit)
+
         val date = view.findViewById<CalendarView>(R.id.cv_gear_date)
         savedDate = Calendar.getInstance().timeInMillis
         date.maxDate = savedDate
@@ -62,21 +63,18 @@ class GearAddFragment : Fragment() {
             view.findViewById<EditText>(R.id.et_gear_model).setText(currentGear.model)
             view.findViewById<EditText>(R.id.et_gear_price).setText(currentGear.price.toString())
 
-
             if(currentGear.image != null) imageAdd.setImageURI(currentGear.image)
             else imageAdd.setImageResource(R.drawable.add_photo)
         }
 
         date.setOnDateChangeListener { _, year, month, dayOfMonth ->
-            val cal: Calendar = Calendar.getInstance()
-            cal.set(year, month, dayOfMonth)
-            savedDate = cal.getTimeInMillis()
+            savedDate = longFromDate(year, month, dayOfMonth)
         }
 
-        val button = view.findViewById<Button>(R.id.bt_addGear)
-        button.text = buttonText
+        val button = view.findViewById<Button>(R.id.bt_deleteGear)
+        button.visibility = if(currentPath == Path.Edit) View.VISIBLE else View.INVISIBLE
         button.setOnClickListener{
-            insertDataToDatabase(view)
+            deleteGear()
         }
 
         imageAdd.setOnClickListener{
@@ -89,7 +87,7 @@ class GearAddFragment : Fragment() {
             true
         }
 
-        setHasOptionsMenu(currentPath == Path.Edit)
+        setHasOptionsMenu(true)
         return view
     }
 
@@ -121,11 +119,11 @@ class GearAddFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.delete_menu, menu)
+        inflater.inflate(R.menu.save_menu, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.menu_delete) deleteGear()
+        if(item.itemId == R.id.save_menu) insertDataToDatabase(requireView())
         return super.onContextItemSelected(item)
     }
 

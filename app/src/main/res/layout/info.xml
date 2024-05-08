@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.gwynn7.motolog.Fragments.Home.InfoFragment"
-    android:id="@+id/bike_info">
+    tools:context="com.gwynn7.motolog.Fragments.Info.InfoFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -31,10 +30,10 @@
                     android:id="@+id/engine_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
+                    android:layout_marginTop="15dp"
                     android:textAlignment="center"
                     android:textAllCaps="true"
-                    android:textSize="28dp"
+                    android:textSize="24dp"
                     android:text="@string/engine"
                     android:textColor="@color/white"
                     android:textStyle="bold|italic"
@@ -44,21 +43,23 @@
 
                 <ImageButton
                     android:id="@+id/bt_edit_engine"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginTop="15dp"
                     android:padding="5dp"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:src="@drawable/ic_edit"
                     android:backgroundTint="@color/dark_gray"
                     android:contentDescription="@string/edit"
-                    app:layout_constraintTop_toTopOf="@+id/engine_title"
-                    app:layout_constraintEnd_toEndOf="@+id/engine_title"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     />
 
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    android:paddingBottom="5dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/engine_title">
@@ -142,7 +143,6 @@
                             android:layout_weight="1"
                             android:textStyle="bold"
                             android:paddingTop="15dp"
-                            android:paddingHorizontal="10dp"
                             android:textColor="@color/white"
                             android:textAlignment="center"
                             android:textSize="20dp" />
@@ -218,10 +218,10 @@
                     android:id="@+id/info_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
+                    android:layout_marginTop="15dp"
                     android:textAlignment="center"
                     android:textAllCaps="true"
-                    android:textSize="28dp"
+                    android:textSize="24dp"
                     android:text="@string/info_title"
                     android:textColor="@color/white"
                     android:textStyle="bold|italic"
@@ -231,15 +231,16 @@
 
                 <ImageButton
                     android:id="@+id/bt_edit_info"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginTop="15dp"
                     android:padding="5dp"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:src="@drawable/ic_edit"
                     android:backgroundTint="@color/dark_gray"
                     android:contentDescription="@string/edit"
-                    app:layout_constraintTop_toTopOf="@+id/info_title"
-                    app:layout_constraintEnd_toEndOf="@+id/info_title"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
 
                     />
 
@@ -249,16 +250,14 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/info_title"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="15dp"
                     android:paddingBottom="10dp">
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginHorizontal="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:showDividers="end"
-                        android:divider="@color/white">
+                        android:layout_marginBottom="10dp">
 
                         <TextView
                             android:layout_width="0dp"
@@ -267,7 +266,7 @@
                             android:textStyle="italic"
                             android:text="@string/price"
                             android:textAlignment="textEnd"
-                            android:paddingEnd="15dp"
+                            android:paddingEnd="17dp"
                             android:textSize="16dp" />
 
                         <TextView
@@ -278,7 +277,7 @@
                             android:textColor="@color/white"
                             android:textAlignment="textStart"
                             android:textStyle="bold"
-                            android:paddingStart="15dp"
+                            android:paddingStart="17dp"
                             android:textSize="16dp"  />
 
                     </TableRow>
@@ -287,7 +286,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginHorizontal="10dp"
-                        android:layout_marginBottom="15dp">
+                        android:layout_marginBottom="10dp">
 
                         <TextView
                             android:layout_width="0dp"
@@ -296,7 +295,7 @@
                             android:textStyle="italic"
                             android:text="@string/license_plate"
                             android:textAlignment="textEnd"
-                            android:paddingEnd="15dp"
+                            android:paddingEnd="17dp"
                             android:textSize="16dp"/>
 
                         <TextView
@@ -307,15 +306,15 @@
                             android:textColor="@color/white"
                             android:textAlignment="textStart"
                             android:textStyle="bold"
-                            android:paddingStart="15dp"
-                            android:textSize="16dp"  />
+                            android:paddingStart="17dp"
+                            android:textSize="15dp"  />
 
                     </TableRow>
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginHorizontal="10dp"
-                        android:layout_marginBottom="5dp">
+                        android:layout_marginBottom="10dp">
 
                         <TextView
                             android:layout_width="0dp"
@@ -324,7 +323,7 @@
                             android:textStyle="italic"
                             android:text="@string/front_tire"
                             android:textAlignment="textEnd"
-                            android:paddingEnd="15dp"
+                            android:paddingEnd="17dp"
                             android:textSize="16dp"/>
 
                         <TextView
@@ -335,7 +334,7 @@
                             android:textColor="@color/white"
                             android:textAlignment="textStart"
                             android:textStyle="bold"
-                            android:paddingStart="15dp"
+                            android:paddingStart="17dp"
                             android:textSize="15dp"  />
 
                     </TableRow>
@@ -353,7 +352,7 @@
                             android:text="@string/rear_tire"
                             android:paddingBottom="5dp"
                             android:textAlignment="textEnd"
-                            android:paddingEnd="15dp"
+                            android:paddingEnd="17dp"
                             android:textSize="16dp"/>
 
                         <TextView
@@ -365,11 +364,10 @@
                             android:textColor="@color/white"
                             android:textAlignment="textStart"
                             android:textStyle="bold"
-                            android:paddingStart="15dp"
+                            android:paddingStart="17dp"
                             android:textSize="15dp"  />
 
                     </TableRow>
-
                 </TableLayout>
 
 
@@ -396,10 +394,10 @@
                     android:id="@+id/expiry_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
+                    android:layout_marginTop="15dp"
                     android:textAlignment="center"
                     android:textAllCaps="true"
-                    android:textSize="28dp"
+                    android:textSize="24dp"
                     android:text="@string/expiry"
                     android:textColor="@color/white"
                     android:textStyle="bold|italic"
@@ -409,17 +407,16 @@
 
                 <ImageButton
                     android:id="@+id/bt_edit_expiry"
-                    android:layout_marginEnd="5dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginTop="15dp"
                     android:padding="5dp"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:src="@drawable/ic_edit"
                     android:backgroundTint="@color/dark_gray"
                     android:contentDescription="@string/edit"
-                    app:layout_constraintTop_toTopOf="@+id/expiry_title"
-                    app:layout_constraintEnd_toEndOf="@+id/expiry_title"
-
-                    />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
                 <TableLayout
                     android:layout_width="match_parent"
@@ -427,14 +424,14 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/expiry_title"
-                    android:layout_marginTop="12dp"
-                    android:paddingBottom="10dp">
+                    android:layout_marginTop="15dp"
+                    android:paddingBottom="20dp">
 
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginHorizontal="10dp"
-                        android:layout_marginBottom="5dp">
+                        android:layout_marginBottom="8dp">
 
                         <TextView
                             android:layout_width="0dp"
@@ -463,7 +460,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginHorizontal="10dp"
-                        android:layout_marginBottom="5dp">
+                        android:layout_marginBottom="8dp">
 
                         <TextView
                             android:layout_width="0dp"
@@ -491,7 +488,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginHorizontal="10dp"
-                        android:layout_marginBottom="5dp">
+                        android:layout_marginBottom="8dp">
 
                         <TextView
                             android:layout_width="0dp"

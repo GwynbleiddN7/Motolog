@@ -105,4 +105,14 @@
     <string name="bike_insurance">Assicurazione</string>
     <string name="bike_inspection">Revisione</string>
     <string name="info_title">Info</string>
+    <string name="edit_engine">Modifica motore</string>
+    <string name="edit_info">Modifica info</string>
+    <string name="edit_expiry">Modifica scadenze</string>
+    <string name="info_saved">Info salvata!</string>
+    <string name="delete_log">Elimina log</string>
+    <string name="delete_gear">Elimina abbigliamento</string>
+    <string name="delete_bike">Elimina moto</string>
+    <string name="more">More</string>
+    <string name="not_updated">Non aggiornata</string>
+    <string name="not_set">Non impostata</string>
 </resources>

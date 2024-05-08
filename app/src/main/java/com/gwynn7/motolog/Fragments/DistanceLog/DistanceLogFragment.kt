@@ -14,6 +14,7 @@ import com.gwynn7.motolog.Models.Motorcycle
 import com.gwynn7.motolog.R
 import com.gwynn7.motolog.ViewModel.MotorcycleViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.gwynn7.motolog.stop
 
 class DistanceLogFragment : Fragment() {
     private lateinit var mMotorcycleViewModel: MotorcycleViewModel
@@ -33,7 +34,7 @@ class DistanceLogFragment : Fragment() {
         val bikeId = MotorcycleViewModel.currentBikeId
         if(bikeId == null)
         {
-            returnToList()
+            stop(activity)
             return view
         }
 
@@ -44,7 +45,7 @@ class DistanceLogFragment : Fragment() {
                 currentbike = bikes.first()
                 adapter.bindBike(currentbike)
             }
-            else returnToList()
+            else stop(activity)
         }
         })
 
@@ -54,10 +55,5 @@ class DistanceLogFragment : Fragment() {
         }
 
         return view
-    }
-
-    private fun returnToList()
-    {
-        activity?.finish()
     }
 }
