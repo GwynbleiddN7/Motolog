@@ -43,8 +43,8 @@
     <string name="motorcycles">Motorcycles</string>
     <string name="gear">Gear</string>
     <string name="gear_editor">Gear Editor</string>
-    <string name="add_bike">Add a new motorcycle!</string>
-    <string name="add_gear">Add a new gear!</string>
+    <string name="add_first_bike">Add your first motorcycle!</string>
+    <string name="add_first_gear">Add your first gear!</string>
     <string name="total_distance">Total distance</string>
     <string name="log_nomatch_1">This log does not match bike\'s year or distance</string>
     <string name="log_nomatch_2">This log does not match other log\'s dates or distance</string>
@@ -78,19 +78,19 @@
     <string name="model">Model</string>
     <string name="optional">Optional</string>
     <string name="alias">Alias</string>
-    <string name="km_when_bought">Km when bought</string>
+    <string name="distance_when_bought">%s when bought</string>
     <string name="title">Title</string>
     <string name="description">Description</string>
     <string name="exhaust">Exhaust</string>
     <string name="day_of_purchase">Day of purchase</string>
-    <string name="bike_km_date">Bike km at specified date</string>
-    <string name="total_km">Total km</string>
-    <string name="personal_km">Personal km</string>
+    <string name="bike_distance_date">Bike %s at specified date</string>
+    <string name="total_bike_distance">Total %s</string>
+    <string name="personal_bike_distance">Personal %s</string>
     <string name="save">Save</string>
     <string name="edit">Edit</string>
-    <string name="bike_repair_km">Maintainance km</string>
+    <string name="bike_repair_distance">Maintenance %s</string>
     <string name="done_at">Done at:</string>
-    <string name="bike_add">Motorcycle saved, press on the entry to start customizing!</string>
+    <string name="bike_add">Motorcycle saved, press on it to start customizing!</string>
     <string name="cylinders">Cylinders</string>
     <string name="horse_power">Power (HP)</string>
     <string name="engine_cc">Displacement (CC)</string>
@@ -104,7 +104,6 @@
     <string name="bike_insurance">Insurance</string>
     <string name="bike_inspection">Inspection</string>
     <string name="info_title">Info</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="edit_engine">Edit engine</string>
     <string name="edit_info">Edit info</string>
     <string name="edit_expiry">Edit expiry</string>
@@ -118,5 +117,14 @@
     <string name="language">Language</string>
     <string name="kilometers">Kilometers</string>
     <string name="miles">Miles</string>
+    <string name="miles_undercase">miles</string>
     <string name="currency">Currency</string>
+    <string name="gear_added">Gear saved, press on it to view!</string>
+    <string name="image_saved">Image saved! Hold it to remove</string>
+    <string name="import_data">Import data</string>
+    <string name="export_data">Export data</string>
+    <string name="todo">Not yet implemented</string>
+    <string name="add_first_mod">Add your first modification!</string>
+    <string name="add_first_distancelog">Add your first distance log!</string>
+    <string name="add_first_repair">Add your first maintenance!</string>
 </resources>

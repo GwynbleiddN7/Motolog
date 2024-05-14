@@ -16,13 +16,16 @@ import android.widget.CalendarView
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Spinner
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.gwynn7.motolog.Models.RepairsLog
 import com.gwynn7.motolog.Path
 import com.gwynn7.motolog.R
+import com.gwynn7.motolog.UnitHelper
 import com.gwynn7.motolog.ViewModel.MotorcycleViewModel
+import com.gwynn7.motolog.capitalize
 import com.gwynn7.motolog.longFromDate
 import com.gwynn7.motolog.repairColors
 import com.gwynn7.motolog.showToast
@@ -47,6 +50,8 @@ class RepairsLogAddFragment : Fragment() {
 
         mMotorcycleViewModel = ViewModelProvider(this)[MotorcycleViewModel::class.java]
         if(args.logIndex != -1) currentPath = Path.Edit
+
+        view.findViewById<TextView>(R.id.textView_repair_distance).text = capitalize(getString(R.string.bike_repair_distance, UnitHelper.getDistanceText(requireContext())))
 
         val date = view.findViewById<CalendarView>(R.id.cv_repair_date)
         savedDate = Calendar.getInstance().timeInMillis

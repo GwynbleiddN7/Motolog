@@ -2,6 +2,9 @@ package com.gwynn7.motolog.Fragments.Settings
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
@@ -10,6 +13,7 @@ import androidx.fragment.app.Fragment
 import com.gwynn7.motolog.LocaleHelper
 import com.gwynn7.motolog.R
 import com.gwynn7.motolog.UnitHelper
+import com.gwynn7.motolog.showToast
 
 class SettingsFragment : Fragment() {
     override fun onCreateView(
@@ -47,7 +51,21 @@ class SettingsFragment : Fragment() {
             }
         }
 
+        setHasOptionsMenu(true)
         return view
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.export_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId)
+        {
+            R.id.menu_export -> showToast(requireContext(), getString(R.string.todo))
+            R.id.menu_import -> showToast(requireContext(), getString(R.string.todo))
+        }
+        return super.onContextItemSelected(item)
     }
 
     private fun setRadioButtons(view: View)

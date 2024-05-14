@@ -2,9 +2,11 @@ package com.gwynn7.motolog
 
 import android.app.Activity
 import android.content.Context
+import android.os.Handler
 import android.widget.Toast
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import java.text.DecimalFormat
@@ -51,6 +53,7 @@ object UnitHelper
     lateinit var currency: Currency
 
     fun getDistance() = distance.value
+    fun getDistanceText(context: Context) = if(distance == Distance.MILES) context.getString(R.string.miles_undercase) else distance.value
     fun getCurrency() = currency.value
 
     fun loadData(context: Context) {
@@ -97,6 +100,18 @@ fun showToast(context: Context, text: String, length: Int = Toast.LENGTH_SHORT){
 fun formatThousand(number: Int): String{
     val formatter = DecimalFormat("#,###")
     return formatter.format(number)
+}
+
+fun capitalize(string: String): String {
+    return string.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
+}
+
+fun <T : RecyclerView.ViewHolder?> showToastAfterDelay(adapter: RecyclerView.Adapter<T>, context: Context, stringId: Int) {
+    Handler().postDelayed({
+        try{
+            if (adapter.itemCount == 0) showToast(context, context.getString(stringId))
+        }catch(_: Exception){}
+    }, 500)
 }
 
 fun stop(activity: Activity?) {

@@ -30,8 +30,8 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cv_bike_image"
-                    android:layout_width="230dp"
-                    android:layout_height="230dp"
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
                     android:layout_marginTop="15dp"
                     app:cardBackgroundColor="@android:color/transparent"
                     app:cardCornerRadius="115dp"
@@ -54,7 +54,7 @@
                     android:id="@+id/bike_manufacturer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textSize="24dp"
@@ -104,7 +104,7 @@
                             android:textSize="20dp" />
 
                         <TextView
-                            android:id="@+id/bike_totalkm"
+                            android:id="@+id/bike_totaldistance"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
@@ -136,12 +136,12 @@
                             android:textSize="14dp" />
 
                         <TextView
+                            android:id="@+id/total_bike_distance"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:textStyle="italic"
-                            android:text="@string/total_km"
                             android:textAlignment="center"
                             android:textSize="14dp" />
 
@@ -174,7 +174,7 @@
                             android:textSize="20dp" />
 
                         <TextView
-                            android:id="@+id/bike_personalkm"
+                            android:id="@+id/bike_personaldistance"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
@@ -206,13 +206,13 @@
                             android:textSize="14dp" />
 
                         <TextView
+                            android:id="@+id/personal_bike_distance"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:textStyle="italic"
                             android:paddingBottom="5dp"
-                            android:text="@string/personal_km"
                             android:textAlignment="center"
                             android:textSize="14dp" />
 
@@ -250,17 +250,33 @@
                     app:cardCornerRadius="30dp"
                     app:cardElevation="10dp"
                     android:foreground="?android:attr/selectableItemBackground"
-                    android:clickable="true"
-                    >
-
-                    <ImageView
+                    android:clickable="true">
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:contentDescription="@string/distance_log"
-                        android:padding="15dp"
-                        android:scaleType="centerInside"
-                        android:backgroundTint="@color/dark_gray"
-                        android:src="@drawable/ic_distance" />
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:id="@+id/iv_distancelog"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_marginTop="5dp"
+                            android:contentDescription="@string/distance_log"
+                            android:scaleType="centerInside"
+                            android:backgroundTint="@color/dark_gray"
+                            android:src="@drawable/ic_distance"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            android:text="@string/distance_log"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_distancelog"
+                            />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -275,14 +291,32 @@
                     android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true">
 
-                    <ImageView
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:contentDescription="@string/repairs_log"
-                        android:padding="15dp"
-                        android:scaleType="centerInside"
-                        android:backgroundTint="@color/dark_gray"
-                        android:src="@drawable/ic_repair" />
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:id="@+id/iv_repairlog"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_marginTop="5dp"
+                            android:contentDescription="@string/repairs_log"
+                            android:scaleType="centerInside"
+                            android:backgroundTint="@color/dark_gray"
+                            android:src="@drawable/ic_repair"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            android:text="@string/repairs_log"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_repairlog"
+                            />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 
 
@@ -306,14 +340,33 @@
                     android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true">
 
-                    <ImageView
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:contentDescription="@string/mods_log"
-                        android:padding="15dp"
-                        android:scaleType="centerInside"
-                        android:backgroundTint="@color/dark_gray"
-                        android:src="@drawable/ic_mods" />
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:id="@+id/iv_modslog"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_marginTop="5dp"
+                            android:contentDescription="@string/mods_log"
+                            android:scaleType="centerInside"
+                            android:backgroundTint="@color/dark_gray"
+                            android:src="@drawable/ic_mods"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            android:text="@string/mods_log"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_modslog"
+                            />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -328,14 +381,32 @@
                     android:foreground="?android:attr/selectableItemBackground"
                     android:clickable="true">
 
-                    <ImageView
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:contentDescription="@string/info"
-                        android:padding="15dp"
-                        android:scaleType="centerInside"
-                        android:backgroundTint="@color/dark_gray"
-                        android:src="@drawable/ic_info" />
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:id="@+id/iv_bikeinfo"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_marginTop="5dp"
+                            android:contentDescription="@string/info"
+                            android:scaleType="centerInside"
+                            android:backgroundTint="@color/dark_gray"
+                            android:src="@drawable/ic_info"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            android:text="@string/info"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_bikeinfo"
+                            />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 
             </TableRow>

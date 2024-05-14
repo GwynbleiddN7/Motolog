@@ -52,7 +52,6 @@
             android:textAlignment="center"
             android:textSize="16dp"
             android:textStyle="italic"
-            android:text="@string/bike_km_date"
             android:textColor="@color/dark_white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

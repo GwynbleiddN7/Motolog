@@ -19,6 +19,7 @@ import com.gwynn7.motolog.ViewModel.MotorcycleViewModel
 import com.gwynn7.motolog.showToast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.gwynn7.motolog.UnitHelper
+import com.gwynn7.motolog.showToastAfterDelay
 import com.gwynn7.motolog.stop
 
 class ModsLogFragment : Fragment() {
@@ -49,6 +50,8 @@ class ModsLogFragment : Fragment() {
             if(bikes.isNotEmpty()) {
                 currentbike = bikes.first()
                 adapter.bindBike(currentbike)
+
+                showToastAfterDelay(adapter, requireContext(), R.string.add_first_mod)
             }
             else stop(activity)
         }

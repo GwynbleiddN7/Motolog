@@ -16,6 +16,7 @@ import android.widget.Button
 import android.widget.CalendarView
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -30,6 +31,8 @@ import com.gwynn7.motolog.ViewModel.GearViewModel
 import com.gwynn7.motolog.longFromDate
 import com.gwynn7.motolog.showToast
 import java.util.Calendar
+import java.util.Timer
+import kotlin.concurrent.timerTask
 
 class GearAddFragment : Fragment() {
     private lateinit var mGearViewModel: GearViewModel
@@ -100,14 +103,14 @@ class GearAddFragment : Fragment() {
         {
             if(currentPath == Path.Add) {
                 mGearViewModel.addGear(Gear(0, manufacturer, model, price.toDouble(), savedDate), tempBitmap)
+                showToast(requireContext(), getString(R.string.gear_added), Toast.LENGTH_LONG)
             }
             else
             {
                 val updatedGear = args.currentGear!!.copy(manufacturer = manufacturer, model = model, price = price.toDouble(), date = savedDate)
                 mGearViewModel.updateGear(updatedGear, tempBitmap, bShouldRemoveImage)
+                showToast(requireContext(), getString(R.string.gear_save))
             }
-
-            showToast(requireContext(), getString(R.string.gear_save))
             findNavController().navigateUp()
         }
         else showToast(requireContext(), getString(R.string.fill_fields))
@@ -153,6 +156,7 @@ class GearAddFragment : Fragment() {
             }
             requireView().findViewById<ImageButton>(R.id.ib_gear_image).setImageBitmap(bitmap)
             tempBitmap = bitmap
+            showToast(requireContext(), getString(R.string.image_saved), Toast.LENGTH_LONG)
         }
     }
 

@@ -1,6 +1,7 @@
 package com.gwynn7.motolog.Fragments.Gear
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -18,6 +19,9 @@ import com.gwynn7.motolog.ViewModel.GearViewModel
 import com.gwynn7.motolog.showToast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.gwynn7.motolog.UnitHelper
+import com.gwynn7.motolog.showToastAfterDelay
+import java.util.Timer
+import kotlin.concurrent.timerTask
 
 class GearListFragment : Fragment() {
     private lateinit var mGearViewModel: GearViewModel
@@ -35,8 +39,8 @@ class GearListFragment : Fragment() {
         mGearViewModel = ViewModelProvider(this)[GearViewModel::class.java]
         mGearViewModel.readAllData.observe(viewLifecycleOwner, Observer {
             gears -> run {
-                if(gears.isEmpty()) showToast(requireContext(), getString(R.string.add_gear))
                 adapter.bindGearList(gears)
+                showToastAfterDelay(adapter, requireContext(), R.string.add_first_gear)
             }
         })
 

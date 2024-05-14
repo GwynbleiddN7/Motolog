@@ -19,7 +19,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.gwynn7.motolog.Models.Motorcycle
 import com.gwynn7.motolog.R
+import com.gwynn7.motolog.UnitHelper
 import com.gwynn7.motolog.ViewModel.MotorcycleViewModel
+import com.gwynn7.motolog.capitalize
 import com.gwynn7.motolog.formatThousand
 import com.gwynn7.motolog.showToast
 import com.gwynn7.motolog.stop
@@ -56,8 +58,12 @@ class BikeHomeFragment : Fragment() {
                     view.findViewById<TextView>(R.id.bike_model).text = currentBike.model
                     view.findViewById<TextView>(R.id.bike_year).text = String.format("%d", currentBike.year)
 
-                    view.findViewById<TextView>(R.id.bike_personalkm).text = formatThousand(currentBike.personal_km)
-                    view.findViewById<TextView>(R.id.bike_totalkm).text = formatThousand(currentBike.personal_km + currentBike.start_km)
+                    view.findViewById<TextView>(R.id.bike_personaldistance).text = formatThousand(currentBike.personal_km)
+                    view.findViewById<TextView>(R.id.bike_totaldistance).text = formatThousand(currentBike.personal_km + currentBike.start_km)
+
+                    view.findViewById<TextView>(R.id.total_bike_distance).text = capitalize(getString(R.string.total_bike_distance, UnitHelper.getDistanceText(requireContext())))
+                    view.findViewById<TextView>(R.id.personal_bike_distance).text = capitalize(getString(R.string.personal_bike_distance, UnitHelper.getDistanceText(requireContext())))
+
 
                     val bikeImage = view.findViewById<ImageView>(R.id.bike_image)
                     if(currentBike.image != null) bikeImage.setImageURI(currentBike.image)

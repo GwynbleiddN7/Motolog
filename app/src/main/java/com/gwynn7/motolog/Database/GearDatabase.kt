@@ -27,7 +27,6 @@ abstract class GearDatabase: RoomDatabase() {
                     GearDatabase::class.java,
                     "gear_db"
                 )
-                instance.fallbackToDestructiveMigration()
                 val built_instance = instance.build()
                 INSTANCE = built_instance
                 return built_instance

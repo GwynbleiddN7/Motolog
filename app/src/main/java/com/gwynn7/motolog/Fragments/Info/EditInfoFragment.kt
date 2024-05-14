@@ -15,7 +15,6 @@ import androidx.navigation.fragment.navArgs
 import com.gwynn7.motolog.R
 import com.gwynn7.motolog.ViewModel.MotorcycleViewModel
 import com.gwynn7.motolog.showToast
-import java.util.Locale
 
 class EditInfoFragment : Fragment() {
     private val args by navArgs<EditInfoFragmentArgs>()
@@ -59,7 +58,7 @@ class EditInfoFragment : Fragment() {
             val bike = args.currentBike
             bike.info.front_tire = front_tire.text.toString()
             bike.info.rear_tire = rear_tire.text.toString()
-            bike.info.plate_number = licenseplate.text.toString().uppercase(Locale.getDefault())
+            bike.info.plate_number = String.format("%S", licenseplate.text.toString())
             bike.info.price = if(price.text.isNotEmpty()) price.text.toString().toDouble() else 0.0
             mMotorcycleViewModel.updateMotorcycle(bike, null)
             showToast(requireContext(), getString(R.string.info_saved))

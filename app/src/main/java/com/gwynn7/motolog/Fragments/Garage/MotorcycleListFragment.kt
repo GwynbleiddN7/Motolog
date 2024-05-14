@@ -1,6 +1,7 @@
 package com.gwynn7.motolog.Fragments.Garage
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -19,6 +20,7 @@ import com.gwynn7.motolog.formatThousand
 import com.gwynn7.motolog.showToast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.gwynn7.motolog.UnitHelper
+import com.gwynn7.motolog.showToastAfterDelay
 
 class MotorcycleListFragment : Fragment() {
     private lateinit var mMotorcycleViewModel: MotorcycleViewModel
@@ -36,8 +38,8 @@ class MotorcycleListFragment : Fragment() {
         mMotorcycleViewModel = ViewModelProvider(this)[MotorcycleViewModel::class.java]
         mMotorcycleViewModel.readAllData.observe(viewLifecycleOwner, Observer {
             motorcycles -> run {
-                if(motorcycles.isEmpty()) showToast(requireContext(), getString(R.string.add_bike))
                 adapter.bindBikeList(motorcycles)
+                showToastAfterDelay(adapter, requireContext(), R.string.add_first_bike)
             }
         })
 

@@ -1,6 +1,7 @@
 package com.gwynn7.motolog.Fragments.DistanceLog
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,8 @@ import com.gwynn7.motolog.Models.Motorcycle
 import com.gwynn7.motolog.R
 import com.gwynn7.motolog.ViewModel.MotorcycleViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.gwynn7.motolog.showToast
+import com.gwynn7.motolog.showToastAfterDelay
 import com.gwynn7.motolog.stop
 
 class DistanceLogFragment : Fragment() {
@@ -44,6 +47,8 @@ class DistanceLogFragment : Fragment() {
             if(bikes.isNotEmpty()) {
                 currentbike = bikes.first()
                 adapter.bindBike(currentbike)
+
+                showToastAfterDelay(adapter, requireContext(), R.string.add_first_distancelog)
             }
             else stop(activity)
         }

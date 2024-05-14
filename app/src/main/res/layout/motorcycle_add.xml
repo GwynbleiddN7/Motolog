@@ -177,7 +177,6 @@ tools:context="com.gwynn7.motolog.Fragments.Garage.MotorcycleAddFragment">
         android:textAlignment="center"
         android:textSize="16dp"
         android:textStyle="italic"
-        android:text="@string/km_when_bought"
         android:textColor="@color/dark_white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

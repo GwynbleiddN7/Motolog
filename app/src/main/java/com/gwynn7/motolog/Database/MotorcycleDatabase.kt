@@ -27,7 +27,6 @@ abstract class MotorcycleDatabase : RoomDatabase() {
                     MotorcycleDatabase::class.java,
                     "motorcycles_db"
                 )
-                instance.fallbackToDestructiveMigration()
                 val built_instance = instance.build()
                 INSTANCE = built_instance
                 return built_instance

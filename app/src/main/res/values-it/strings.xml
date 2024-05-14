@@ -17,8 +17,8 @@
         <item>Revisione completata</item>
         <item>Pagamento bollo moto</item>
         <item>Catena ingrassata</item>
-        <item>Ruota anteriore sostituita</item>
-        <item>Ruota posteriore sostituita</item>
+        <item>Gomma anteriore sostituita</item>
+        <item>Gomma posteriore sostituita</item>
         <item>Liquido freni sostituito</item>
         <item>Olio forcelle sostituito</item>
         <item>Olio motore aggiunto</item>
@@ -43,8 +43,8 @@
     <string name="motorcycles">Moto</string>
     <string name="gear">Abbigliamento</string>
     <string name="gear_editor">Editor abbigliamento</string>
-    <string name="add_bike">Aggiungi una nuova moto!</string>
-    <string name="add_gear">Aggiungi un nuovo abbigliamento!</string>
+    <string name="add_first_bike">Aggiungi ula tua prima moto!</string>
+    <string name="add_first_gear">Aggiungi il tuo primo abbigliamento!</string>
     <string name="total_distance">Distanza totale</string>
     <string name="log_nomatch_2">Questo log è incompatibile con le dati o la distanza di altri log</string>
     <string name="log_nomatch_1">Questo log è incompatibile con l\'anno o la distanza della tua moto</string>
@@ -78,19 +78,19 @@
     <string name="model">Modello</string>
     <string name="optional">Opzionale</string>
     <string name="alias">Alias</string>
-    <string name="km_when_bought">Km all\'acquisto</string>
+    <string name="distance_when_bought">%s all\'acquisto</string>
     <string name="title">Titolo</string>
     <string name="description">Descrizione</string>
     <string name="exhaust">Scarico</string>
     <string name="day_of_purchase">Giorno acquisto</string>
-    <string name="bike_km_date">Km moto alla data specificata</string>
-    <string name="total_km">Km totali</string>
-    <string name="personal_km">Km personali</string>
+    <string name="bike_distance_date">%s moto alla data specificata</string>
+    <string name="total_bike_distance">%s totali</string>
+    <string name="personal_bike_distance">%s personali</string>
     <string name="save">Salva</string>
     <string name="edit">Modifica</string>
-    <string name="bike_repair_km">Km manutenzione</string>
+    <string name="bike_repair_distance">%s manutenzione</string>
     <string name="done_at">Eseguita a:</string>
-    <string name="bike_add">Moto salvata, premici sopra per personalizzarla!</string>
+    <string name="bike_add">Moto salvata, premici per personalizzarla!</string>
     <string name="cylinders">Cilindri</string>
     <string name="horse_power">Potenza (CV)</string>
     <string name="engine_cc">Cilindrata (CC)</string>
@@ -117,5 +117,14 @@
     <string name="language">Lingua</string>
     <string name="kilometers">Chilometri</string>
     <string name="miles">Miglia</string>
+    <string name="miles_undercase">miglia</string>
     <string name="currency">Valuta</string>
+    <string name="gear_added">Abbigliamento salvato, premici per visualizzarlo!</string>
+    <string name="image_saved">Immagine salvata! Tieni premuto per eliminarla</string>
+    <string name="import_data">Importa dati</string>
+    <string name="export_data">Esporta dati</string>
+    <string name="todo">Non ancora implementato</string>
+    <string name="add_first_mod">Aggiungi la tua prima modifica!</string>
+    <string name="add_first_distancelog">Aggiungi il tuo primo log di distanza!</string>
+    <string name="add_first_repair">Aggiungi la tua prima manutenzione!</string>
 </resources>

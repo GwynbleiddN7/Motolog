@@ -15,6 +15,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -27,7 +29,9 @@ import com.gwynn7.motolog.Models.Motorcycle
 import com.gwynn7.motolog.Models.getUpdatedBikeDistance
 import com.gwynn7.motolog.Path
 import com.gwynn7.motolog.R
+import com.gwynn7.motolog.UnitHelper
 import com.gwynn7.motolog.ViewModel.MotorcycleViewModel
+import com.gwynn7.motolog.capitalize
 import com.gwynn7.motolog.showToast
 import com.gwynn7.motolog.yearFromLong
 import java.util.Calendar
@@ -47,6 +51,7 @@ class MotorcycleAddFragment : Fragment() {
 
         if(args.currentMotorcycle != null) currentPath = Path.Edit
 
+        view.findViewById<TextView>(R.id.textView_bike_distance_pre).text = capitalize(getString(R.string.distance_when_bought, UnitHelper.getDistanceText(requireContext())))
         val imageAdd = view.findViewById<ImageButton>(R.id.ib_bike_image)
 
         if(currentPath == Path.Edit) {
@@ -133,7 +138,7 @@ class MotorcycleAddFragment : Fragment() {
             {
                 val motorcycle = Motorcycle(0, manufacturer, model, name, yearInt, km)
                 mMotorcycleViewModel.addMotorcycle(motorcycle, tempBitmap)
-                showToast(requireContext(), getString(R.string.bike_add))
+                showToast(requireContext(), getString(R.string.bike_add), Toast.LENGTH_LONG)
             }
 
             findNavController().navigateUp()
@@ -186,6 +191,7 @@ class MotorcycleAddFragment : Fragment() {
             }
             requireView().findViewById<ImageButton>(R.id.ib_bike_image).setImageBitmap(bitmap)
             tempBitmap = bitmap
+            showToast(requireContext(), getString(R.string.image_saved), Toast.LENGTH_LONG)
         }
     }
 
