@@ -136,7 +136,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
-            android:text="@string/price_in_euros"
+            android:text="@string/price"
             android:textAlignment="center"
             android:textColor="@color/dark_white"
             android:textSize="16dp"

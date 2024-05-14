@@ -80,7 +80,7 @@
                             android:layout_weight="1"
                             android:textStyle="bold"
                             android:paddingTop="5dp"
-                            android:inputType="number"
+                            android:inputType="numberDecimal"
                             android:layout_marginHorizontal="50dp"
                             android:textColor="@color/white"
                             android:textAlignment="center"

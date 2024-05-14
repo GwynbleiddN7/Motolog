@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gwynn7.motolog.Models.DistanceLog
 import com.gwynn7.motolog.Models.Motorcycle
 import com.gwynn7.motolog.R
+import com.gwynn7.motolog.UnitHelper
 import com.gwynn7.motolog.formatThousand
 import com.gwynn7.motolog.longToDateString
 
@@ -33,12 +34,12 @@ class DistanceLogAdapter : RecyclerView.Adapter<DistanceLogAdapter.MyViewHolder>
 
         val distanceTextView = holder.itemView.findViewById<TextView>(R.id.tw_distance_log)
         distanceTextView.isSelected = true
-        distanceTextView.text = String.format("%S km", formatThousand(currentItem.distance))
+        distanceTextView.text = String.format("%s %s", formatThousand(currentItem.distance), UnitHelper.getDistance())
 
         holder.itemView.findViewById<TextView>(R.id.tw_distance_date).text = longToDateString(currentItem.date)
 
         val deltaDistance = if(position < distanceLogList.size-1) currentItem.distance - distanceLogList[position+1].distance else currentItem.distance - currentBike.start_km
-        holder.itemView.findViewById<TextView>(R.id.tw_distance_difference).text = String.format("+%S km", formatThousand(deltaDistance))
+        holder.itemView.findViewById<TextView>(R.id.tw_distance_difference).text = String.format("+%s %s", formatThousand(deltaDistance), UnitHelper.getDistance())
 
         holder.itemView.findViewById<CardView>(R.id.cv_distance_row).setOnClickListener {
             val action = DistanceLogFragmentDirections.distancelogToDistanceadd(currentBike, position)

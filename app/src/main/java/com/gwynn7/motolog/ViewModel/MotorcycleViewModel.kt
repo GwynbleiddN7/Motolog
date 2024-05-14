@@ -63,7 +63,7 @@ class MotorcycleViewModel(application: Application): AndroidViewModel(applicatio
     }
 
     private fun saveImage(bitmap: Bitmap): Uri {
-        val filePath = File(imageDirectory, String.format("%S.jpg", UUID.randomUUID().toString()))
+        val filePath = File(imageDirectory, String.format("%s.jpg", UUID.randomUUID().toString()))
         val outputStream: OutputStream = FileOutputStream(filePath)
         bitmap.compress(Bitmap.CompressFormat.JPEG, 85, outputStream)
         outputStream.flush()

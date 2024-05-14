@@ -18,6 +18,7 @@ import com.gwynn7.motolog.ViewModel.MotorcycleViewModel
 import com.gwynn7.motolog.formatThousand
 import com.gwynn7.motolog.showToast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.gwynn7.motolog.UnitHelper
 
 class MotorcycleListFragment : Fragment() {
     private lateinit var mMotorcycleViewModel: MotorcycleViewModel
@@ -57,7 +58,7 @@ class MotorcycleListFragment : Fragment() {
             var totalDistance = 0
             val bikesList = mMotorcycleViewModel.readAllData.value!!
             for (bike in bikesList) totalDistance += bike.personal_km
-            showToast(requireContext(), "${getString(R.string.total_distance)}: ${String.format("%S km", formatThousand(totalDistance))}")
+            showToast(requireContext(), "${getString(R.string.total_distance)}: ${String.format("%s %s", formatThousand(totalDistance), UnitHelper.getDistance())}")
         }
         return super.onContextItemSelected(item)
     }

@@ -54,10 +54,10 @@
                     android:id="@+id/bike_manufacturer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="10dp"
                     android:textAlignment="center"
                     android:textAllCaps="true"
-                    android:textSize="25dp"
+                    android:textSize="24dp"
                     android:textStyle="italic"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +67,6 @@
                     android:id="@+id/bike_model"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textSize="36dp"
@@ -83,7 +82,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/bike_model"
-                    android:layout_marginTop="28dp">
+                    android:layout_marginTop="20dp">
 
                     <TableRow
                         android:layout_width="match_parent"

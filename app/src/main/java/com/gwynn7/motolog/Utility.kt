@@ -3,6 +3,10 @@ package com.gwynn7.motolog
 import android.app.Activity
 import android.content.Context
 import android.widget.Toast
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -25,6 +29,51 @@ val repairColors = arrayOf(
     R.color.pink,
     R.color.white
 )
+
+object UnitHelper
+{
+    private val distanceKey = stringPreferencesKey("distance")
+    private val currencyKey = stringPreferencesKey("currency")
+
+    enum class Currency(val value: String){
+        EUR("€"),
+        USD("$"),
+        GBP("£"),
+        JPY("¥")
+    }
+
+    enum class Distance(val value: String){
+        KM("km"),
+        MILES("mi"),
+    }
+
+    lateinit var distance: Distance
+    lateinit var currency: Currency
+
+    fun getDistance() = distance.value
+    fun getCurrency() = currency.value
+
+    fun loadData(context: Context) {
+        runBlocking {
+            val settings = context.settings.data.first()
+            distance = fromDistance(settings[distanceKey] ?: Distance.KM.value)
+            currency = fromCurrency(settings[currencyKey] ?: Currency.EUR.value)
+        }
+    }
+
+    fun saveDistance(context: Context, newDistance: Distance) {
+        runBlocking { context.settings.edit { settings -> settings[distanceKey] = newDistance.value }}
+        distance = newDistance
+    }
+    fun saveCurrency(context: Context, newCurrency: Currency) {
+        runBlocking { context.settings.edit { settings -> settings[currencyKey] = newCurrency.value }}
+        currency = newCurrency
+    }
+
+    private fun fromDistance(value: String): Distance = Distance.entries.first { it.value == value }
+    private fun fromCurrency(value: String): Currency = Currency.entries.first { it.value == value }
+
+}
 
 fun longToDateString(date: Long): String{
     val simpleDateFormat by lazy { SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()) }
@@ -50,7 +99,6 @@ fun formatThousand(number: Int): String{
     return formatter.format(number)
 }
 
-fun stop(activity: Activity?)
-{
+fun stop(activity: Activity?) {
     activity?.finish()
 }

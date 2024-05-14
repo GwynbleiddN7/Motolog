@@ -46,8 +46,8 @@
     <string name="add_bike">Add a new motorcycle!</string>
     <string name="add_gear">Add a new gear!</string>
     <string name="total_distance">Total distance</string>
-    <string name="log_nomatch_1">This log does not match bike\'s year or kilometers</string>
-    <string name="log_nomatch_2">This log does not match other log\'s dates or kilometers</string>
+    <string name="log_nomatch_1">This log does not match bike\'s year or distance</string>
+    <string name="log_nomatch_2">This log does not match other log\'s dates or distance</string>
     <string name="add_motorcycle">Add Motorcycle</string>
     <string name="edit_motorcycle">Edit Motorcycle</string>
     <string name="delete_logs">Delete the logs?</string>
@@ -69,12 +69,11 @@
     <string name="bike_future">Bike from the future not allowed</string>
     <string name="bike_past">Bikes didn\'t exist before 1900</string>
     <string name="log_mismatch">Distance logs mismatch found</string>
-    <string name="log_mismatch_action">Some logs happened before the new date or with less kilometers will be eliminated</string>
+    <string name="log_mismatch_action">Some logs happened before the new date or with less distance will be eliminated</string>
     <string name="type">Type</string>
     <string name="notes">Notes</string>
     <string name="maintenance_type">Maintenance type</string>
     <string name="maintenance_notes">Maintenance notes</string>
-    <string name="price_in_euros">Price in €</string>
     <string name="manufacturer">Manufacturer</string>
     <string name="model">Model</string>
     <string name="optional">Optional</string>
@@ -116,4 +115,8 @@
     <string name="more">More</string>
     <string name="not_updated">Not updated</string>
     <string name="not_set">Not set</string>
+    <string name="language">Language</string>
+    <string name="kilometers">Kilometers</string>
+    <string name="miles">Miles</string>
+    <string name="currency">Currency</string>
 </resources>

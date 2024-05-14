@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gwynn7.motolog.BikeActivity
 import com.gwynn7.motolog.Models.Motorcycle
 import com.gwynn7.motolog.R
+import com.gwynn7.motolog.UnitHelper
 import com.gwynn7.motolog.formatThousand
 
 class MotorcycleListAdapter: RecyclerView.Adapter<MotorcycleListAdapter.MyViewHolder>() {
@@ -36,7 +37,7 @@ class MotorcycleListAdapter: RecyclerView.Adapter<MotorcycleListAdapter.MyViewHo
         holder.itemView.findViewById<TextView>(R.id.tw_bike_alias).text = currentItem.alias
         holder.itemView.findViewById<TextView>(R.id.tw_bike_year).text = String.format("${getString(holder.itemView.context, R.string.year)}: %d", currentItem.year)
 
-        val distance = String.format("${holder.itemView.context.getString(R.string.distance)}: %S km", formatThousand(currentItem.personal_km))
+        val distance = String.format("${holder.itemView.context.getString(R.string.distance)}: %s %s", formatThousand(currentItem.personal_km), UnitHelper.getDistance())
         holder.itemView.findViewById<TextView>(R.id.tw_bike_distance).text = distance
 
         val motorcycleRow = holder.itemView.findViewById<CardView>(R.id.cv_bike_row)

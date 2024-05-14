@@ -18,6 +18,7 @@ import com.gwynn7.motolog.R
 import com.gwynn7.motolog.ViewModel.MotorcycleViewModel
 import com.gwynn7.motolog.showToast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.gwynn7.motolog.UnitHelper
 import com.gwynn7.motolog.stop
 
 class RepairsLogFragment : Fragment() {
@@ -70,7 +71,7 @@ class RepairsLogFragment : Fragment() {
             var totalMoney = 0.0
             val modsList = currentbike.logs.maintenance
             for (mod in modsList) totalMoney += mod.price
-            showToast(requireContext(), "${getString(R.string.total_spent)}: ${String.format("%.2f€", totalMoney)}")
+            showToast(requireContext(), "${getString(R.string.total_spent)}: ${String.format("%.2f%s", totalMoney, UnitHelper.getCurrency())}")
         }
         return super.onContextItemSelected(item)
     }

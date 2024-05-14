@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.gwynn7.motolog.Models.Motorcycle
 import com.gwynn7.motolog.R
+import com.gwynn7.motolog.UnitHelper
 import com.gwynn7.motolog.ViewModel.MotorcycleViewModel
 import com.gwynn7.motolog.longToDateString
 import com.gwynn7.motolog.stop
@@ -47,7 +48,7 @@ class InfoFragment : Fragment() {
                 view.findViewById<TextView>(R.id.bike_torque).text = currentbike.info.torque.toString()
                 view.findViewById<TextView>(R.id.bike_cylinders).text = currentbike.info.cylinders.toString()
 
-                view.findViewById<TextView>(R.id.bike_price).text = String.format("%.2f€", currentbike.info.price)
+                view.findViewById<TextView>(R.id.bike_price).text = String.format("%.2f%s", currentbike.info.price, UnitHelper.getCurrency())
                 view.findViewById<TextView>(R.id.bike_license_plate).text = currentbike.info.plate_number.ifEmpty { getString(R.string.not_set) }
                 view.findViewById<TextView>(R.id.bike_front_tire).text = currentbike.info.front_tire.ifEmpty { getString(R.string.not_set)  }
                 view.findViewById<TextView>(R.id.bike_rear_tire).text = currentbike.info.rear_tire.ifEmpty { getString(R.string.not_set)  }

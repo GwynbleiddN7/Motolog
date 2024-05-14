@@ -10,6 +10,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.gwynn7.motolog.Models.Gear
 import com.gwynn7.motolog.R
+import com.gwynn7.motolog.UnitHelper
 import com.gwynn7.motolog.longToDateString
 
 class GearListAdapter : RecyclerView.Adapter<GearListAdapter.MyViewHolder>() {
@@ -30,9 +31,9 @@ class GearListAdapter : RecyclerView.Adapter<GearListAdapter.MyViewHolder>() {
         gearModel.text = currentItem.model
 
         holder.itemView.findViewById<TextView>(R.id.tw_gear_manufacturer).text = currentItem.manufacturer
-        holder.itemView.findViewById<TextView>(R.id.tw_gear_date).text = String.format("${holder.itemView.resources.getString(R.string.date)}: %S", longToDateString(currentItem.date))
+        holder.itemView.findViewById<TextView>(R.id.tw_gear_date).text = String.format("${holder.itemView.resources.getString(R.string.date)}: %s", longToDateString(currentItem.date))
 
-        val price = String.format("${holder.itemView.resources.getString(R.string.price)}: %.2f€", currentItem.price)
+        val price = String.format("${holder.itemView.resources.getString(R.string.price)}: %.2f%s", currentItem.price, UnitHelper.getCurrency())
         holder.itemView.findViewById<TextView>(R.id.tw_gear_price).text = price
 
         val gearImage = holder.itemView.findViewById<ImageView>(R.id.gear_image)

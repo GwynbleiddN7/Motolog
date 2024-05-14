@@ -1,20 +1,29 @@
 package com.gwynn7.motolog
 
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.gwynn7.motolog.R
-import com.gwynn7.motolog.ViewModel.MotorcycleViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.gwynn7.motolog.ViewModel.MotorcycleViewModel
+import kotlinx.coroutines.launch
 
+val Context.settings: DataStore<Preferences> by preferencesDataStore(name = "settings")
 class MainActivity : AppCompatActivity() {
     private var lastHomeFragmentId: Int = 0;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        UnitHelper.loadData(applicationContext)
 
         val appBarConfiguration = AppBarConfiguration(setOf(
             R.id.motorcycle_nav,
@@ -36,6 +45,10 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+    }
+
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(LocaleHelper.onAttach(base))
     }
 
     override fun onSupportNavigateUp(): Boolean {

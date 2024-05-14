@@ -17,6 +17,7 @@ import com.gwynn7.motolog.R
 import com.gwynn7.motolog.ViewModel.GearViewModel
 import com.gwynn7.motolog.showToast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.gwynn7.motolog.UnitHelper
 
 class GearListFragment : Fragment() {
     private lateinit var mGearViewModel: GearViewModel
@@ -56,7 +57,7 @@ class GearListFragment : Fragment() {
             var totalMoney = 0.0
             val gearList = mGearViewModel.readAllData.value!!
             for (gear in gearList) totalMoney += gear.price
-            showToast(requireContext(), "${getString(R.string.total_spent)}: ${String.format("%.2f€", totalMoney)}")
+            showToast(requireContext(), "${getString(R.string.total_spent)}: ${String.format("%.2f%s", totalMoney, UnitHelper.getCurrency())}")
         }
         return super.onContextItemSelected(item)
     }

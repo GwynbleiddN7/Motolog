@@ -46,8 +46,8 @@
     <string name="add_bike">Aggiungi una nuova moto!</string>
     <string name="add_gear">Aggiungi un nuovo abbigliamento!</string>
     <string name="total_distance">Distanza totale</string>
-    <string name="log_nomatch_2">Questo log è incompatibile con le dati o i chilometri di altri log</string>
-    <string name="log_nomatch_1">Questo log è incompatibile con l\'anno o i chilometri della tua moto</string>
+    <string name="log_nomatch_2">Questo log è incompatibile con le dati o la distanza di altri log</string>
+    <string name="log_nomatch_1">Questo log è incompatibile con l\'anno o la distanza della tua moto</string>
     <string name="add_motorcycle">Aggiungi Moto</string>
     <string name="edit_motorcycle">Modifica Moto</string>
     <string name="delete_logs">Eliminare i log</string>
@@ -69,12 +69,11 @@
     <string name="bike_future">Moto dal futuro non sono ammesse</string>
     <string name="bike_past">Le moto non esistevano prima del 1900</string>
     <string name="log_mismatch">Discordanza tra log di distanza percorsa</string>
-    <string name="log_mismatch_action">I log avvenuti prima della nuova data e con meno chilometri verrano eliminati</string>
+    <string name="log_mismatch_action">I log avvenuti prima della nuova data e con meno distanza verrano eliminati</string>
     <string name="type">Tipo</string>
     <string name="notes">Note</string>
     <string name="maintenance_type">Tipo manutenzione</string>
     <string name="maintenance_notes">Note sulla manutenzione</string>
-    <string name="price_in_euros">Prezzo in €</string>
     <string name="manufacturer">Marca</string>
     <string name="model">Modello</string>
     <string name="optional">Opzionale</string>
@@ -115,4 +114,8 @@
     <string name="more">More</string>
     <string name="not_updated">Non aggiornata</string>
     <string name="not_set">Non impostata</string>
+    <string name="language">Lingua</string>
+    <string name="kilometers">Chilometri</string>
+    <string name="miles">Miglia</string>
+    <string name="currency">Valuta</string>
 </resources>

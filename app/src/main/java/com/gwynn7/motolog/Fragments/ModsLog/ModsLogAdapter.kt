@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gwynn7.motolog.Models.ModsLog
 import com.gwynn7.motolog.Models.Motorcycle
 import com.gwynn7.motolog.R
+import com.gwynn7.motolog.UnitHelper
 import com.gwynn7.motolog.longToDateString
 import com.gwynn7.motolog.repairColors
 
@@ -36,7 +37,7 @@ class ModsLogAdapter: RecyclerView.Adapter<ModsLogAdapter.MyViewHolder>(){
         holder.itemView.findViewById<TextView>(R.id.tw_mod_description).text = currentItem.description
         holder.itemView.findViewById<TextView>(R.id.tw_mod_date).text = longToDateString(currentItem.date)
 
-        val price = String.format("${holder.itemView.resources.getString(R.string.price)}: %.2f€", currentItem.price)
+        val price = String.format("${holder.itemView.resources.getString(R.string.price)}: %.2f%s", currentItem.price, UnitHelper.getCurrency())
         holder.itemView.findViewById<TextView>(R.id.tw_mod_price).text = price
 
         holder.itemView.findViewById<ImageView>(R.id.mod_image).setColorFilter(holder.itemView.resources.getColor(

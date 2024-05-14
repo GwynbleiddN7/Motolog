@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.gwynn7.motolog.R
+import com.gwynn7.motolog.UnitHelper
 import com.gwynn7.motolog.ViewModel.GearViewModel
 import com.gwynn7.motolog.longToDateString
 
@@ -40,7 +41,7 @@ class GearShowFragment : Fragment() {
                     val gear = gears.first()
                     view.findViewById<TextView>(R.id.tw_gear_model).text = gear.model
                     view.findViewById<TextView>(R.id.tw_gear_manufacturer).text = gear.manufacturer
-                    view.findViewById<TextView>(R.id.tw_gear_price).text = String.format("%.2f€", gear.price)
+                    view.findViewById<TextView>(R.id.tw_gear_price).text = String.format("%.2f%s", gear.price, UnitHelper.getCurrency())
                     view.findViewById<TextView>(R.id.tw_gear_date).text = longToDateString(gear.date)
 
                     val gearImage = view.findViewById<ImageView>(R.id.iv_gear_image_show)

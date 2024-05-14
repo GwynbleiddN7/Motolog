@@ -1,5 +1,6 @@
 package com.gwynn7.motolog
 
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -25,5 +26,8 @@ class BikeActivity : AppCompatActivity() {
     private fun getNavController(): NavController {
         val navHost = supportFragmentManager.findFragmentById(R.id.bike_home_nav) as NavHostFragment
         return navHost.navController
+    }
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(LocaleHelper.onAttach(base))
     }
 }

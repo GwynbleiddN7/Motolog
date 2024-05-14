@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gwynn7.motolog.Models.Motorcycle
 import com.gwynn7.motolog.Models.RepairsLog
 import com.gwynn7.motolog.R
+import com.gwynn7.motolog.UnitHelper
 import com.gwynn7.motolog.formatThousand
 import com.gwynn7.motolog.longToDateString
 import com.gwynn7.motolog.repairColors
@@ -43,10 +44,10 @@ class RepairsLogAdapter: RecyclerView.Adapter<RepairsLogAdapter.MyViewHolder>() 
         holder.itemView.findViewById<ImageView>(R.id.repair_image).setColorFilter(holder.itemView.resources.getColor(
             repairColors[id], null));
 
-        val price = String.format("${holder.itemView.resources.getString(R.string.price)}: %.2f€", currentItem.price)
+        val price = String.format("${holder.itemView.resources.getString(R.string.price)}: %.2f%s", currentItem.price, UnitHelper.getCurrency())
         holder.itemView.findViewById<TextView>(R.id.tw_repair_price).text = price
 
-        val distance = String.format("%S km", formatThousand(currentItem.repair_km))
+        val distance = String.format("%s %s", formatThousand(currentItem.repair_km), UnitHelper.getDistance())
         holder.itemView.findViewById<TextView>(R.id.tw_repair_distance).text = distance
 
         holder.itemView.findViewById<CardView>(R.id.cv_repairs_row).setOnClickListener {
