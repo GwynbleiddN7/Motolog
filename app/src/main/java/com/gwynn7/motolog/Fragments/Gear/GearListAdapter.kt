@@ -33,11 +33,11 @@ class GearListAdapter : RecyclerView.Adapter<GearListAdapter.MyViewHolder>() {
         holder.itemView.findViewById<TextView>(R.id.tw_gear_manufacturer).text = currentItem.manufacturer
         holder.itemView.findViewById<TextView>(R.id.tw_gear_date).text = String.format("${holder.itemView.resources.getString(R.string.date)}: %s", longToDateString(currentItem.date))
 
-        val price = String.format("${holder.itemView.resources.getString(R.string.price)}: %.2f%s", currentItem.price, UnitHelper.getCurrency())
+        val price = String.format("%.2f%s", currentItem.price, UnitHelper.getCurrency())
         holder.itemView.findViewById<TextView>(R.id.tw_gear_price).text = price
 
         val gearImage = holder.itemView.findViewById<ImageView>(R.id.gear_image)
-        if(currentItem.image != null) gearImage.setImageURI(currentItem.image)
+        if(currentItem.image != null) gearImage.setImageURI(currentItem.listImage)
         else gearImage.setImageResource(R.drawable.helmet_list)
 
         val item = holder.itemView.findViewById<CardView>(R.id.cv_gear_row)

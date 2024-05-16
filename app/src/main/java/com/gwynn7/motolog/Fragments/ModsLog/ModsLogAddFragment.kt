@@ -82,7 +82,7 @@ class ModsLogAddFragment : Fragment() {
             if(currentPath == Path.Edit) modsLogList[args.logIndex] = newLog
             else modsLogList.add(0, newLog)
 
-            bike.logs.mods = modsLogList
+            bike.logs.mods = modsLogList.sortedBy { log -> log.date }.reversed()
             mMotorcycleViewModel.updateMotorcycle(bike, null)
 
             showToast(requireContext(), getString(R.string.log_saved))

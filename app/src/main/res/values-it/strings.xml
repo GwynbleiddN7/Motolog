@@ -115,8 +115,8 @@
     <string name="not_updated">Non aggiornata</string>
     <string name="not_set">Non impostata</string>
     <string name="language">Lingua</string>
-    <string name="kilometers">Chilometri</string>
-    <string name="miles">Miglia</string>
+    <string name="kilometers">Chilometri (km)</string>
+    <string name="miles">Miglia (mi)</string>
     <string name="miles_undercase">miglia</string>
     <string name="currency">Valuta</string>
     <string name="gear_added">Abbigliamento salvato, premici per visualizzarlo!</string>

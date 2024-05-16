@@ -5,9 +5,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.gwynn7.motolog.Models.Gear
 
-@Database(entities = [Gear::class], version = 3, exportSchema = true)
+@Database(entities = [Gear::class], version = 4, exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class GearDatabase: RoomDatabase() {
     abstract fun gearDao(): GearDAO
@@ -27,10 +29,17 @@ abstract class GearDatabase: RoomDatabase() {
                     GearDatabase::class.java,
                     "gear_db"
                 )
-                val built_instance = instance.build()
-                INSTANCE = built_instance
-                return built_instance
+                instance.addMigrations(MigrationFrom3To4())
+                instance.fallbackToDestructiveMigration()
+                val builtInstance = instance.build()
+                INSTANCE = builtInstance
+                return builtInstance
             }
         }
+    }
+}
+class MigrationFrom3To4 : Migration(3, 4) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL("ALTER TABLE gear ADD COLUMN listImage TYPE TEXT");
     }
 }

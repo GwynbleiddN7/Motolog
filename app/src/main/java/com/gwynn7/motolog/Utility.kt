@@ -2,13 +2,18 @@ package com.gwynn7.motolog
 
 import android.app.Activity
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Rect
+import android.net.Uri
 import android.os.Handler
 import android.widget.Toast
+import androidx.core.graphics.BitmapCompat
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
+import java.io.File
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -116,4 +121,26 @@ fun <T : RecyclerView.ViewHolder?> showToastAfterDelay(adapter: RecyclerView.Ada
 
 fun stop(activity: Activity?) {
     activity?.finish()
+}
+
+fun getResizedBitmap(image: Bitmap, maxSize: Int): Bitmap {
+    var width = image.width
+    var height = image.height
+
+    val bitmapRatio = width.toFloat() / height.toFloat()
+    if (bitmapRatio > 1) {
+        width = maxSize
+        height = (width / bitmapRatio).toInt()
+    } else {
+        height = maxSize
+        width = (height * bitmapRatio).toInt()
+    }
+    return Bitmap.createScaledBitmap(image, width, height, true)
+}
+
+fun deleteImage(image: Uri?) {
+    if(image != null){
+        val oldFile = File(image.path!!)
+        if(oldFile.exists()) oldFile.delete()
+    }
 }

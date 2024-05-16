@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.gwynn7.motolog.Fragments.Home.BikeHomeFragment"
-    android:visibility="invisible"
     android:id="@+id/bike_home">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -256,8 +255,8 @@
                         android:layout_height="match_parent">
                         <ImageView
                             android:id="@+id/iv_distancelog"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
+                            android:layout_width="65dp"
+                            android:layout_height="65dp"
                             android:layout_marginTop="5dp"
                             android:contentDescription="@string/distance_log"
                             android:scaleType="centerInside"
@@ -272,6 +271,7 @@
                             android:textAlignment="center"
                             android:textStyle="bold"
                             android:text="@string/distance_log"
+                            android:layout_marginTop="3dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/iv_distancelog"
@@ -296,8 +296,8 @@
                         android:layout_height="match_parent">
                         <ImageView
                             android:id="@+id/iv_repairlog"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
+                            android:layout_width="65dp"
+                            android:layout_height="65dp"
                             android:layout_marginTop="5dp"
                             android:contentDescription="@string/repairs_log"
                             android:scaleType="centerInside"
@@ -312,6 +312,7 @@
                             android:textAlignment="center"
                             android:textStyle="bold"
                             android:text="@string/repairs_log"
+                            android:layout_marginTop="3dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/iv_repairlog"
@@ -345,8 +346,8 @@
                         android:layout_height="match_parent">
                         <ImageView
                             android:id="@+id/iv_modslog"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
+                            android:layout_width="65dp"
+                            android:layout_height="65dp"
                             android:layout_marginTop="5dp"
                             android:contentDescription="@string/mods_log"
                             android:scaleType="centerInside"
@@ -361,6 +362,7 @@
                             android:textAlignment="center"
                             android:textStyle="bold"
                             android:text="@string/mods_log"
+                            android:layout_marginTop="3dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/iv_modslog"
@@ -386,8 +388,8 @@
                         android:layout_height="match_parent">
                         <ImageView
                             android:id="@+id/iv_bikeinfo"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
+                            android:layout_width="65dp"
+                            android:layout_height="65dp"
                             android:layout_marginTop="5dp"
                             android:contentDescription="@string/info"
                             android:scaleType="centerInside"
@@ -402,6 +404,7 @@
                             android:textAlignment="center"
                             android:textStyle="bold"
                             android:text="@string/info"
+                            android:layout_marginTop="3dp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/iv_bikeinfo"

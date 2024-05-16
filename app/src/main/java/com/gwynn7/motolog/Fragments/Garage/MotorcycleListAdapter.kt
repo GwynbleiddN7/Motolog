@@ -37,13 +37,13 @@ class MotorcycleListAdapter: RecyclerView.Adapter<MotorcycleListAdapter.MyViewHo
         holder.itemView.findViewById<TextView>(R.id.tw_bike_alias).text = currentItem.alias
         holder.itemView.findViewById<TextView>(R.id.tw_bike_year).text = String.format("${getString(holder.itemView.context, R.string.year)}: %d", currentItem.year)
 
-        val distance = String.format("${holder.itemView.context.getString(R.string.distance)}: %s %s", formatThousand(currentItem.personal_km), UnitHelper.getDistance())
+        val distance = String.format("%s %s", formatThousand(currentItem.personal_km), UnitHelper.getDistance())
         holder.itemView.findViewById<TextView>(R.id.tw_bike_distance).text = distance
 
         val motorcycleRow = holder.itemView.findViewById<CardView>(R.id.cv_bike_row)
 
         val bikeImage = holder.itemView.findViewById<ImageView>(R.id.motorcycle_image)
-        if(currentItem.image != null) bikeImage.setImageURI(currentItem.image)
+        if(currentItem.image != null) bikeImage.setImageURI(currentItem.listImage)
         else bikeImage.setImageResource(R.drawable.bike)
 
         motorcycleRow.setOnClickListener {

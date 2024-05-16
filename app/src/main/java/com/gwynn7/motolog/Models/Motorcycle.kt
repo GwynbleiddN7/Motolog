@@ -19,6 +19,7 @@ data class Motorcycle(
     val start_km: Int,
     var personal_km: Int = 0,
     var image: Uri? = null,
+    var listImage: Uri? = null,
     @Embedded
     var logs: Logs = Logs(),
     @Embedded

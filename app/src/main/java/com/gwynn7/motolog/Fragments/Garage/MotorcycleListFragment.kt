@@ -38,7 +38,7 @@ class MotorcycleListFragment : Fragment() {
         mMotorcycleViewModel = ViewModelProvider(this)[MotorcycleViewModel::class.java]
         mMotorcycleViewModel.readAllData.observe(viewLifecycleOwner, Observer {
             motorcycles -> run {
-                adapter.bindBikeList(motorcycles)
+                adapter.bindBikeList(motorcycles.reversed())
                 showToastAfterDelay(adapter, requireContext(), R.string.add_first_bike)
             }
         })

@@ -115,8 +115,8 @@
     <string name="not_updated">Not updated</string>
     <string name="not_set">Not set</string>
     <string name="language">Language</string>
-    <string name="kilometers">Kilometers</string>
-    <string name="miles">Miles</string>
+    <string name="kilometers">Kilometers (km)</string>
+    <string name="miles">Miles (mi)</string>
     <string name="miles_undercase">miles</string>
     <string name="currency">Currency</string>
     <string name="gear_added">Gear saved, press on it to view!</string>

@@ -39,7 +39,7 @@ class GearListFragment : Fragment() {
         mGearViewModel = ViewModelProvider(this)[GearViewModel::class.java]
         mGearViewModel.readAllData.observe(viewLifecycleOwner, Observer {
             gears -> run {
-                adapter.bindGearList(gears)
+                adapter.bindGearList(gears.sortedBy { gear -> gear.date }.reversed() )
                 showToastAfterDelay(adapter, requireContext(), R.string.add_first_gear)
             }
         })

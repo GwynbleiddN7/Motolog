@@ -16,4 +16,5 @@ data class Gear(
     val price: Double,
     val date: Long,
     var image: Uri? = null,
+    var listImage: Uri? = null,
 ): Parcelable
