@@ -15,8 +15,8 @@ android {
         applicationId = "com.gwynn7.motolog"
         minSdk = 26
         targetSdk = 34
-        versionCode = 5
-        versionName = "1.3.1"
+        versionCode = 6
+        versionName = "1.4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -57,8 +57,7 @@ dependencies {
 
     implementation("com.google.code.gson:gson:2.8.7")
     implementation("com.vanniktech:android-image-cropper:4.5.0")
-    implementation("com.squareup.picasso:picasso:2.5.2")
-
+    implementation("de.raphaelebner:roomdatabasebackup:1.0.1")
     val room_version = "2.6.1"
     implementation("androidx.room:room-runtime:$room_version")
     kapt("androidx.room:room-compiler:$room_version")

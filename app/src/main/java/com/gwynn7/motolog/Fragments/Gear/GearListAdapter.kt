@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.net.toFile
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.gwynn7.motolog.Models.Gear
@@ -37,7 +38,7 @@ class GearListAdapter : RecyclerView.Adapter<GearListAdapter.MyViewHolder>() {
         holder.itemView.findViewById<TextView>(R.id.tw_gear_price).text = price
 
         val gearImage = holder.itemView.findViewById<ImageView>(R.id.gear_image)
-        if(currentItem.image != null) gearImage.setImageURI(currentItem.listImage)
+        if(currentItem.listImage != null && currentItem.listImage!!.toFile().exists()) gearImage.setImageURI(currentItem.listImage)
         else gearImage.setImageResource(R.drawable.helmet_list)
 
         val item = holder.itemView.findViewById<CardView>(R.id.cv_gear_row)

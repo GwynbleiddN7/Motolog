@@ -1,6 +1,5 @@
-package com.gwynn7.motolog.Fragments.Home
+package com.gwynn7.motolog.Fragments.Garage
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -13,10 +12,12 @@ import android.widget.ImageView
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.net.toFile
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.gwynn7.motolog.Models.Motorcycle
 import com.gwynn7.motolog.R
 import com.gwynn7.motolog.UnitHelper
@@ -50,6 +51,12 @@ class BikeHomeFragment : Fragment() {
                 if(bikes.isNotEmpty())
                 {
                     currentBike = bikes.first()
+
+                    if(currentBike.image != null && !currentBike.image!!.toFile().exists())
+                    {
+                        mMotorcycleViewModel.updateMotorcycle(currentBike, null, true)
+                    }
+
                     val aliasTextView = view.findViewById<TextView>(R.id.bike_alias)
                     aliasTextView.text = currentBike.alias.ifEmpty { currentBike.model }
                     aliasTextView.isSelected = true
@@ -121,15 +128,15 @@ class BikeHomeFragment : Fragment() {
 
     private fun deleteMotorcycle()
     {
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setPositiveButton(getString(R.string.yes)){ _, _ ->
-            mMotorcycleViewModel.deleteMotorcycle(currentBike)
-            showToast(requireContext(), getString(R.string.bike_delete))
-            stop(activity)
-        }
-        builder.setNegativeButton(getString(R.string.no)){ _,_ -> }
-        builder.setTitle("${getString(R.string.delete)} ${currentBike.manufacturer} ${currentBike.model}?")
-        builder.setMessage(getString(R.string.delete_bike_question))
-        builder.create().show()
+        MaterialAlertDialogBuilder(requireContext())
+            .setPositiveButton(getString(R.string.yes)){ _, _ ->
+                mMotorcycleViewModel.deleteMotorcycle(currentBike)
+                showToast(requireContext(), getString(R.string.bike_delete))
+                stop(activity)
+            }
+            .setNegativeButton(getString(R.string.no),null)
+            .setTitle("${getString(R.string.delete)} ${currentBike.manufacturer} ${currentBike.model}?")
+            .setMessage(getString(R.string.delete_bike_question))
+            .show()
     }
 }

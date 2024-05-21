@@ -127,4 +127,11 @@
     <string name="add_first_mod">Aggiungi la tua prima modifica!</string>
     <string name="add_first_distancelog">Aggiungi il tuo primo log di distanza!</string>
     <string name="add_first_repair">Aggiungi la tua prima manutenzione!</string>
+    <string name="backup_complete">Dati di backup esportati!</string>
+    <string name="image_not_included">Le immagini delle tue moto e del tuo abbigliamento non sono include in questo backup per ridurre le dimensioni del file</string>
+    <string name="ok">Ok</string>
+    <string name="choose_export">Selezioni i dati che vuoi esportare!</string>
+    <string name="choose_import">Seleziona i dati che vuoi importare!</string>
+    <string name="confirm_import">Vuoi importare nuovi dati?</string>
+    <string name="overwrite_data">I dati attuali verrano eliminati e sovrascritti, quindi assicurati di selezionare il file corretto!</string>
 </resources>

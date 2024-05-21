@@ -1,6 +1,5 @@
 package com.gwynn7.motolog.Fragments.ModsLog
 
-import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,6 +14,7 @@ import android.widget.EditText
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.gwynn7.motolog.Models.ModsLog
 import com.gwynn7.motolog.Path
 import com.gwynn7.motolog.R
@@ -69,8 +69,8 @@ class ModsLogAddFragment : Fragment() {
     }
 
     private fun insertDataToDatabase(view: View) {
-        val title = view.findViewById<EditText>(R.id.et_mod_title).text.toString()
-        val description = view.findViewById<EditText>(R.id.et_mod_description).text.toString()
+        val title = view.findViewById<EditText>(R.id.et_mod_title).text.toString().trim()
+        val description = view.findViewById<EditText>(R.id.et_mod_description).text.toString().trim()
         val price = view.findViewById<EditText>(R.id.et_mod_price).text.toString()
 
         if(inputCheck(title, description, price))
@@ -107,8 +107,8 @@ class ModsLogAddFragment : Fragment() {
 
     private fun deleteLog()
     {
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setPositiveButton(getString(R.string.yes)){ _,_ ->
+        MaterialAlertDialogBuilder(requireContext())
+            .setPositiveButton(getString(R.string.yes)){ _,_ ->
             val bike = args.currentBike
             val modsLogList = bike.logs.mods.toMutableList()
             modsLogList.removeAt(args.logIndex)
@@ -117,9 +117,9 @@ class ModsLogAddFragment : Fragment() {
             showToast(requireContext(), getString(R.string.log_removed))
             findNavController().navigateUp()
         }
-        builder.setNegativeButton(getString(R.string.no)){ _,_ -> }
-        builder.setTitle(getString(R.string.title_question_remove_log))
-        builder.setMessage(getString(R.string.description_question_remove_log))
-        builder.create().show()
+            .setNegativeButton(getString(R.string.no), null)
+            .setTitle(getString(R.string.title_question_remove_log))
+            .setMessage(getString(R.string.description_question_remove_log))
+            .show()
     }
 }

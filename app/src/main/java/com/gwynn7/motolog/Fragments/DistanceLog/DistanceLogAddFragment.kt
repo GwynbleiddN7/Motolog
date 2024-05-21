@@ -1,6 +1,5 @@
 package com.gwynn7.motolog.Fragments.DistanceLog
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -16,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.gwynn7.motolog.Models.DistanceLog
 import com.gwynn7.motolog.Models.getUpdatedBikeDistance
 import com.gwynn7.motolog.Path
@@ -87,6 +87,7 @@ class DistanceLogAddFragment : Fragment() {
             }
 
             for(log in distanceLogList){
+                if(args.logIndex == distanceLogList.indexOf(log)) continue
                 if(inputCheck(log, distanceInt)) {
                     showToast(requireContext(), getString(R.string.log_nomatch_2))
                     return
@@ -121,20 +122,20 @@ class DistanceLogAddFragment : Fragment() {
 
     private fun deleteLog()
     {
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setPositiveButton(getString(R.string.yes)){ _,_ ->
-            val bike = args.currentBike
-            val distanceLogList = bike.logs.distance.toMutableList()
-            distanceLogList.removeAt(args.logIndex)
-            bike.logs.distance = distanceLogList.sortedBy { log -> log.date }.reversed()
-            bike.personal_km = getUpdatedBikeDistance(bike)
-            mMotorcycleViewModel.updateMotorcycle(bike, null)
-            showToast(requireContext(), getString(R.string.log_removed))
-            findNavController().navigateUp()
-        }
-        builder.setNegativeButton(getString(R.string.no)){ _,_ -> }
-        builder.setTitle(getString(R.string.title_question_remove_log))
-        builder.setMessage(getString(R.string.description_question_remove_log))
-        builder.create().show()
+        MaterialAlertDialogBuilder(requireContext())
+            .setPositiveButton(getString(R.string.yes)){ _,_ ->
+                val bike = args.currentBike
+                val distanceLogList = bike.logs.distance.toMutableList()
+                distanceLogList.removeAt(args.logIndex)
+                bike.logs.distance = distanceLogList.sortedBy { log -> log.date }.reversed()
+                bike.personal_km = getUpdatedBikeDistance(bike)
+                mMotorcycleViewModel.updateMotorcycle(bike, null)
+                showToast(requireContext(), getString(R.string.log_removed))
+                findNavController().navigateUp()
+            }
+            .setNegativeButton(getString(R.string.no), null)
+            .setTitle(getString(R.string.title_question_remove_log))
+            .setMessage(getString(R.string.description_question_remove_log))
+            .show()
     }
 }

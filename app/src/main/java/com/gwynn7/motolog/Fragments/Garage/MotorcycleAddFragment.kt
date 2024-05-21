@@ -24,6 +24,7 @@ import androidx.navigation.fragment.navArgs
 import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.CropImageContractOptions
 import com.canhub.cropper.CropImageOptions
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.gwynn7.motolog.Models.DistanceLog
 import com.gwynn7.motolog.Models.Motorcycle
 import com.gwynn7.motolog.Models.getUpdatedBikeDistance
@@ -88,9 +89,9 @@ class MotorcycleAddFragment : Fragment() {
     }
 
     private fun insertDataToDatabase(view: View) {
-        val manufacturer = view.findViewById<EditText>(R.id.et_bike_manufacturer).text.toString()
-        val model = view.findViewById<EditText>(R.id.et_bike_model).text.toString()
-        val name = view.findViewById<EditText>(R.id.et_bike_alias).text.toString()
+        val manufacturer = view.findViewById<EditText>(R.id.et_bike_manufacturer).text.toString().trim()
+        val model = view.findViewById<EditText>(R.id.et_bike_model).text.toString().trim()
+        val name = view.findViewById<EditText>(R.id.et_bike_alias).text.toString().trim()
         val year = view.findViewById<EditText>(R.id.et_bike_year).text.toString()
         val startKm = view.findViewById<EditText>(R.id.et_bike_startkm).text.toString()
 
@@ -113,18 +114,18 @@ class MotorcycleAddFragment : Fragment() {
 
                 if(motorcycle.logs.distance.any { log -> distanceLogsCheck(log, motorcycle.start_km, motorcycle.year) })
                 {
-                    val builder = AlertDialog.Builder(requireContext())
-                    builder.setPositiveButton(getString(R.string.delete_logs)){ _,_ ->
-                        motorcycle.logs.distance = motorcycle.logs.distance.filter { log -> !distanceLogsCheck(log, motorcycle.start_km, motorcycle.year) }
-                        motorcycle.personal_km = getUpdatedBikeDistance(motorcycle)
-                        mMotorcycleViewModel.updateMotorcycle(motorcycle, tempBitmap, bShouldRemoveImage)
-                        showToast(requireContext(), getString(R.string.bike_saved))
-                        findNavController().navigateUp()
-                    }
-                    builder.setNegativeButton(getString(R.string.back)){ _,_ -> }
-                    builder.setTitle(getString(R.string.log_mismatch))
-                    builder.setMessage(getString(R.string.log_mismatch_action))
-                    builder.create().show()
+                    MaterialAlertDialogBuilder(requireContext())
+                        .setPositiveButton(getString(R.string.delete_logs)){ _,_ ->
+                            motorcycle.logs.distance = motorcycle.logs.distance.filter { log -> !distanceLogsCheck(log, motorcycle.start_km, motorcycle.year) }
+                            motorcycle.personal_km = getUpdatedBikeDistance(motorcycle)
+                            mMotorcycleViewModel.updateMotorcycle(motorcycle, tempBitmap, bShouldRemoveImage)
+                            showToast(requireContext(), getString(R.string.bike_saved))
+                            findNavController().navigateUp()
+                        }
+                        .setNegativeButton(getString(R.string.back), null)
+                        .setTitle(getString(R.string.log_mismatch))
+                        .setMessage(getString(R.string.log_mismatch_action))
+                        .show()
                     return
                 }
                 else
@@ -168,16 +169,16 @@ class MotorcycleAddFragment : Fragment() {
     private fun deleteMotorcycle()
     {
         val currentBike = args.currentMotorcycle!!
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setPositiveButton(getString(R.string.yes)){ _, _ ->
+        MaterialAlertDialogBuilder(requireContext())
+            .setPositiveButton(getString(R.string.yes)){ _, _ ->
             mMotorcycleViewModel.deleteMotorcycle(currentBike)
             showToast(requireContext(),getString(R.string.bike_delete))
             findNavController().navigateUp()
         }
-        builder.setNegativeButton(getString(R.string.no)){ _,_ -> }
-        builder.setTitle("${getString(R.string.delete)} ${currentBike.manufacturer} ${currentBike.model}?")
-        builder.setMessage(getString(R.string.delete_bike_question))
-        builder.create().show()
+            .setNegativeButton(getString(R.string.no), null)
+            .setTitle("${getString(R.string.delete)} ${currentBike.manufacturer} ${currentBike.model}?")
+            .setMessage(getString(R.string.delete_bike_question))
+            .show()
     }
 
     private val cropImage = registerForActivityResult(CropImageContract()) { result ->

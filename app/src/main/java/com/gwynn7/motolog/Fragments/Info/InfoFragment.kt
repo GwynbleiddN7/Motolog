@@ -17,7 +17,6 @@ import com.gwynn7.motolog.ViewModel.MotorcycleViewModel
 import com.gwynn7.motolog.longToDateString
 import com.gwynn7.motolog.stop
 import java.util.Calendar
-import java.util.Date
 
 class InfoFragment : Fragment() {
     private lateinit var mMotorcycleViewModel: MotorcycleViewModel

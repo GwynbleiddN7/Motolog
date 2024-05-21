@@ -29,17 +29,11 @@ abstract class GearDatabase: RoomDatabase() {
                     GearDatabase::class.java,
                     "gear_db"
                 )
-                instance.addMigrations(MigrationFrom3To4())
                 instance.fallbackToDestructiveMigration()
                 val builtInstance = instance.build()
                 INSTANCE = builtInstance
                 return builtInstance
             }
         }
-    }
-}
-class MigrationFrom3To4 : Migration(3, 4) {
-    override fun migrate(db: SupportSQLiteDatabase) {
-        db.execSQL("ALTER TABLE gear ADD COLUMN listImage TYPE TEXT");
     }
 }

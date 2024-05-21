@@ -1,7 +1,6 @@
 package com.gwynn7.motolog.Fragments.Garage
 
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater

@@ -8,6 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat.getString
+import androidx.core.net.toFile
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.gwynn7.motolog.BikeActivity
@@ -15,6 +17,9 @@ import com.gwynn7.motolog.Models.Motorcycle
 import com.gwynn7.motolog.R
 import com.gwynn7.motolog.UnitHelper
 import com.gwynn7.motolog.formatThousand
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.io.File
 
 class MotorcycleListAdapter: RecyclerView.Adapter<MotorcycleListAdapter.MyViewHolder>() {
     private var motorcycleList = emptyList<Motorcycle>()
@@ -43,8 +48,10 @@ class MotorcycleListAdapter: RecyclerView.Adapter<MotorcycleListAdapter.MyViewHo
         val motorcycleRow = holder.itemView.findViewById<CardView>(R.id.cv_bike_row)
 
         val bikeImage = holder.itemView.findViewById<ImageView>(R.id.motorcycle_image)
-        if(currentItem.image != null) bikeImage.setImageURI(currentItem.listImage)
+        if(currentItem.listImage != null && currentItem.listImage!!.toFile().exists()) bikeImage.setImageURI(currentItem.listImage)
         else bikeImage.setImageResource(R.drawable.bike)
+
+
 
         motorcycleRow.setOnClickListener {
             val bikeActivity = Intent(holder.itemView.context, BikeActivity::class.java)

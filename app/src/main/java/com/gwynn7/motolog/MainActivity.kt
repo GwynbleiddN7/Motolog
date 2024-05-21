@@ -13,17 +13,20 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.gwynn7.motolog.ViewModel.MotorcycleViewModel
+import de.raphaelebner.roomdatabasebackup.core.RoomBackup
 import kotlinx.coroutines.launch
 
 val Context.settings: DataStore<Preferences> by preferencesDataStore(name = "settings")
 class MainActivity : AppCompatActivity() {
     private var lastHomeFragmentId: Int = 0;
+    lateinit var backup: RoomBackup
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         UnitHelper.loadData(applicationContext)
+        backup = RoomBackup(this)
 
         val appBarConfiguration = AppBarConfiguration(setOf(
             R.id.motorcycle_nav,

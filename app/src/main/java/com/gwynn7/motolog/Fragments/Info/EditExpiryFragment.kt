@@ -9,16 +9,13 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CalendarView
-import android.widget.EditText
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.gwynn7.motolog.Path
 import com.gwynn7.motolog.R
 import com.gwynn7.motolog.ViewModel.MotorcycleViewModel
 import com.gwynn7.motolog.longFromDate
 import com.gwynn7.motolog.showToast
-import java.util.Calendar
 
 class EditExpiryFragment : Fragment() {
     private val args by navArgs<EditExpiryFragmentArgs>()

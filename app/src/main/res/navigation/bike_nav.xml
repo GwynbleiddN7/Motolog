@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/bike_home_fragment"
-        android:name="com.gwynn7.motolog.Fragments.Home.BikeHomeFragment"
+        android:name="com.gwynn7.motolog.Fragments.Garage.BikeHomeFragment"
         android:label="@string/app_name"
         tools:layout="@layout/bike_home">
         <action

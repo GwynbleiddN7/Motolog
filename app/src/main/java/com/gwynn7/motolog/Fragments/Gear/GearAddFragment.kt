@@ -1,6 +1,5 @@
 package com.gwynn7.motolog.Fragments.Gear
 
-import android.app.AlertDialog
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.os.Build
@@ -24,6 +23,7 @@ import androidx.navigation.fragment.navArgs
 import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.CropImageContractOptions
 import com.canhub.cropper.CropImageOptions
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.gwynn7.motolog.Models.Gear
 import com.gwynn7.motolog.Path
 import com.gwynn7.motolog.R
@@ -31,8 +31,6 @@ import com.gwynn7.motolog.ViewModel.GearViewModel
 import com.gwynn7.motolog.longFromDate
 import com.gwynn7.motolog.showToast
 import java.util.Calendar
-import java.util.Timer
-import kotlin.concurrent.timerTask
 
 class GearAddFragment : Fragment() {
     private lateinit var mGearViewModel: GearViewModel
@@ -95,8 +93,8 @@ class GearAddFragment : Fragment() {
     }
 
     private fun insertDataToDatabase(view: View) {
-        val manufacturer = view.findViewById<EditText>(R.id.et_gear_manufacturer).text.toString()
-        val model = view.findViewById<EditText>(R.id.et_gear_model).text.toString()
+        val manufacturer = view.findViewById<EditText>(R.id.et_gear_manufacturer).text.toString().trim()
+        val model = view.findViewById<EditText>(R.id.et_gear_model).text.toString().trim()
         val price = view.findViewById<EditText>(R.id.et_gear_price).text.toString()
 
         if(inputCheck(manufacturer, model, price))
@@ -133,16 +131,16 @@ class GearAddFragment : Fragment() {
     private fun deleteGear()
     {
         val currentGear = args.currentGear!!
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setPositiveButton(getString(R.string.yes)){ _, _ ->
+        MaterialAlertDialogBuilder(requireContext())
+            .setPositiveButton(getString(R.string.yes)){ _, _ ->
             mGearViewModel.deleteGear(currentGear)
             showToast(requireContext(), getString(R.string.gear_delete))
             findNavController().navigateUp()
         }
-        builder.setNegativeButton(getString(R.string.no)){ _,_ -> }
-        builder.setTitle("${getString(R.string.delete)} ${currentGear.manufacturer} ${currentGear.model}?")
-        builder.setMessage(getString(R.string.delete_gear_question))
-        builder.create().show()
+            .setNegativeButton(getString(R.string.no), null)
+            .setTitle("${getString(R.string.delete)} ${currentGear.manufacturer} ${currentGear.model}?")
+            .setMessage(getString(R.string.delete_gear_question))
+            .show()
     }
 
     private val cropImage = registerForActivityResult(CropImageContract()) { result ->

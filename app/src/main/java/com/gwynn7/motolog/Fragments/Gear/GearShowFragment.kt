@@ -1,6 +1,5 @@
 package com.gwynn7.motolog.Fragments.Gear
 
-import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,10 +12,12 @@ import android.widget.ImageView
 import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.net.toFile
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.gwynn7.motolog.R
 import com.gwynn7.motolog.UnitHelper
 import com.gwynn7.motolog.ViewModel.GearViewModel
@@ -39,6 +40,12 @@ class GearShowFragment : Fragment() {
                 if(gears.isNotEmpty())
                 {
                     val gear = gears.first()
+
+                    if(gear.image != null && !gear.image!!.toFile().exists())
+                    {
+                        mGearViewModel.updateGear(gear, null, true)
+                    }
+
                     view.findViewById<TextView>(R.id.tw_gear_model).text = gear.model
                     view.findViewById<TextView>(R.id.tw_gear_manufacturer).text = gear.manufacturer
                     view.findViewById<TextView>(R.id.tw_gear_price).text = String.format("%.2f%s", gear.price, UnitHelper.getCurrency())
@@ -76,15 +83,15 @@ class GearShowFragment : Fragment() {
 
     private fun deleteGear()
     {
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setPositiveButton(getString(R.string.yes)){ _,_ ->
+        MaterialAlertDialogBuilder(requireContext())
+            .setPositiveButton(getString(R.string.yes)){ _,_ ->
             mGearViewModel.deleteGear(args.currentGear)
             Toast.makeText(requireContext(), getString(R.string.gear_delete), Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.gearshow_to_gearlist)
         }
-        builder.setNegativeButton(getString(R.string.no)){ _,_ -> }
-        builder.setTitle("${getString(R.string.delete)} ${args.currentGear.manufacturer} ${args.currentGear.model}?")
-        builder.setMessage(getString(R.string.delete_gear_question))
-        builder.create().show()
+            .setNegativeButton(getString(R.string.no), null)
+            .setTitle("${getString(R.string.delete)} ${args.currentGear.manufacturer} ${args.currentGear.model}?")
+            .setMessage(getString(R.string.delete_gear_question))
+            .show()
     }
 }

@@ -127,4 +127,11 @@
     <string name="add_first_mod">Add your first modification!</string>
     <string name="add_first_distancelog">Add your first distance log!</string>
     <string name="add_first_repair">Add your first maintenance!</string>
+    <string name="backup_complete">Backup data exported!</string>
+    <string name="image_not_included">Images of your bikes and gear are not included in this backup to limit file size</string>
+    <string name="ok">Ok</string>
+    <string name="choose_export">Choose which data to export!</string>
+    <string name="choose_import">Choose which data to import!</string>
+    <string name="confirm_import">Are you sure you want to import new data?</string>
+    <string name="overwrite_data">Your current data will be deleted and overwritten, so be sure to choose the correct file!</string>
 </resources>
