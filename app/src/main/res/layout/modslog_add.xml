@@ -112,26 +112,29 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_mod_price" />
-        <CalendarView
-            android:id="@+id/cv_mod_date"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginTop="35dp"
+
+        <DatePicker
+            android:id="@+id/dp_mod_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:spinnersShown="true"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_mod_price" />
-
 
         <Button
             android:id="@+id/bt_deleteMod"
             android:layout_width="200dp"
             android:layout_height="60dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="30dp"
             android:text="@string/delete_log"
             android:textSize="16dp"
             android:textColor="@color/white"
             android:backgroundTint="@color/dark_red"
-            app:layout_constraintTop_toBottomOf="@+id/cv_mod_date"
+            app:layout_constraintTop_toBottomOf="@+id/dp_mod_date"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 

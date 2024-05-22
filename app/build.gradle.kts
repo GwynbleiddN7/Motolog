@@ -4,7 +4,6 @@ plugins {
     kotlin("kapt")
     id("kotlin-parcelize")
     id("androidx.navigation.safeargs.kotlin")
-
 }
 
 android {
@@ -15,8 +14,8 @@ android {
         applicationId = "com.gwynn7.motolog"
         minSdk = 26
         targetSdk = 34
-        versionCode = 6
-        versionName = "1.4"
+        versionCode = 8
+        versionName = "1.5"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

@@ -9,7 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.CalendarView
+import android.widget.DatePicker
 import android.widget.EditText
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -19,14 +19,16 @@ import com.gwynn7.motolog.Models.ModsLog
 import com.gwynn7.motolog.Path
 import com.gwynn7.motolog.R
 import com.gwynn7.motolog.ViewModel.MotorcycleViewModel
+import com.gwynn7.motolog.dateFromLong
 import com.gwynn7.motolog.longFromDate
 import com.gwynn7.motolog.showToast
 import java.util.Calendar
+import java.util.Date
 
 class ModsLogAddFragment : Fragment() {
     private val args by navArgs<ModsLogAddFragmentArgs>()
     private lateinit var mMotorcycleViewModel: MotorcycleViewModel
-    private var savedDate: Long = 0
+    private var savedDate: Long = Date().time
     private var currentPath: Path = Path.Add
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,15 +38,10 @@ class ModsLogAddFragment : Fragment() {
         mMotorcycleViewModel = ViewModelProvider(this)[MotorcycleViewModel::class.java]
         if(args.logIndex != -1) currentPath = Path.Edit
 
-        val date = view.findViewById<CalendarView>(R.id.cv_mod_date)
-        savedDate = Calendar.getInstance().timeInMillis
-        date.maxDate = savedDate
-
         if(currentPath == Path.Edit)
         {
             val currentLog = args.currentBike.logs.mods[args.logIndex]
             savedDate = currentLog.date
-            date.date = savedDate
 
             val title = view.findViewById<EditText>(R.id.et_mod_title)
             title.setText(currentLog.title)
@@ -54,12 +51,15 @@ class ModsLogAddFragment : Fragment() {
             view.findViewById<EditText>(R.id.et_mod_price).setText(currentLog.price.toString())
         }
 
-        date.setOnDateChangeListener { _, year, month, dayOfMonth ->
+        val date = view.findViewById<DatePicker>(R.id.dp_mod_date)
+        date.maxDate = Date().time
+        date.init(dateFromLong(savedDate, Calendar.YEAR), dateFromLong(savedDate, Calendar.MONTH), dateFromLong(savedDate, Calendar.DAY_OF_MONTH))
+        { _, year, month, dayOfMonth ->
             savedDate = longFromDate(year, month, dayOfMonth)
         }
 
         val button = view.findViewById<Button>(R.id.bt_deleteMod)
-        button.visibility = if(currentPath == Path.Edit) View.VISIBLE else View.INVISIBLE
+        button.visibility = if(currentPath == Path.Edit) View.VISIBLE else View.GONE
         button.setOnClickListener{
             deleteLog()
         }

@@ -87,10 +87,11 @@ fun longToDateString(date: Long): String{
     val simpleDateFormat by lazy { SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()) }
     return simpleDateFormat.format(Date(date))
 }
-fun yearFromLong(date: Long): Int{
+
+fun dateFromLong(date: Long, field: Int): Int{
     val cal: Calendar = Calendar.getInstance()
     cal.setTime(Date(date))
-    return cal.get(Calendar.YEAR)
+    return cal.get(field)
 }
 
 fun longFromDate(year: Int, month: Int, dayOfMonth: Int): Long{

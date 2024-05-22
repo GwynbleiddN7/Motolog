@@ -8,7 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.CalendarView
+import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -23,15 +23,16 @@ import com.gwynn7.motolog.R
 import com.gwynn7.motolog.UnitHelper
 import com.gwynn7.motolog.ViewModel.MotorcycleViewModel
 import com.gwynn7.motolog.capitalize
+import com.gwynn7.motolog.dateFromLong
 import com.gwynn7.motolog.longFromDate
 import com.gwynn7.motolog.showToast
-import com.gwynn7.motolog.yearFromLong
 import java.util.Calendar
+import java.util.Date
 
 class DistanceLogAddFragment : Fragment() {
     private val args by navArgs<DistanceLogAddFragmentArgs>()
     private lateinit var mMotorcycleViewModel: MotorcycleViewModel
-    private var savedDate: Long = 0
+    private var savedDate: Long = Date().time
     private var currentPath: Path = Path.Add
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,27 +44,25 @@ class DistanceLogAddFragment : Fragment() {
 
         view.findViewById<TextView>(R.id.textView_distancelog).text = capitalize(getString(R.string.bike_distance_date, UnitHelper.getDistanceText(requireContext())))
 
-        val date = view.findViewById<CalendarView>(R.id.cv_distancelog_date)
-        savedDate = Calendar.getInstance().timeInMillis
-        date.maxDate = savedDate
-
         val distanceLog = view.findViewById<EditText>(R.id.et_distancelog)
         if(currentPath == Path.Edit)
         {
             val currentLog = args.currentBike.logs.distance[args.logIndex]
             savedDate = currentLog.date
-            date.date = savedDate
 
             distanceLog.setText(currentLog.distance.toString())
         }
         else distanceLog.setText(String.format("%d", args.currentBike.start_km + args.currentBike.personal_km))
 
-        date.setOnDateChangeListener { _, year, month, dayOfMonth ->
+        val date = view.findViewById<DatePicker>(R.id.dp_distancelog_date)
+        date.maxDate = Date().time
+        date.init(dateFromLong(savedDate, Calendar.YEAR), dateFromLong(savedDate, Calendar.MONTH), dateFromLong(savedDate, Calendar.DAY_OF_MONTH))
+        { _, year, month, dayOfMonth ->
             savedDate = longFromDate(year, month, dayOfMonth)
         }
 
         val button = view.findViewById<Button>(R.id.bt_deleteDistanceLog)
-        button.visibility = if(currentPath == Path.Edit) View.VISIBLE else View.INVISIBLE
+        button.visibility = if(currentPath == Path.Edit) View.VISIBLE else View.GONE
         button.setOnClickListener{
             deleteLog()
         }
@@ -81,15 +80,30 @@ class DistanceLogAddFragment : Fragment() {
             val bike = args.currentBike
             val distanceLogList = bike.logs.distance.toMutableList()
 
-            if(yearFromLong(savedDate) < bike.year || distanceInt < bike.start_km) {
-                showToast(requireContext(), getString(R.string.log_nomatch_1))
+            val alert = MaterialAlertDialogBuilder(requireContext())
+                .setPositiveButton(getString(R.string.ok), null)
+                .setTitle(getString(R.string.log_nomatch))
+
+            if(dateFromLong(savedDate, Calendar.YEAR) < bike.year) {
+                alert
+                    .setMessage(getString(R.string.log_nomatch_date))
+                    .show()
+                return
+            }
+
+            if(distanceInt < bike.start_km){
+                alert
+                    .setMessage(getString(R.string.log_nomatch_distance))
+                    .show()
                 return
             }
 
             for(log in distanceLogList){
                 if(args.logIndex == distanceLogList.indexOf(log)) continue
                 if(inputCheck(log, distanceInt)) {
-                    showToast(requireContext(), getString(R.string.log_nomatch_2))
+                        alert
+                            .setMessage(getString(R.string.log_nomatch_distancelogs))
+                            .show()
                     return
                 }
             }

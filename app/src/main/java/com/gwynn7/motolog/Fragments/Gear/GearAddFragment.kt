@@ -12,7 +12,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.CalendarView
+import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
@@ -28,14 +28,16 @@ import com.gwynn7.motolog.Models.Gear
 import com.gwynn7.motolog.Path
 import com.gwynn7.motolog.R
 import com.gwynn7.motolog.ViewModel.GearViewModel
+import com.gwynn7.motolog.dateFromLong
 import com.gwynn7.motolog.longFromDate
 import com.gwynn7.motolog.showToast
 import java.util.Calendar
+import java.util.Date
 
 class GearAddFragment : Fragment() {
     private lateinit var mGearViewModel: GearViewModel
     private val args by navArgs<GearAddFragmentArgs>()
-    private var savedDate: Long = 0
+    private var savedDate: Long = Date().time
     private var currentPath: Path = Path.Add
     private var tempBitmap: Bitmap? = null
     private var bShouldRemoveImage = false
@@ -49,16 +51,10 @@ class GearAddFragment : Fragment() {
         if(args.currentGear != null) currentPath = Path.Edit
 
         val imageAdd = view.findViewById<ImageButton>(R.id.ib_gear_image)
-
-        val date = view.findViewById<CalendarView>(R.id.cv_gear_date)
-        savedDate = Calendar.getInstance().timeInMillis
-        date.maxDate = savedDate
-
         if(currentPath == Path.Edit)
         {
             val currentGear = args.currentGear!!
             savedDate = currentGear.date
-            date.date = savedDate
 
             view.findViewById<EditText>(R.id.et_gear_manufacturer).setText(currentGear.manufacturer)
             view.findViewById<EditText>(R.id.et_gear_model).setText(currentGear.model)
@@ -68,12 +64,15 @@ class GearAddFragment : Fragment() {
             else imageAdd.setImageResource(R.drawable.add_photo)
         }
 
-        date.setOnDateChangeListener { _, year, month, dayOfMonth ->
+        val date = view.findViewById<DatePicker>(R.id.dp_gear_date)
+        date.maxDate = Date().time
+        date.init(dateFromLong(savedDate, Calendar.YEAR), dateFromLong(savedDate, Calendar.MONTH), dateFromLong(savedDate, Calendar.DAY_OF_MONTH))
+        { _, year, month, dayOfMonth ->
             savedDate = longFromDate(year, month, dayOfMonth)
         }
 
         val button = view.findViewById<Button>(R.id.bt_deleteGear)
-        button.visibility = if(currentPath == Path.Edit) View.VISIBLE else View.INVISIBLE
+        button.visibility = if(currentPath == Path.Edit) View.VISIBLE else View.GONE
         button.setOnClickListener{
             deleteGear()
         }
@@ -154,7 +153,12 @@ class GearAddFragment : Fragment() {
             }
             requireView().findViewById<ImageButton>(R.id.ib_gear_image).setImageBitmap(bitmap)
             tempBitmap = bitmap
-            showToast(requireContext(), getString(R.string.image_saved), Toast.LENGTH_LONG)
+
+            MaterialAlertDialogBuilder(requireContext())
+                .setPositiveButton(getString(R.string.ok), null)
+                .setTitle(getString(R.string.image_saved))
+                .setMessage(getString(R.string.image_saved_text))
+                .show()
         }
     }
 

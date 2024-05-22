@@ -19,6 +19,8 @@ import com.gwynn7.motolog.LocaleHelper
 import com.gwynn7.motolog.MainActivity
 import com.gwynn7.motolog.R
 import com.gwynn7.motolog.UnitHelper
+import de.raphaelebner.roomdatabasebackup.core.OnCompleteListener.Companion.EXIT_CODE_ERROR_BY_USER_CANCELED
+import de.raphaelebner.roomdatabasebackup.core.OnCompleteListener.Companion.EXIT_CODE_ERROR_STORAGE_PERMISSONS_NOT_GRANTED
 import de.raphaelebner.roomdatabasebackup.core.RoomBackup
 
 
@@ -85,12 +87,34 @@ class SettingsFragment : Fragment() {
             R.id.menu_export ->
             {
                 backup.apply {
-                    onCompleteListener { _, _, _ ->
-                        MaterialAlertDialogBuilder(requireContext())
-                            .setTitle(getString(R.string.backup_complete))
-                            .setMessage(getString(R.string.image_not_included))
-                            .setPositiveButton(R.string.ok, null)
-                            .show()
+                    onCompleteListener { success, _, exitCode ->
+                        if(success)
+                        {
+                            MaterialAlertDialogBuilder(requireContext())
+                                .setTitle(getString(R.string.backup_export_complete))
+                                .setMessage(getString(R.string.image_not_included))
+                                .setPositiveButton(R.string.ok, null)
+                                .setOnDismissListener { restartApp() }
+                                .show()
+                        }
+                        else
+                        {
+                            val alertBackup = MaterialAlertDialogBuilder(requireContext())
+                                .setTitle(getString(R.string.backup_export_error))
+                                .setPositiveButton(R.string.ok, null)
+                            if(exitCode == EXIT_CODE_ERROR_STORAGE_PERMISSONS_NOT_GRANTED)
+                            {
+                                alertBackup
+                                    .setMessage(getString(R.string.check_permissions))
+                                    .show()
+                            }
+                            else if(exitCode != EXIT_CODE_ERROR_BY_USER_CANCELED)
+                            {
+                                alertBackup
+                                    .setMessage(getString(R.string.unknown_backup_export_error))
+                                    .show()
+                            }
+                        }
                     }
                 }
                 alert
@@ -103,15 +127,33 @@ class SettingsFragment : Fragment() {
             R.id.menu_import ->
             {
                 backup.apply {
-                    onCompleteListener { success, _, _ ->
+                    onCompleteListener { success, _, exitCode ->
                         if(success)
                         {
-                            val ctx: Context = requireActivity().applicationContext
-                            val pm = ctx.packageManager
-                            val intent = pm.getLaunchIntentForPackage(ctx.packageName)
-                            val mainIntent = Intent.makeRestartActivityTask(intent!!.component)
-                            ctx.startActivity(mainIntent)
-                            Runtime.getRuntime().exit(0)
+                            MaterialAlertDialogBuilder(requireContext())
+                                .setTitle(getString(R.string.backup_import_complete))
+                                .setMessage(getString(R.string.restart_app))
+                                .setPositiveButton(R.string.ok, null)
+                                .setOnDismissListener { restartApp() }
+                                .show()
+                        }
+                        else
+                        {
+                            val alertBackup = MaterialAlertDialogBuilder(requireContext())
+                                .setTitle(getString(R.string.backup_import_error))
+                                .setPositiveButton(R.string.ok, null)
+                            if(exitCode == EXIT_CODE_ERROR_STORAGE_PERMISSONS_NOT_GRANTED)
+                            {
+                                alertBackup
+                                    .setMessage(getString(R.string.check_permissions))
+                                    .show()
+                            }
+                            else if(exitCode != EXIT_CODE_ERROR_BY_USER_CANCELED)
+                            {
+                                alertBackup
+                                    .setMessage(getString(R.string.unknown_backup_import_error))
+                                    .show()
+                            }
                         }
                     }
                 }
@@ -162,5 +204,15 @@ class SettingsFragment : Fragment() {
         val intent = activity?.intent
         activity?.finish()
         startActivity(intent!!)
+    }
+
+    private fun restartApp()
+    {
+        val ctx: Context = requireActivity().applicationContext
+        val pm = ctx.packageManager
+        val intent = pm.getLaunchIntentForPackage(ctx.packageName)
+        val mainIntent = Intent.makeRestartActivityTask(intent!!.component)
+        ctx.startActivity(mainIntent)
+        Runtime.getRuntime().exit(0)
     }
 }

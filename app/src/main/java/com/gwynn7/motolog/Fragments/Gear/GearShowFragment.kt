@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.gwynn7.motolog.Models.Gear
 import com.gwynn7.motolog.R
 import com.gwynn7.motolog.UnitHelper
 import com.gwynn7.motolog.ViewModel.GearViewModel
@@ -26,6 +27,7 @@ import com.gwynn7.motolog.longToDateString
 class GearShowFragment : Fragment() {
     private val args by navArgs<GearShowFragmentArgs>()
     private lateinit var mGearViewModel: GearViewModel
+    private lateinit var currentGear: Gear
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,20 +41,20 @@ class GearShowFragment : Fragment() {
             run {
                 if(gears.isNotEmpty())
                 {
-                    val gear = gears.first()
+                    currentGear = gears.first()
 
-                    if(gear.image != null && !gear.image!!.toFile().exists())
+                    if(currentGear.image != null && !currentGear.image!!.toFile().exists())
                     {
-                        mGearViewModel.updateGear(gear, null, true)
+                        mGearViewModel.updateGear(currentGear, null, true)
                     }
 
-                    view.findViewById<TextView>(R.id.tw_gear_model).text = gear.model
-                    view.findViewById<TextView>(R.id.tw_gear_manufacturer).text = gear.manufacturer
-                    view.findViewById<TextView>(R.id.tw_gear_price).text = String.format("%.2f%s", gear.price, UnitHelper.getCurrency())
-                    view.findViewById<TextView>(R.id.tw_gear_date).text = longToDateString(gear.date)
+                    view.findViewById<TextView>(R.id.tw_gear_model).text = currentGear.model
+                    view.findViewById<TextView>(R.id.tw_gear_manufacturer).text = currentGear.manufacturer
+                    view.findViewById<TextView>(R.id.tw_gear_price).text = String.format("%.2f%s", currentGear.price, UnitHelper.getCurrency())
+                    view.findViewById<TextView>(R.id.tw_gear_date).text = longToDateString(currentGear.date)
 
                     val gearImage = view.findViewById<ImageView>(R.id.iv_gear_image_show)
-                    if(gear.image != null) gearImage.setImageURI(gear.image)
+                    if(currentGear.image != null) gearImage.setImageURI(currentGear.image)
                     else gearImage.setImageResource(R.drawable.helmet_show)
 
                     view.findViewById<ScrollView>(R.id.gear_show_view).visibility = View.VISIBLE
@@ -72,7 +74,7 @@ class GearShowFragment : Fragment() {
         when(item.itemId)
         {
             R.id.edit_show_menu -> {
-                val action = GearShowFragmentDirections.gearshowToGearadd(args.currentGear)
+                val action = GearShowFragmentDirections.gearshowToGearadd(currentGear)
                 findNavController().navigate(action)
             }
             R.id.delete_show_menu -> deleteGear()

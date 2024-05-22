@@ -1,6 +1,5 @@
 package com.gwynn7.motolog.Fragments.Garage
 
-import android.app.AlertDialog
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.os.Build
@@ -33,8 +32,8 @@ import com.gwynn7.motolog.R
 import com.gwynn7.motolog.UnitHelper
 import com.gwynn7.motolog.ViewModel.MotorcycleViewModel
 import com.gwynn7.motolog.capitalize
+import com.gwynn7.motolog.dateFromLong
 import com.gwynn7.motolog.showToast
-import com.gwynn7.motolog.yearFromLong
 import java.util.Calendar
 
 class MotorcycleAddFragment : Fragment() {
@@ -62,6 +61,7 @@ class MotorcycleAddFragment : Fragment() {
             view.findViewById<EditText>(R.id.et_bike_alias).setText(bike.alias)
             view.findViewById<EditText>(R.id.et_bike_year).setText(bike.year.toString())
             view.findViewById<EditText>(R.id.et_bike_startkm).setText(bike.start_km.toString())
+
             if(bike.image != null) imageAdd.setImageURI(bike.image)
             else imageAdd.setImageResource(R.drawable.add_photo)
         }
@@ -154,7 +154,7 @@ class MotorcycleAddFragment : Fragment() {
 
     private fun distanceLogsCheck(log: DistanceLog, startKm: Int, bikeYear: Int): Boolean
     {
-        return yearFromLong(log.date) < bikeYear || log.distance < startKm
+        return dateFromLong(log.date, Calendar.YEAR) < bikeYear || log.distance < startKm
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -192,7 +192,12 @@ class MotorcycleAddFragment : Fragment() {
             }
             requireView().findViewById<ImageButton>(R.id.ib_bike_image).setImageBitmap(bitmap)
             tempBitmap = bitmap
-            showToast(requireContext(), getString(R.string.image_saved), Toast.LENGTH_LONG)
+
+            MaterialAlertDialogBuilder(requireContext())
+                .setPositiveButton(getString(R.string.ok), null)
+                .setTitle(getString(R.string.image_saved))
+                .setMessage(getString(R.string.image_saved_text))
+                .show()
         }
     }
 

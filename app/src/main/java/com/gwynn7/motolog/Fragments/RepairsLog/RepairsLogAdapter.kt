@@ -34,7 +34,8 @@ class RepairsLogAdapter: RecyclerView.Adapter<RepairsLogAdapter.MyViewHolder>() 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = repairsLogList[position]
 
-        holder.itemView.findViewById<TextView>(R.id.tw_repair_type).text = currentItem.typeText
+        holder.itemView.findViewById<TextView>(R.id.tw_repair_type).text = if(currentItem.typeIndex == -1) currentItem.typeText else holder.itemView.resources.getStringArray(R.array.repair_types)[currentItem.typeIndex]
+
         val notes = holder.itemView.findViewById<TextView>(R.id.tw_repair_notes)
         notes.text = currentItem.notes
         notes.isSelected = true
