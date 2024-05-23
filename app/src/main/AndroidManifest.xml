@@ -15,6 +15,7 @@
         android:roundIcon="@drawable/logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MotoLog"
+        android:hardwareAccelerated="true"
         tools:targetApi="31">
         <activity
             android:name="com.gwynn7.motolog.BikeActivity"
