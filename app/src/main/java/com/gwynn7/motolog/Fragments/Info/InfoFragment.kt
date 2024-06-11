@@ -3,6 +3,9 @@ package com.gwynn7.motolog.Fragments.Info
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
@@ -10,12 +13,15 @@ import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.gwynn7.motolog.Models.Motorcycle
 import com.gwynn7.motolog.R
 import com.gwynn7.motolog.UnitHelper
 import com.gwynn7.motolog.ViewModel.MotorcycleViewModel
 import com.gwynn7.motolog.longToDateString
+import com.gwynn7.motolog.showToast
 import com.gwynn7.motolog.stop
+import org.w3c.dom.Text
 import java.util.Calendar
 
 class InfoFragment : Fragment() {
@@ -74,6 +80,36 @@ class InfoFragment : Fragment() {
             findNavController().navigate(action)
         }
 
+        setHasOptionsMenu(true)
         return view
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.money_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.money_menu){
+            val inflater = this.layoutInflater
+            val dialogView: View = inflater.inflate(R.layout.cost_dialog, null)
+
+            var totalMaintenanceMoney = 0.0
+            val maintenanceList = currentbike.logs.maintenance
+            for (repair in maintenanceList) totalMaintenanceMoney += repair.price
+
+            var totalModsMoney = 0.0
+            val modsList = currentbike.logs.mods
+            for (mod in modsList) totalModsMoney += mod.price
+
+            dialogView.findViewById<TextView>(R.id.maintenance_cost).text = String.format("%.2f%s", totalMaintenanceMoney, UnitHelper.getCurrency())
+            dialogView.findViewById<TextView>(R.id.mods_cost).text = String.format("%.2f%s", totalModsMoney, UnitHelper.getCurrency())
+            dialogView.findViewById<TextView>(R.id.total_spent).text = String.format("%.2f%s", totalMaintenanceMoney + totalModsMoney, UnitHelper.getCurrency())
+            dialogView.findViewById<TextView>(R.id.total_spent_bike).text = String.format("%.2f%s", totalMaintenanceMoney + totalModsMoney + currentbike.info.price, UnitHelper.getCurrency())
+
+            MaterialAlertDialogBuilder(requireContext())
+                .setView(dialogView)
+                .show()
+        }
+        return super.onContextItemSelected(item)
     }
 }

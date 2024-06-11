@@ -145,4 +145,7 @@
     <string name="log_nomatch_date">This log\'s date happened before motorcycle\'s registration</string>
     <string name="log_nomatch_distancelogs">This log\'s distance is higher than older log\'s one or lower than newer log\'s one</string>
     <string name="repairlog_nomatch">Maintenance logs inconsistency!</string>
+    <string name="total_spent_with_bike">Bike included</string>
+    <string name="costs">Costs</string>
+    <string name="gear_cost">Total gear cost</string>
 </resources>

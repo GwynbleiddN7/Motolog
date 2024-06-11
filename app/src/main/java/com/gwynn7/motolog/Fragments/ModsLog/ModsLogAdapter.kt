@@ -33,8 +33,14 @@ class ModsLogAdapter: RecyclerView.Adapter<ModsLogAdapter.MyViewHolder>(){
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = modsLogList[position]
 
-        holder.itemView.findViewById<TextView>(R.id.tw_mod_title).text = currentItem.title
-        holder.itemView.findViewById<TextView>(R.id.tw_mod_description).text = currentItem.description
+        val title = holder.itemView.findViewById<TextView>(R.id.tw_mod_title)
+        title.text = currentItem.title
+        title.isSelected = true
+
+        val description = holder.itemView.findViewById<TextView>(R.id.tw_mod_description)
+        description.text = currentItem.description
+        description.isSelected = true
+
         holder.itemView.findViewById<TextView>(R.id.tw_mod_date).text = longToDateString(currentItem.date)
 
         val price = String.format("${holder.itemView.resources.getString(R.string.price)}: %.2f%s", currentItem.price, UnitHelper.getCurrency())

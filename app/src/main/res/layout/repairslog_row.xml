@@ -106,7 +106,7 @@
                 android:layout_marginBottom="1dp"
                 android:textColor="@color/dark_white"
                 android:textSize="13dp"
-                android:textStyle="italic"
+                android:textStyle="italic|bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/repair_image" />
 
@@ -118,7 +118,7 @@
                 android:layout_marginEnd="20dp"
                 android:textColor="@color/dark_white"
                 android:textSize="13dp"
-                android:textStyle="italic"
+                android:textStyle="italic|bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>

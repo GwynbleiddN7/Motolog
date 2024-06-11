@@ -7,17 +7,20 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.gwynn7.motolog.R
 import com.gwynn7.motolog.ViewModel.GearViewModel
 import com.gwynn7.motolog.showToast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.gwynn7.motolog.UnitHelper
+import com.gwynn7.motolog.formatThousand
 import com.gwynn7.motolog.showToastAfterDelay
 
 class GearListFragment : Fragment() {
@@ -55,10 +58,18 @@ class GearListFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.money_menu){
+            val inflater = this.layoutInflater
+            val dialogView: View = inflater.inflate(R.layout.gear_cost_dialog, null)
+
             var totalMoney = 0.0
             val gearList = mGearViewModel.readAllData.value!!
             for (gear in gearList) totalMoney += gear.price
-            showToast(requireContext(), "${getString(R.string.total_spent)}: ${String.format("%.2f%s", totalMoney, UnitHelper.getCurrency())}")
+
+            dialogView.findViewById<TextView>(R.id.cost).text = String.format("%.2f%s", totalMoney, UnitHelper.getCurrency())
+
+            MaterialAlertDialogBuilder(requireContext())
+                .setView(dialogView)
+                .show()
         }
         return super.onContextItemSelected(item)
     }

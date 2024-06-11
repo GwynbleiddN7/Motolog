@@ -4,6 +4,6 @@
 
     <item android:title="@string/delete"
         android:id="@+id/distance_menu"
-        android:icon="@drawable/ic_tire"
+        android:icon="@drawable/ic_distance"
         app:showAsAction="ifRoom"/>
 </menu>

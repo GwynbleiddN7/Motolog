@@ -145,4 +145,7 @@
     <string name="log_nomatch">Incoerenza dei log della distanza!</string>
     <string name="log_nomatch_distancelogs">La distanza di questo log è maggiore di quella di un log successivo o minore di quella di un log precedente</string>
     <string name="repairlog_nomatch">Incoerenza dei log di manutenzione!</string>
+    <string name="total_spent_with_bike">Moto inclusa</string>
+    <string name="costs">Costi</string>
+    <string name="gear_cost">Costo abbigliamento</string>
 </resources>

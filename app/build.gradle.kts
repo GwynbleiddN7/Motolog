@@ -14,8 +14,8 @@ android {
         applicationId = "com.gwynn7.motolog"
         minSdk = 26
         targetSdk = 34
-        versionCode = 10
-        versionName = "1.5.2"
+        versionCode = 13
+        versionName = "1.7"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
