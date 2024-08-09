@@ -8,6 +8,8 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -21,7 +23,9 @@ import com.gwynn7.motolog.formatThousand
 import com.gwynn7.motolog.showToast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.gwynn7.motolog.UnitHelper
+import com.gwynn7.motolog.settings
 import com.gwynn7.motolog.showToastAfterDelay
+import kotlinx.coroutines.runBlocking
 
 class MotorcycleListFragment : Fragment() {
     private lateinit var mMotorcycleViewModel: MotorcycleViewModel
@@ -35,6 +39,11 @@ class MotorcycleListFragment : Fragment() {
         val recyclerView = view.findViewById<RecyclerView>(R.id.rw_motorcycles)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        /*
+        val tempFixKey = intPreferencesKey("temp-fix")
+        runBlocking {
+            requireContext().settings.edit { s -> s.remove(tempFixKey) }
+        }*/
 
         mMotorcycleViewModel = ViewModelProvider(this)[MotorcycleViewModel::class.java]
         mMotorcycleViewModel.readAllData.observe(viewLifecycleOwner, Observer {

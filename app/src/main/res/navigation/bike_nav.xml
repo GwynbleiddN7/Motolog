@@ -136,12 +136,15 @@
             android:id="@+id/repairsadd_to_repairsList"
             app:destination="@id/repairs_log" />
         <argument
-            android:name="logIndex"
-            android:defaultValue="-1"
-            app:argType="integer" />
-        <argument
             android:name="currentBike"
             app:argType="com.gwynn7.motolog.Models.Motorcycle" />
+        <argument
+            android:name="repairIndex"
+            app:argType="integer" />
+        <argument
+            android:name="logIndex"
+            app:argType="integer"
+            android:defaultValue="-1" />
     </fragment>
     <fragment
         android:id="@+id/edit_engine"

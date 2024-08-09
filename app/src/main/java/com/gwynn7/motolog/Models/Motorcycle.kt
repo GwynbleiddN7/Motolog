@@ -64,7 +64,7 @@ data class ModsLog(
 
 @Parcelize
 data class RepairsLog(
-    val typeIndex: Int,
+    var typeIndex: Int,
     val typeText: String,
     val notes: String,
     val date: Long,

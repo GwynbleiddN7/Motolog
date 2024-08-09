@@ -3,11 +3,9 @@ package com.gwynn7.motolog
 import android.app.Activity
 import android.content.Context
 import android.graphics.Bitmap
-import android.graphics.Rect
 import android.net.Uri
 import android.os.Handler
 import android.widget.Toast
-import androidx.core.graphics.BitmapCompat
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.recyclerview.widget.RecyclerView
@@ -26,14 +24,11 @@ enum class Path{
 }
 val repairColors = arrayOf(
     R.color.red,
-    R.color.yellow,
     R.color.orange,
     R.color.blue,
-    R.color.cyan,
-    R.color.green,
-    R.color.violet,
-    R.color.purple,
+    R.color.yellow,
     R.color.pink,
+    R.color.green,
     R.color.white
 )
 

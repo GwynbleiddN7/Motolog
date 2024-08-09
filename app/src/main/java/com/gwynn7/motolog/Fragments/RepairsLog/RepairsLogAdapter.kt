@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.gwynn7.motolog.Models.Motorcycle
 import com.gwynn7.motolog.Models.RepairsLog
 import com.gwynn7.motolog.R
@@ -34,16 +35,15 @@ class RepairsLogAdapter: RecyclerView.Adapter<RepairsLogAdapter.MyViewHolder>() 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = repairsLogList[position]
 
-        holder.itemView.findViewById<TextView>(R.id.tw_repair_type).text = if(currentItem.typeIndex == -1) currentItem.typeText else holder.itemView.resources.getStringArray(R.array.repair_types)[currentItem.typeIndex]
-
+        holder.itemView.findViewById<TextView>(R.id.tw_repair_type).text = currentItem.typeText
         val notes = holder.itemView.findViewById<TextView>(R.id.tw_repair_notes)
         notes.text = currentItem.notes
         notes.isSelected = true
+
         holder.itemView.findViewById<TextView>(R.id.tw_repair_date).text = longToDateString(currentItem.date)
 
-        val id = if(currentItem.typeIndex == -1) repairColors.size-1 else currentItem.typeIndex
         holder.itemView.findViewById<ImageView>(R.id.repair_image).setColorFilter(holder.itemView.resources.getColor(
-            repairColors[id], null));
+            repairColors[currentItem.typeIndex], null));
 
         val price = String.format("${holder.itemView.resources.getString(R.string.price)}: %.2f%s", currentItem.price, UnitHelper.getCurrency())
         holder.itemView.findViewById<TextView>(R.id.tw_repair_price).text = price
@@ -52,9 +52,26 @@ class RepairsLogAdapter: RecyclerView.Adapter<RepairsLogAdapter.MyViewHolder>() 
         holder.itemView.findViewById<TextView>(R.id.tw_repair_distance).text = distance
 
         holder.itemView.findViewById<CardView>(R.id.cv_repairs_row).setOnClickListener {
-            val action = RepairsLogFragmentDirections.repairslistToRepairsadd(currentBike, position)
-            holder.itemView.findNavController().navigate(action)
+            var arrayType = currentItem.typeIndex;
+            val alert = MaterialAlertDialogBuilder(holder.itemView.context)
+                .setNegativeButton(R.string.back, null)
+                .setSingleChoiceItems(holder.itemView.resources.getStringArray(R.array.repair_types), currentItem.typeIndex) { _, which ->
+                    arrayType = which;
+                }
+                .setTitle(R.string.choose_repair_type)
+                .setPositiveButton(R.string.edit){ _, _ ->
+                    val action = RepairsLogFragmentDirections.repairslistToRepairsadd(currentBike, arrayType, position)
+                    holder.itemView.findNavController().navigate(action)
+                }
+                .show()
         }
+    }
+
+    fun filter(repairTypeIndex: Int, reverse: Boolean) {
+        repairsLogList = currentBike.logs.maintenance.filter { element -> element.typeIndex == repairTypeIndex || repairTypeIndex == -1 }
+        repairsLogList.sortedByDescending { element -> element.date }
+        if(reverse) repairsLogList = repairsLogList.reversed()
+        notifyDataSetChanged()
     }
 
     fun bindBike(bike: Motorcycle)

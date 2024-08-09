@@ -1,28 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="repair_types">
-        <item>Tagliando</item>
-        <item>Revisione</item>
-        <item>Bollo</item>
-        <item>Grasso Catena</item>
-        <item>Gomma Anteriore</item>
-        <item>Gomma Posteriore</item>
-        <item>Liquido Freni</item>
-        <item>Olio Forcelle</item>
-        <item>Olio Motore</item>
+        <item>Manutenzione Motore</item>
+        <item>Manutenzione Catena/Trasmissione</item>
+        <item>Manutenzione Gomme</item>
+        <item>Manutenzione Freni</item>
+        <item>Manutenzione Forcelle</item>
+        <item>Bollo/Revisione/Assicurazione</item>
         <item>Personalizzato</item>
-    </string-array>
-    <string-array name="repair_notes">
-        <item>Tagliando standard</item>
-        <item>Revisione completata</item>
-        <item>Pagamento bollo moto</item>
-        <item>Catena ingrassata</item>
-        <item>Gomma anteriore sostituita</item>
-        <item>Gomma posteriore sostituita</item>
-        <item>Liquido freni sostituito</item>
-        <item>Olio forcelle sostituito</item>
-        <item>Olio motore aggiunto</item>
-        <item>Note</item>
     </string-array>
     <string name="fill_fields">Per favore completa tutti i campi</string>
     <string name="yes">Si</string>
@@ -148,4 +133,10 @@
     <string name="total_spent_with_bike">Moto inclusa</string>
     <string name="costs">Costi</string>
     <string name="gear_cost">Costo abbigliamento</string>
+    <string name="choose_repair_type">Scegli la categoria della manutenzione (per colori e filtro ricerca)</string>
+    <string name="filter">Filtro</string>
+    <string name="from_old">Dal meno recente</string>
+    <string name="from_new">Dal più recente</string>
+    <string name="filter_type">Filtro Categoria Manutenzione</string>
+    <string name="all">Tutti</string>
 </resources>

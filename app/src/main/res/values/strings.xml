@@ -1,28 +1,13 @@
 <resources>
     <string name="app_name" translatable="false">Motolog</string>
     <string-array name="repair_types">
-        <item>Service</item>
-        <item>Inspection</item>
-        <item>Tax</item>
-        <item>Chain Lube</item>
-        <item>Front Tire</item>
-        <item>Rear Tire</item>
-        <item>Brake Fluid</item>
-        <item>Fork Oil</item>
-        <item>Engine Oil Refill</item>
+        <item>Engine Service</item>
+        <item>Chain/Transmission Service</item>
+        <item>Tire Service</item>
+        <item>Brake Service</item>
+        <item>Fork Service</item>
+        <item>Tax/Inspection/Insurance</item>
         <item>Custom</item>
-    </string-array>
-    <string-array name="repair_notes">
-        <item>Standard service</item>
-        <item>Standard inspection passed</item>
-        <item>Motorcycle Tax payment</item>
-        <item>Chained lubed</item>
-        <item>Front tire changed</item>
-        <item>Rear tire changed</item>
-        <item>Brake fluid changed</item>
-        <item>Fork oil changed</item>
-        <item>Engine oil added</item>
-        <item>Note</item>
     </string-array>
     <string name="fill_fields">Please fill every field</string>
     <string name="yes">Yes</string>
@@ -148,4 +133,10 @@
     <string name="total_spent_with_bike">Bike included</string>
     <string name="costs">Costs</string>
     <string name="gear_cost">Total gear cost</string>
+    <string name="choose_repair_type">Choose maintenance category (for colors and research filter)</string>
+    <string name="filter">Filter</string>
+    <string name="from_old">From least recent</string>
+    <string name="from_new">From most recent</string>
+    <string name="filter_type">Filter Maintenance Category</string>
+    <string name="all">All</string>
 </resources>

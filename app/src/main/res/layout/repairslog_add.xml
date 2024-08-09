@@ -26,20 +26,7 @@
             android:src="@drawable/ic_repair"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:visibility="invisible"/>
-
-        <Spinner
-            android:id="@+id/spinner_repair"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawSelectorOnTop="true"
-            android:paddingStart="30dp"
-            android:entries="@array/repair_types"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_repair_type"
-            tools:listitem="@layout/repairslog_item" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/et_repair_type"
@@ -51,18 +38,29 @@
             android:textStyle="bold"
             android:textAlignment="center"
             android:inputType="textCapSentences"
-            android:enabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_repair_image" />
 
-
+        <TextView
+            android:id="@+id/textView_repair_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:textStyle="italic"
+            android:text="@string/type"
+            android:textColor="@color/dark_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_repair_type" />
 
         <EditText
             android:id="@+id/et_repair_notes"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="30dp"
             android:hint="@string/maintenance_notes"
             android:textSize="20dp"
             android:textStyle="bold"
@@ -70,7 +68,7 @@
             android:inputType="textCapSentences"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_repair_type" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_repair_type" />
 
         <TextView
             android:id="@+id/textView_repair_description"

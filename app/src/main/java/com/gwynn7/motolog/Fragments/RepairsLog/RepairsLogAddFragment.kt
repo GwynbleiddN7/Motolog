@@ -8,12 +8,10 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.Spinner
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -37,73 +35,36 @@ class RepairsLogAddFragment : Fragment() {
     private lateinit var mMotorcycleViewModel: MotorcycleViewModel
     private var savedDate: Long = Date().time
     private var currentPath: Path = Path.Add
-    private var repairTypes: List<String> = listOf()
-    private var repairsDefaultNotes: List<String> = listOf()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.repairslog_add, container, false)
 
-        repairTypes = resources.getStringArray(R.array.repair_types).toList()
-        repairsDefaultNotes = resources.getStringArray(R.array.repair_notes).toList()
-
         mMotorcycleViewModel = ViewModelProvider(this)[MotorcycleViewModel::class.java]
         if(args.logIndex != -1) currentPath = Path.Edit
 
         view.findViewById<TextView>(R.id.textView_repair_distance).text = capitalize(getString(R.string.bike_repair_distance, UnitHelper.getDistanceText(requireContext())))
 
+        val type = view.findViewById<EditText>(R.id.et_repair_type)
         val notes = view.findViewById<EditText>(R.id.et_repair_notes)
         val distance = view.findViewById<EditText>(R.id.et_repair_distance)
         distance.setText(String.format("%d", args.currentBike.personal_km + args.currentBike.start_km))
-        val type = view.findViewById<EditText>(R.id.et_repair_type)
-        type.isSelected = true
-
-        val spinner = view.findViewById<Spinner>(R.id.spinner_repair)
-        var bEnableCallback = currentPath == Path.Add;
 
         if(currentPath == Path.Edit)
         {
             val currentLog = args.currentBike.logs.maintenance[args.logIndex]
             savedDate = currentLog.date
 
-            if(currentLog.typeIndex == -1) {
-                spinner.setSelection(repairTypes.size-1)
-                type.setText(currentLog.typeText)
-            }
-            else {
-                type.setText(repairTypes[currentLog.typeIndex])
-                spinner.setSelection(currentLog.typeIndex)
-            }
-
+            type.setText(currentLog.typeText)
             notes.setText(currentLog.notes)
             view.findViewById<EditText>(R.id.et_repair_price).setText(currentLog.price.toString())
             distance.setText(currentLog.repair_km.toString())
         }
 
         val repairImage = view.findViewById<ImageView>(R.id.iv_repair_image)
-
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>) {}
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                repairImage.setColorFilter(resources.getColor(repairColors[position], null));
-                repairImage.visibility = View.VISIBLE
-                if(bEnableCallback) {
-                    if(position == repairTypes.size-1) {
-                        type.setText("")
-                        type.isEnabled = true
-                        notes.setText("")
-                    }
-                    else{
-                        type.setText(repairTypes[position])
-                        type.isEnabled = false
-                        notes.setText(repairsDefaultNotes[position])
-                    }
-                }
-
-                bEnableCallback=true
-            }
-        }
+        repairImage.setColorFilter(resources.getColor(repairColors[args.repairIndex], null));
 
         val date = view.findViewById<DatePicker>(R.id.dp_repair_date)
         date.maxDate = Date().time
@@ -111,7 +72,6 @@ class RepairsLogAddFragment : Fragment() {
         { _, year, month, dayOfMonth ->
             savedDate = longFromDate(year, month, dayOfMonth)
         }
-
 
         val button = view.findViewById<Button>(R.id.bt_deleteRepair)
         button.visibility = if(currentPath == Path.Edit) View.VISIBLE else View.GONE
@@ -131,9 +91,6 @@ class RepairsLogAddFragment : Fragment() {
 
         if(inputCheck(type, notes, price, distance))
         {
-            var id = -1
-            if(repairTypes.contains(type)) id = repairTypes.indexOf(type)
-
             val bike = args.currentBike
             val repairsLogList = bike.logs.maintenance.toMutableList()
             val distanceInt = distance.toInt()
@@ -156,7 +113,7 @@ class RepairsLogAddFragment : Fragment() {
             }
 
             if(currentPath == Path.Edit) repairsLogList.removeAt(args.logIndex)
-            repairsLogList.add(RepairsLog(id, type, notes, savedDate, distanceInt, price.toDouble()))
+            repairsLogList.add(RepairsLog(args.repairIndex, type, notes, savedDate, distanceInt, price.toDouble()))
 
             bike.logs.maintenance = repairsLogList.sortedBy { log -> log.date }.reversed()
             mMotorcycleViewModel.updateMotorcycle(bike, null)
