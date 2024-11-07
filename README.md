@@ -1,4 +1,4 @@
-![Logo](https://github.com/GwynbleiddN7/Motolog/blob/main/app/src/main/res/drawable/logo_small.png)
+![Logo](https://github.com/GwynbleiddN7/Motolog/blob/main/app/src/main/res/drawable/logo.png)
 
 # Motolog
 
