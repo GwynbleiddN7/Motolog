@@ -1,5 +1,3 @@
-![Logo](https://github.com/GwynbleiddN7/Motolog/blob/main/app/src/main/res/drawable/logo.png)
-
 # Motolog
 
 A diary of your biker's life, to keep track of your journey with your bike ✌🏻
@@ -34,3 +32,6 @@ If you have feedback, reach out to me at mattcheru03@gmail.com or [@motologapp](
 ## License
 
 [GNU AGPLv3 ](https://choosealicense.com/licenses/agpl-3.0/)
+
+
+![Logo](https://github.com/GwynbleiddN7/Motolog/blob/main/app/src/main/res/drawable/logo.png)
