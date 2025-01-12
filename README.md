@@ -31,7 +31,7 @@ If you have feedback, reach out to me at mattcheru03@gmail.com or [@motologapp](
 
 ## License
 
-[GNU AGPLv3 ](https://choosealicense.com/licenses/agpl-3.0/)
+[GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/)
 
 ## Logo
 
