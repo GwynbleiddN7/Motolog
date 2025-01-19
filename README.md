@@ -35,4 +35,4 @@ If you have feedback, reach out to me at mattcheru03@gmail.com or [@motologapp](
 
 ## Logo
 
-![Logo](https://github.com/GwynbleiddN7/Motolog/blob/main/app/src/main/res/drawable/logo.png)
+![Logo](app/src/main/res/drawable/logo.png)
